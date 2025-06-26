@@ -25,11 +25,11 @@ Partial Class frmLogin
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
     Panel1 = New Panel()
     txtPassword = New TextBox()
-    txtUsuario = New TextBox()
-    btnSalir = New Button()
+    txtCorreo = New TextBox()
     btnIngresar = New Button()
+    btnCrearCuenta = New Button()
     lblPassword = New Label()
-    lblUsuario = New Label()
+    lblCorreo = New Label()
     lblBienvenidos = New Label()
     Panel1.SuspendLayout()
     SuspendLayout()
@@ -39,66 +39,66 @@ Partial Class frmLogin
     Panel1.BackColor = Color.FromArgb(CByte(187), CByte(212), CByte(235))
     Panel1.BorderStyle = BorderStyle.Fixed3D
     Panel1.Controls.Add(txtPassword)
-    Panel1.Controls.Add(txtUsuario)
-    Panel1.Controls.Add(btnSalir)
+    Panel1.Controls.Add(txtCorreo)
     Panel1.Controls.Add(btnIngresar)
+    Panel1.Controls.Add(btnCrearCuenta)
     Panel1.Controls.Add(lblPassword)
-    Panel1.Controls.Add(lblUsuario)
+    Panel1.Controls.Add(lblCorreo)
     Panel1.Location = New Point(46, 60)
     Panel1.Name = "Panel1"
-    Panel1.Size = New Size(222, 265)
+    Panel1.Size = New Size(246, 241)
     Panel1.TabIndex = 0
     ' 
     ' txtPassword
     ' 
-    txtPassword.Location = New Point(68, 143)
+    txtPassword.Location = New Point(38, 118)
     txtPassword.Name = "txtPassword"
     txtPassword.PasswordChar = "*"c
-    txtPassword.Size = New Size(127, 23)
-    txtPassword.TabIndex = 5
+    txtPassword.Size = New Size(165, 23)
+    txtPassword.TabIndex = 3
     ' 
-    ' txtUsuario
+    ' txtCorreo
     ' 
-    txtUsuario.Location = New Point(68, 52)
-    txtUsuario.Name = "txtUsuario"
-    txtUsuario.Size = New Size(127, 23)
-    txtUsuario.TabIndex = 4
-    ' 
-    ' btnSalir
-    ' 
-    btnSalir.Location = New Point(120, 214)
-    btnSalir.Name = "btnSalir"
-    btnSalir.Size = New Size(75, 23)
-    btnSalir.TabIndex = 3
-    btnSalir.Text = "Salir"
-    btnSalir.UseVisualStyleBackColor = True
+    txtCorreo.Location = New Point(38, 52)
+    txtCorreo.Name = "txtCorreo"
+    txtCorreo.Size = New Size(165, 23)
+    txtCorreo.TabIndex = 1
     ' 
     ' btnIngresar
     ' 
-    btnIngresar.Location = New Point(16, 214)
+    btnIngresar.Location = New Point(131, 169)
     btnIngresar.Name = "btnIngresar"
-    btnIngresar.Size = New Size(75, 23)
-    btnIngresar.TabIndex = 2
+    btnIngresar.Size = New Size(98, 43)
+    btnIngresar.TabIndex = 5
     btnIngresar.Text = "Ingresar"
     btnIngresar.UseVisualStyleBackColor = True
     ' 
+    ' btnCrearCuenta
+    ' 
+    btnCrearCuenta.Location = New Point(14, 169)
+    btnCrearCuenta.Name = "btnCrearCuenta"
+    btnCrearCuenta.Size = New Size(98, 43)
+    btnCrearCuenta.TabIndex = 4
+    btnCrearCuenta.Text = "Crear Cuenta"
+    btnCrearCuenta.UseVisualStyleBackColor = True
+    ' 
     ' lblPassword
     ' 
-    lblPassword.AutoSize = True
-    lblPassword.Location = New Point(26, 105)
+    lblPassword.Location = New Point(38, 100)
     lblPassword.Name = "lblPassword"
-    lblPassword.Size = New Size(63, 15)
-    lblPassword.TabIndex = 1
-    lblPassword.Text = "Password :"
+    lblPassword.Size = New Size(165, 15)
+    lblPassword.TabIndex = 2
+    lblPassword.Text = "Contraseña "
+    lblPassword.TextAlign = ContentAlignment.MiddleCenter
     ' 
-    ' lblUsuario
+    ' lblCorreo
     ' 
-    lblUsuario.AutoSize = True
-    lblUsuario.Location = New Point(26, 21)
-    lblUsuario.Name = "lblUsuario"
-    lblUsuario.Size = New Size(53, 15)
-    lblUsuario.TabIndex = 0
-    lblUsuario.Text = "Usuario :"
+    lblCorreo.Location = New Point(38, 34)
+    lblCorreo.Name = "lblCorreo"
+    lblCorreo.Size = New Size(165, 15)
+    lblCorreo.TabIndex = 0
+    lblCorreo.Text = "Ingresar Correo "
+    lblCorreo.TextAlign = ContentAlignment.MiddleCenter
     ' 
     ' lblBienvenidos
     ' 
@@ -133,12 +133,12 @@ Partial Class frmLogin
   End Sub
 
   Friend WithEvents Panel1 As Panel
-  Friend WithEvents btnSalir As Button
   Friend WithEvents btnIngresar As Button
+  Friend WithEvents btnCrearCuenta As Button
   Friend WithEvents lblPassword As Label
-  Friend WithEvents lblUsuario As Label
+  Friend WithEvents lblCorreo As Label
   Friend WithEvents txtPassword As TextBox
-  Friend WithEvents txtUsuario As TextBox
+  Friend WithEvents txtCorreo As TextBox
   Friend WithEvents lblBienvenidos As Label
 
 End Class
