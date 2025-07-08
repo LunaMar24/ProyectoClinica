@@ -27,7 +27,7 @@ Partial Class frmLogin
     txtPassword = New TextBox()
     txtCorreo = New TextBox()
     btnIngresar = New Button()
-    btnCrearCuenta = New Button()
+    btnSalir = New Button()
     lblPassword = New Label()
     lblCorreo = New Label()
     lblBienvenidos = New Label()
@@ -41,12 +41,12 @@ Partial Class frmLogin
     Panel1.Controls.Add(txtPassword)
     Panel1.Controls.Add(txtCorreo)
     Panel1.Controls.Add(btnIngresar)
-    Panel1.Controls.Add(btnCrearCuenta)
+    Panel1.Controls.Add(btnSalir)
     Panel1.Controls.Add(lblPassword)
     Panel1.Controls.Add(lblCorreo)
     Panel1.Location = New Point(46, 60)
     Panel1.Name = "Panel1"
-    Panel1.Size = New Size(246, 241)
+    Panel1.Size = New Size(246, 231)
     Panel1.TabIndex = 0
     ' 
     ' txtPassword
@@ -56,6 +56,7 @@ Partial Class frmLogin
     txtPassword.PasswordChar = "*"c
     txtPassword.Size = New Size(165, 23)
     txtPassword.TabIndex = 3
+    txtPassword.Text = "papucho"
     ' 
     ' txtCorreo
     ' 
@@ -63,24 +64,25 @@ Partial Class frmLogin
     txtCorreo.Name = "txtCorreo"
     txtCorreo.Size = New Size(165, 23)
     txtCorreo.TabIndex = 1
+    txtCorreo.Text = "eladiovch@gmail.com"
     ' 
     ' btnIngresar
     ' 
-    btnIngresar.Location = New Point(131, 169)
+    btnIngresar.Location = New Point(130, 163)
     btnIngresar.Name = "btnIngresar"
     btnIngresar.Size = New Size(98, 43)
     btnIngresar.TabIndex = 5
     btnIngresar.Text = "Ingresar"
     btnIngresar.UseVisualStyleBackColor = True
     ' 
-    ' btnCrearCuenta
+    ' btnSalir
     ' 
-    btnCrearCuenta.Location = New Point(14, 169)
-    btnCrearCuenta.Name = "btnCrearCuenta"
-    btnCrearCuenta.Size = New Size(98, 43)
-    btnCrearCuenta.TabIndex = 4
-    btnCrearCuenta.Text = "Crear Cuenta"
-    btnCrearCuenta.UseVisualStyleBackColor = True
+    btnSalir.Location = New Point(13, 163)
+    btnSalir.Name = "btnSalir"
+    btnSalir.Size = New Size(98, 43)
+    btnSalir.TabIndex = 4
+    btnSalir.Text = "Salir"
+    btnSalir.UseVisualStyleBackColor = True
     ' 
     ' lblPassword
     ' 
@@ -125,6 +127,7 @@ Partial Class frmLogin
     MinimizeBox = False
     MinimumSize = New Size(658, 410)
     Name = "frmLogin"
+    StartPosition = FormStartPosition.CenterScreen
     Text = "Login"
     Panel1.ResumeLayout(False)
     Panel1.PerformLayout()
@@ -134,7 +137,7 @@ Partial Class frmLogin
 
   Friend WithEvents Panel1 As Panel
   Friend WithEvents btnIngresar As Button
-  Friend WithEvents btnCrearCuenta As Button
+  Friend WithEvents btnSalir As Button
   Friend WithEvents lblPassword As Label
   Friend WithEvents lblCorreo As Label
   Friend WithEvents txtPassword As TextBox

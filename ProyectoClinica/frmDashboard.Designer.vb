@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmDashboard
-  Inherits System.Windows.Forms.Form
+  Inherits Form
 
   'Form reemplaza a Dispose para limpiar la lista de componentes.
   <System.Diagnostics.DebuggerNonUserCode()> _
@@ -23,11 +23,11 @@ Partial Class frmDashboard
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     grbOpciones = New GroupBox()
-    btnPersonas = New Button()
-    btnDoctores = New Button()
-    btnEspecialidades = New Button()
-    btnConsultas = New Button()
     btnUsuarios = New Button()
+    btnConsultas = New Button()
+    btnEspecialidades = New Button()
+    btnDoctores = New Button()
+    btnPersonas = New Button()
     btnSalir = New Button()
     grbOpciones.SuspendLayout()
     SuspendLayout()
@@ -41,61 +41,61 @@ Partial Class frmDashboard
     grbOpciones.Controls.Add(btnPersonas)
     grbOpciones.Location = New Point(30, 25)
     grbOpciones.Name = "grbOpciones"
-    grbOpciones.Size = New Size(554, 340)
+    grbOpciones.Size = New Size(554, 213)
     grbOpciones.TabIndex = 0
     grbOpciones.TabStop = False
     grbOpciones.Text = "Seleccione una opción"
     ' 
-    ' btnPersonas
-    ' 
-    btnPersonas.Location = New Point(45, 47)
-    btnPersonas.Name = "btnPersonas"
-    btnPersonas.Size = New Size(134, 57)
-    btnPersonas.TabIndex = 0
-    btnPersonas.Text = "Personas"
-    btnPersonas.UseVisualStyleBackColor = True
-    ' 
-    ' btnDoctores
-    ' 
-    btnDoctores.Location = New Point(337, 47)
-    btnDoctores.Name = "btnDoctores"
-    btnDoctores.Size = New Size(134, 57)
-    btnDoctores.TabIndex = 1
-    btnDoctores.Text = "Doctores"
-    btnDoctores.UseVisualStyleBackColor = True
-    ' 
-    ' btnEspecialidades
-    ' 
-    btnEspecialidades.Location = New Point(199, 148)
-    btnEspecialidades.Name = "btnEspecialidades"
-    btnEspecialidades.Size = New Size(134, 57)
-    btnEspecialidades.TabIndex = 2
-    btnEspecialidades.Text = "Especialidades"
-    btnEspecialidades.UseVisualStyleBackColor = True
-    ' 
-    ' btnConsultas
-    ' 
-    btnConsultas.Location = New Point(45, 244)
-    btnConsultas.Name = "btnConsultas"
-    btnConsultas.Size = New Size(134, 57)
-    btnConsultas.TabIndex = 3
-    btnConsultas.Text = "Consultas"
-    btnConsultas.UseVisualStyleBackColor = True
-    ' 
     ' btnUsuarios
     ' 
-    btnUsuarios.Location = New Point(346, 244)
+    btnUsuarios.Location = New Point(26, 33)
     btnUsuarios.Name = "btnUsuarios"
     btnUsuarios.Size = New Size(134, 57)
     btnUsuarios.TabIndex = 4
     btnUsuarios.Text = "Usuarios"
     btnUsuarios.UseVisualStyleBackColor = True
     ' 
+    ' btnConsultas
+    ' 
+    btnConsultas.Location = New Point(103, 126)
+    btnConsultas.Name = "btnConsultas"
+    btnConsultas.Size = New Size(134, 57)
+    btnConsultas.TabIndex = 3
+    btnConsultas.Text = "Consultas"
+    btnConsultas.UseVisualStyleBackColor = True
+    ' 
+    ' btnEspecialidades
+    ' 
+    btnEspecialidades.Location = New Point(394, 33)
+    btnEspecialidades.Name = "btnEspecialidades"
+    btnEspecialidades.Size = New Size(134, 57)
+    btnEspecialidades.TabIndex = 2
+    btnEspecialidades.Text = "Especialidades"
+    btnEspecialidades.UseVisualStyleBackColor = True
+    ' 
+    ' btnDoctores
+    ' 
+    btnDoctores.Location = New Point(210, 33)
+    btnDoctores.Name = "btnDoctores"
+    btnDoctores.Size = New Size(134, 57)
+    btnDoctores.TabIndex = 1
+    btnDoctores.Text = "Doctores"
+    btnDoctores.UseVisualStyleBackColor = True
+    ' 
+    ' btnPersonas
+    ' 
+    btnPersonas.Location = New Point(309, 126)
+    btnPersonas.Name = "btnPersonas"
+    btnPersonas.Size = New Size(134, 57)
+    btnPersonas.TabIndex = 0
+    btnPersonas.Text = "Pacientes"
+    btnPersonas.UseVisualStyleBackColor = True
+    ' 
     ' btnSalir
     ' 
     btnSalir.BackColor = Color.IndianRed
     btnSalir.ForeColor = Color.White
-    btnSalir.Location = New Point(450, 381)
+    btnSalir.Location = New Point(450, 257)
     btnSalir.Name = "btnSalir"
     btnSalir.Size = New Size(134, 57)
     btnSalir.TabIndex = 3
@@ -106,10 +106,11 @@ Partial Class frmDashboard
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
-    ClientSize = New Size(618, 450)
+    ClientSize = New Size(602, 338)
     Controls.Add(btnSalir)
     Controls.Add(grbOpciones)
     Name = "frmDashboard"
+    StartPosition = FormStartPosition.CenterScreen
     Text = "frmDashboard"
     grbOpciones.ResumeLayout(False)
     ResumeLayout(False)
