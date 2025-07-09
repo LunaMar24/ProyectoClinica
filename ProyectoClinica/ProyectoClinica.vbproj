@@ -26,9 +26,7 @@
     <Compile Update="frmConsultaCitasDoctor.vb" />
     <Compile Update="frmCrearDoctor.vb" />
     <Compile Update="frmConsultaPaciente.vb" />
-    <Compile Update="frmMantPacientes.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="frmMantPacientes.vb" />
     <Compile Update="frmMantUsuarios.vb" />
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>

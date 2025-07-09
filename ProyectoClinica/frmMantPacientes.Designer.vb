@@ -22,7 +22,7 @@ Partial Class frmMantPacientes
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+    Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvPacientes = New DataGridView()
     btnCrear = New Button()
     btnModificar = New Button()
@@ -30,7 +30,7 @@ Partial Class frmMantPacientes
     btnRegresar = New Button()
     gpbFiltrar = New GroupBox()
     btnFiltrar = New Button()
-    txtFilEspecialidad = New TextBox()
+    txtFilCedula = New TextBox()
     txtFilApellido = New TextBox()
     txtFilNombre = New TextBox()
     lblFilCedula = New Label()
@@ -46,14 +46,14 @@ Partial Class frmMantPacientes
     dgvPacientes.AllowUserToAddRows = False
     dgvPacientes.AllowUserToDeleteRows = False
     dgvPacientes.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-    dgvPacientes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = SystemColors.Control
+    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+    dgvPacientes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
     dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
     dgvPacientes.Location = New Point(12, 155)
     dgvPacientes.MultiSelect = False
@@ -104,7 +104,7 @@ Partial Class frmMantPacientes
     ' gpbFiltrar
     ' 
     gpbFiltrar.Controls.Add(btnFiltrar)
-    gpbFiltrar.Controls.Add(txtFilEspecialidad)
+    gpbFiltrar.Controls.Add(txtFilCedula)
     gpbFiltrar.Controls.Add(txtFilApellido)
     gpbFiltrar.Controls.Add(txtFilNombre)
     gpbFiltrar.Controls.Add(lblFilCedula)
@@ -126,12 +126,12 @@ Partial Class frmMantPacientes
     btnFiltrar.Text = "Filtrar"
     btnFiltrar.UseVisualStyleBackColor = True
     ' 
-    ' txtFilEspecialidad
+    ' txtFilCedula
     ' 
-    txtFilEspecialidad.Location = New Point(395, 16)
-    txtFilEspecialidad.Name = "txtFilEspecialidad"
-    txtFilEspecialidad.Size = New Size(213, 23)
-    txtFilEspecialidad.TabIndex = 5
+    txtFilCedula.Location = New Point(395, 16)
+    txtFilCedula.Name = "txtFilCedula"
+    txtFilCedula.Size = New Size(213, 23)
+    txtFilCedula.TabIndex = 5
     ' 
     ' txtFilApellido
     ' 
@@ -212,7 +212,7 @@ Partial Class frmMantPacientes
   Friend WithEvents btnRegresar As Button
   Friend WithEvents gpbFiltrar As GroupBox
   Friend WithEvents btnFiltrar As Button
-  Friend WithEvents txtFilEspecialidad As TextBox
+  Friend WithEvents txtFilCedula As TextBox
   Friend WithEvents txtFilApellido As TextBox
   Friend WithEvents txtFilNombre As TextBox
   Friend WithEvents lblFilCedula As Label

@@ -24,7 +24,6 @@
         btnConsultas.Enabled = False
         btnPersonas.Enabled = False
       Case "Doctor"
-        btnPersonas.Enabled = False
         btnDoctores.Enabled = False
         btnEspecialidades.Enabled = False
         btnUsuarios.Enabled = False
@@ -55,5 +54,12 @@
   Private Sub btnEspecialidades_Click(sender As Object, e As EventArgs) Handles btnEspecialidades.Click
     frmEspecialidades.Show()
     Me.Hide()
+  End Sub
+
+  Private Sub btnPersonas_Click(sender As Object, e As EventArgs) Handles btnPersonas.Click
+    frmMantPacientes.Show()
+    frmMantPacientes.AjustarPantalla()
+    Me.Hide()
+
   End Sub
 End Class
