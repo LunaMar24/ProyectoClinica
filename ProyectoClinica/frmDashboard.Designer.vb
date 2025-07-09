@@ -111,7 +111,7 @@ Partial Class frmDashboard
     Controls.Add(grbOpciones)
     Name = "frmDashboard"
     StartPosition = FormStartPosition.CenterScreen
-    Text = "frmDashboard"
+    Text = "Menú Principal"
     grbOpciones.ResumeLayout(False)
     ResumeLayout(False)
   End Sub

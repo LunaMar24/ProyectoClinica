@@ -133,18 +133,21 @@ Partial Class frmEspecialidades
     ' dgvEspecialidades
     ' 
     dgvEspecialidades.AllowUserToAddRows = False
-    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-    dgvEspecialidades.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    dgvEspecialidades.AllowUserToDeleteRows = False
+    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = SystemColors.Control
+    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+    dgvEspecialidades.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
     dgvEspecialidades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    dgvEspecialidades.Columns.AddRange(New DataGridViewColumn() {clDescripcion, clId})
-    dgvEspecialidades.Location = New Point(12, 221)
+    dgvEspecialidades.Location = New Point(12, 155)
+    dgvEspecialidades.MultiSelect = False
     dgvEspecialidades.Name = "dgvEspecialidades"
+    dgvEspecialidades.ReadOnly = True
+    dgvEspecialidades.SelectionMode = DataGridViewSelectionMode.FullRowSelect
     dgvEspecialidades.Size = New Size(615, 247)
     dgvEspecialidades.TabIndex = 4
     ' 

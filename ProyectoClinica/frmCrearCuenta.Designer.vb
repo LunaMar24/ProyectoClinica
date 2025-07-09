@@ -48,7 +48,7 @@ Partial Class frmCrearCuenta
     grbData.Controls.Add(Label1)
     grbData.Controls.Add(txtNombre)
     grbData.Controls.Add(lblNombre)
-    grbData.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    grbData.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbData.Location = New Point(27, 30)
     grbData.Name = "grbData"
     grbData.Size = New Size(631, 391)
@@ -78,76 +78,76 @@ Partial Class frmCrearCuenta
     ' 
     ' cboTipoUsuario
     ' 
-    cboTipoUsuario.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    cboTipoUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     cboTipoUsuario.FormattingEnabled = True
     cboTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
     cboTipoUsuario.Location = New Point(285, 237)
     cboTipoUsuario.Name = "cboTipoUsuario"
-    cboTipoUsuario.Size = New Size(316, 38)
+    cboTipoUsuario.Size = New Size(316, 33)
     cboTipoUsuario.TabIndex = 7
     ' 
     ' Label3
     ' 
     Label3.AutoSize = True
-    Label3.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     Label3.Location = New Point(135, 245)
     Label3.Name = "Label3"
-    Label3.Size = New Size(144, 30)
+    Label3.Size = New Size(131, 25)
     Label3.TabIndex = 6
     Label3.Text = "Tipo Usuario:"
     ' 
     ' txtContrasena
     ' 
-    txtContrasena.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    txtContrasena.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     txtContrasena.Location = New Point(285, 183)
     txtContrasena.Name = "txtContrasena"
     txtContrasena.PasswordChar = "*"c
-    txtContrasena.Size = New Size(316, 35)
+    txtContrasena.Size = New Size(316, 33)
     txtContrasena.TabIndex = 5
     ' 
     ' Label2
     ' 
     Label2.AutoSize = True
-    Label2.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-    Label2.Location = New Point(64, 183)
+    Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+    Label2.Location = New Point(69, 183)
     Label2.Name = "Label2"
-    Label2.Size = New Size(215, 30)
+    Label2.Size = New Size(197, 25)
     Label2.TabIndex = 4
     Label2.Text = "Ingresar Contraseña:"
     ' 
     ' txtCorreo
     ' 
-    txtCorreo.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    txtCorreo.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     txtCorreo.Location = New Point(285, 119)
     txtCorreo.Name = "txtCorreo"
-    txtCorreo.Size = New Size(316, 35)
+    txtCorreo.Size = New Size(316, 33)
     txtCorreo.TabIndex = 3
     ' 
     ' Label1
     ' 
     Label1.AutoSize = True
-    Label1.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     Label1.Location = New Point(108, 124)
     Label1.Name = "Label1"
-    Label1.Size = New Size(171, 30)
+    Label1.Size = New Size(158, 25)
     Label1.TabIndex = 2
     Label1.Text = "Ingresar Correo:"
     ' 
     ' txtNombre
     ' 
-    txtNombre.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    txtNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     txtNombre.Location = New Point(285, 61)
     txtNombre.Name = "txtNombre"
-    txtNombre.Size = New Size(316, 35)
+    txtNombre.Size = New Size(316, 33)
     txtNombre.TabIndex = 1
     ' 
     ' lblNombre
     ' 
     lblNombre.AutoSize = True
-    lblNombre.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-    lblNombre.Location = New Point(179, 66)
+    lblNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+    lblNombre.Location = New Point(175, 66)
     lblNombre.Name = "lblNombre"
-    lblNombre.Size = New Size(100, 30)
+    lblNombre.Size = New Size(91, 25)
     lblNombre.TabIndex = 0
     lblNombre.Text = "Nombre:"
     ' 

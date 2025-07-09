@@ -11,7 +11,7 @@ Public Class frmCrearCuenta
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmLogin.Show()
+    frmMantUsuarios.Show()
     Me.Close()
   End Sub
 

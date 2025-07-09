@@ -7,6 +7,7 @@
 
   Private Sub btnDoctores_Click(sender As Object, e As EventArgs) Handles btnDoctores.Click
     frmMantDoctores.Show()
+    frmMantDoctores.AjustarPantalla()
     Me.Hide()
   End Sub
 
@@ -46,5 +47,13 @@
     End Select
   End Sub
 
+  Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
+    frmMantUsuarios.Show()
+    Me.Hide()
+  End Sub
 
+  Private Sub btnEspecialidades_Click(sender As Object, e As EventArgs) Handles btnEspecialidades.Click
+    frmEspecialidades.Show()
+    Me.Hide()
+  End Sub
 End Class
