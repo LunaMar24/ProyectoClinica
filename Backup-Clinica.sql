@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `db_clinica` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `db_clinica`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: db_clinica
 -- ------------------------------------------------------
--- Server version	9.3.0
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,12 +23,12 @@ DROP TABLE IF EXISTS `consulta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consulta` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `numero` varchar(255) NOT NULL,
   `prioridad` varchar(45) NOT NULL,
   `fecha` datetime(6) NOT NULL,
-  `sintomas` text NOT NULL,
-  `padecimientos` text NOT NULL,
+  `sintomas` text,
+  `padecimientos` text,
   `alergias` text,
   `presion` varchar(45) DEFAULT NULL,
   `temperatura` varchar(45) DEFAULT NULL,
@@ -43,7 +41,7 @@ CREATE TABLE `consulta` (
   KEY `fk_consulta_doctor1_idx` (`doctor_id`),
   CONSTRAINT `fk_consulta_doctor1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
   CONSTRAINT `fk_consulta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,6 +50,7 @@ CREATE TABLE `consulta` (
 
 LOCK TABLES `consulta` WRITE;
 /*!40000 ALTER TABLE `consulta` DISABLE KEYS */;
+INSERT INTO `consulta` VALUES (2,'CLICONS-00001','Alta','2025-07-14 00:00:00.000000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1);
 /*!40000 ALTER TABLE `consulta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +190,7 @@ CREATE TABLE `tratamiento` (
   `descripcion` text,
   `consulta_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tratamiento_consulta1_idx` (`consulta_id`),
+  KEY `fk_tratamiento_consulta1` (`consulta_id`),
   CONSTRAINT `fk_tratamiento_consulta1` FOREIGN KEY (`consulta_id`) REFERENCES `consulta` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -282,7 +281,8 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `CEDULA`,
  1 AS `TELEFONO`,
  1 AS `USUARIO`,
- 1 AS `CANT_CONSULTAS`*/;
+ 1 AS `CONSULTAS_PENDIENTES`,
+ 1 AS `CONSULTAS_FINALIZADAS`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -385,7 +385,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vpaciente` AS select `persona`.`id` AS `ID`,`persona`.`nombre_completo` AS `NOMBRE`,`persona`.`apellido` AS `APELLIDO`,`persona`.`identificacion` AS `CEDULA`,`persona`.`telefono` AS `TELEFONO`,`usuarios`.`correo` AS `USUARIO`,(select count(0) from `consulta` where (`consulta`.`persona_id` = `persona`.`id`)) AS `CANT_CONSULTAS` from (`persona` join `usuarios` on((`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) */;
+/*!50001 VIEW `vpaciente` AS select `persona`.`id` AS `ID`,`persona`.`nombre_completo` AS `NOMBRE`,`persona`.`apellido` AS `APELLIDO`,`persona`.`identificacion` AS `CEDULA`,`persona`.`telefono` AS `TELEFONO`,`usuarios`.`correo` AS `USUARIO`,(select count(0) from (`consulta` left join `tratamiento` on((`consulta`.`id` = `tratamiento`.`consulta_id`))) where ((`consulta`.`persona_id` = `persona`.`id`) and (`tratamiento`.`consulta_id` is null))) AS `CONSULTAS_PENDIENTES`,(select count(0) from (`consulta` join `tratamiento` on((`consulta`.`id` = `tratamiento`.`consulta_id`))) where (`consulta`.`persona_id` = `persona`.`id`)) AS `CONSULTAS_FINALIZADAS` from (`persona` join `usuarios` on((`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -403,7 +403,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vpacienteconsultas` AS select `consulta`.`id` AS `ID`,`consulta`.`numero` AS `CONSECUTIVO`,`consulta`.`fecha` AS `FECHA_CONSULTA`,(`doctor`.`nombre_completo` + `doctor`.`apellido`) AS `DOCTOR`,`especialidad`.`descripcion` AS `ESPECIALIDAD` from (((`consulta` join `doctor` on((`doctor`.`id` = `consulta`.`doctor_id`))) join `doctor_especialidad` on((`doctor`.`id` = `doctor_especialidad`.`doctor_id`))) join `especialidad` on((`doctor_especialidad`.`especialidad_id` = `especialidad`.`id`))) */;
+/*!50001 VIEW `vpacienteconsultas` AS select `consulta`.`id` AS `ID`,`consulta`.`numero` AS `CONSECUTIVO`,`consulta`.`fecha` AS `FECHA_CONSULTA`,concat(`doctor`.`nombre_completo`,' ',`doctor`.`apellido`) AS `DOCTOR`,`especialidad`.`descripcion` AS `ESPECIALIDAD` from (((`consulta` join `doctor` on((`doctor`.`id` = `consulta`.`doctor_id`))) join `doctor_especialidad` on((`doctor`.`id` = `doctor_especialidad`.`doctor_id`))) join `especialidad` on((`doctor_especialidad`.`especialidad_id` = `especialidad`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -453,4 +453,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-09 19:22:18
+-- Dump completed on 2025-07-14 23:11:26

@@ -1,5 +1,5 @@
-﻿Public Interface Formularios
+﻿Public Interface IFormularios
 
-
+  Sub AjustarPantalla()
 
 End Interface

@@ -153,13 +153,17 @@ Public Class frmMantPacientes
     colUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvPacientes.Columns.Add(colUsuario)
 
-    Dim colConsultas As New DataGridViewTextBoxColumn()
-    colConsultas.HeaderText = "Consultas"
-    colConsultas.DataPropertyName = "CANT_CONSULTAS"
-    colConsultas.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-    dgvPacientes.Columns.Add(colConsultas)
+    Dim colConsultasP As New DataGridViewTextBoxColumn()
+    colConsultasP.HeaderText = "Consultas Pendientes"
+    colConsultasP.DataPropertyName = "CONSULTAS_PENDIENTES"
+    colConsultasP.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+    dgvPacientes.Columns.Add(colConsultasP)
 
-
+    Dim colConsultasF As New DataGridViewTextBoxColumn()
+    colConsultasF.HeaderText = "Consultas Finalizadas"
+    colConsultasF.DataPropertyName = "CONSULTAS_FINALIZADAS"
+    colConsultasF.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+    dgvPacientes.Columns.Add(colConsultasF)
 
   End Sub
 
