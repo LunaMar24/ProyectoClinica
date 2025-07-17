@@ -22,7 +22,7 @@ Partial Class frmMantUsuarios
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+    Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvUsuarios = New DataGridView()
     clID = New DataGridViewTextBoxColumn()
     clNombre = New DataGridViewTextBoxColumn()
@@ -49,14 +49,14 @@ Partial Class frmMantUsuarios
     dgvUsuarios.AllowUserToAddRows = False
     dgvUsuarios.AllowUserToDeleteRows = False
     dgvUsuarios.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle2.BackColor = SystemColors.Control
-    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-    dgvUsuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = SystemColors.Control
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+    dgvUsuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
     dgvUsuarios.Columns.AddRange(New DataGridViewColumn() {clID, clNombre, clCodigoUsuario, clTipoUsuario})
     dgvUsuarios.Location = New Point(12, 153)
@@ -194,7 +194,7 @@ Partial Class frmMantUsuarios
     lblTipoUsuario.AutoSize = True
     lblTipoUsuario.Location = New Point(6, 59)
     lblTipoUsuario.Name = "lblTipoUsuario"
-    lblTipoUsuario.Size = New Size(76, 15)
+    lblTipoUsuario.Size = New Size(77, 15)
     lblTipoUsuario.TabIndex = 1
     lblTipoUsuario.Text = "Tipo Usuario:"
     ' 

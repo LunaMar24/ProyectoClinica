@@ -2,12 +2,15 @@
 Imports MySql.Data.MySqlClient
 
 Public Class frmEspecialidades
+  Implements IFormularios
 
   Private conexion As Conexion
 
   Private Sub frmEspecialidades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     conexion = New Conexion
+  End Sub
 
+  Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     CargarEspecialidades()
   End Sub
 
@@ -176,4 +179,6 @@ Public Class frmEspecialidades
       MessageBox.Show("Se presentó un error al modificar la especialidad. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
   End Sub
+
+
 End Class

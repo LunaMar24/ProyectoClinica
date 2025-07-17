@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Compile Update="frmConsultaCitasDoctor.vb" />
+    <Compile Update="frmModificaCuenta.vb" />
     <Compile Update="frmCrearDoctor.vb" />
     <Compile Update="frmConsultaPaciente.vb" />
     <Compile Update="frmMantPacientes.vb" />

@@ -4,6 +4,7 @@ Imports System.Text
 Imports MySql.Data.MySqlClient
 
 Public Class frmLogin
+  Implements IFormularios
   Private conexion As Conexion
 
   Private Const CUENTA_ADMIN As String = "admin@"
@@ -76,5 +77,10 @@ Public Class frmLogin
 
   Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     conexion = New Conexion
+  End Sub
+
+  Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
+    txtCorreo.Clear()
+    txtPassword.Clear()
   End Sub
 End Class

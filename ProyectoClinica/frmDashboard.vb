@@ -48,11 +48,13 @@
 
   Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
     frmMantUsuarios.Show()
+    frmMantUsuarios.AjustarPantalla()
     Me.Hide()
   End Sub
 
   Private Sub btnEspecialidades_Click(sender As Object, e As EventArgs) Handles btnEspecialidades.Click
     frmEspecialidades.Show()
+    frmEspecialidades.AjustarPantalla()
     Me.Hide()
   End Sub
 
