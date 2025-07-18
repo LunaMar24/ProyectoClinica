@@ -5,6 +5,18 @@ Public Class Conexion
   Private trans As MySqlTransaction = Nothing
   Private disposedValue As Boolean = False
 
+  Public ReadOnly Property Transaccion As MySqlTransaction
+    Get
+      Return trans
+    End Get
+  End Property
+
+  Public ReadOnly Property BDConnexion As MySqlConnection
+    Get
+      Return conexion
+    End Get
+  End Property
+
   Public Sub New()
     Dim cadena As String = "server=localhost;user=root;password=1234;database=db_clinica;"
     conexion = New MySqlConnection(cadena)

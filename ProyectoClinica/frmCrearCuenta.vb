@@ -1,6 +1,5 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
-Imports MySql.Data.MySqlClient
 
 Public Class frmCrearCuenta
   Implements IFormularios
@@ -37,31 +36,32 @@ Public Class frmCrearCuenta
     End If
 
     Try
-      Dim conn = conexion.Abrir()
-      Dim insertQuery = "INSERT INTO usuarios (nombre, password, correo, tipo_usuario) VALUES (@nombre, @password, @correo, @tipoUsuario)"
-      Using command As New MySqlCommand(insertQuery, conn)
-        ' Añadir parámetros para evitar inyección SQL
-        command.Parameters.AddWithValue("@nombre", nombre)
-        command.Parameters.AddWithValue("@password", HashSHA256(contrasena)) ' ¡Recordatorio: en una app real, hashea las contraseñas!
-        command.Parameters.AddWithValue("@correo", correo)
-        command.Parameters.AddWithValue("@tipoUsuario", tipoUsuario)
+      Dim usuario As New Usuario With {
+        .Nombre = nombre,
+        .Correo = correo,
+        .Password = HashSHA256(contrasena), ' ¡Recordatorio: en una app real, hashea las contraseñas!
+        .TipoUsuario = tipoUsuario
+      }
 
-        Dim rowsAffected = command.ExecuteNonQuery
+      Dim BDUsuario As New UsuariosDAO()
 
-        If rowsAffected > 0 Then
-          MessageBox.Show("Usuario '" & nombre & "' registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-          ' Opcional: Limpiar los campos después de un registro exitoso
-          txtNombre.Clear()
-          txtContrasena.Clear()
-          txtCorreo.Clear()
-          cboTipoUsuario.Text = ""
-          txtNombre.Focus() ' Poner el foco en el campo de usuario
-          btnRegresar.PerformClick()
-        Else
-          MessageBox.Show("No se pudo registrar el usuario. Inténtelo de nuevo.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-      End Using
+      Dim idUsuario As Integer = BDUsuario.Insert(usuario)
 
+      BDUsuario.Dispose() 'Asegurarse de liberar recursos
+      BDUsuario = Nothing
+
+      If idUsuario > 0 Then
+        MessageBox.Show("Usuario '" & nombre & "' registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Opcional: Limpiar los campos después de un registro exitoso
+        txtNombre.Clear()
+        txtContrasena.Clear()
+        txtCorreo.Clear()
+        cboTipoUsuario.Text = ""
+        txtNombre.Focus() ' Poner el foco en el campo de usuario
+        btnRegresar.PerformClick()
+      Else
+        MessageBox.Show("No se pudo registrar el usuario. Inténtelo de nuevo.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
+      End If
     Catch ex As Exception
       MessageBox.Show("Error de base de datos al registrar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try

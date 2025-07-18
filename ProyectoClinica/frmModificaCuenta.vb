@@ -1,6 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
-
-Public Class frmModificaCuenta
+﻿Public Class frmModificaCuenta
   Implements IFormularios
 
   Private _idUsuario As Integer
@@ -10,40 +8,26 @@ Public Class frmModificaCuenta
     End Set
   End Property
 
-  Private conexion As Conexion
-
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     CargarDatosUsuario()
   End Sub
 
   Private Sub CargarDatosUsuario()
     Try
-      Dim conn = conexion.Abrir()
-      Dim selectQuery = "SELECT nombre, correo, password, tipo_usuario FROM usuarios WHERE idusuarios = @idUsuario"
-      Dim dt = New DataTable
-      Using command As New MySqlCommand(selectQuery, conn)
-        command.Parameters.AddWithValue("@idUsuario", _idUsuario)
+      Dim dbUsuario As New UsuariosDAO()
+      Dim usuario As Usuario = dbUsuario.GetById(_idUsuario)
+      dbUsuario.Dispose() ' Asegurarse de liberar recursos
 
-        Dim adaptador = New MySqlDataAdapter(command)
-
-        adaptador.Fill(dt)
-      End Using
-
-      If dt.Rows.Count > 0 Then
-        txtNombre.Text = dt.Rows(0)("nombre").ToString()
-        txtCorreo.Text = dt.Rows(0)("correo").ToString()
-        cboTipoUsuario.Text = dt.Rows(0)("tipo_usuario").ToString()
+      If usuario IsNot Nothing Then
+        txtNombre.Text = usuario.Nombre
+        txtCorreo.Text = usuario.Correo
+        cboTipoUsuario.Text = usuario.TipoUsuario
       Else
         MessageBox.Show("No se encontraron datos para el usuario seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
       End If
-
     Catch ex As Exception
       MessageBox.Show("Se presentó un error al cargar la información del usuario. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
-  End Sub
-
-  Private Sub frmModificaCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    conexion = New Conexion
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
@@ -67,27 +51,24 @@ Public Class frmModificaCuenta
     End If
 
     Try
-      Dim conn = conexion.Abrir()
-      Dim updateQuery = "UPDATE usuarios SET nombre = @nombre, correo = @correo, tipo_usuario = @tipoUsuario WHERE idusuarios = @idUsuario"
-      Using command As New MySqlCommand(updateQuery, conn)
-        ' Añadir parámetros para evitar inyección SQL
-        command.Parameters.AddWithValue("@nombre", nombre)
-        command.Parameters.AddWithValue("@correo", correo)
-        command.Parameters.AddWithValue("@tipoUsuario", tipoUsuario)
+      Dim dbUsuario As New UsuariosDAO()
+      Dim usuario As New Usuario With {
+        .IdUsuarios = _idUsuario,
+        .Nombre = nombre,
+        .Correo = correo,
+        .TipoUsuario = tipoUsuario
+      }
 
-        command.Parameters.AddWithValue("@idUsuario", _idUsuario)
+      ' Actualizar el usuario en la base de datos
+      Dim rowsAffected = dbUsuario.Update(usuario)
 
-        Dim rowsAffected = command.ExecuteNonQuery
+      If rowsAffected > 0 Then
+        MessageBox.Show("Usuario '" & nombre & "' actualizado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        If rowsAffected > 0 Then
-          MessageBox.Show("Usuario '" & nombre & "' actualizado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-          btnRegresar.PerformClick() ' Regresar a la pantalla de mantenimiento de usuarios
-        Else
-          MessageBox.Show("No se pudo registrar el usuario. Inténtelo de nuevo.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-      End Using
-
+        btnRegresar.PerformClick() ' Regresar a la pantalla de mantenimiento de usuarios
+      Else
+        MessageBox.Show("No se pudo registrar el usuario. Inténtelo de nuevo.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
+      End If
     Catch ex As Exception
       MessageBox.Show("Error de base de datos al registrar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try

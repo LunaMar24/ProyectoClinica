@@ -30,31 +30,22 @@ Public Class frmLogin
     Else
       Try
         contrasena = HashSHA256(txtPassword.Text.Trim())
-        Dim conn = conexion.Abrir
-        Dim selectQuery = "SELECT * FROM usuarios WHERE correo = @correo AND password = @password"
 
-        Using command As New MySqlCommand(selectQuery, conn)
-          ' Añadir parámetros seguros
-          command.Parameters.AddWithValue("@correo", correo)
-          command.Parameters.AddWithValue("@password", contrasena)
+        Dim dbuser As New UsuariosDAO()
+        Dim usuario As Usuario = dbuser.IsValidLogin(correo, contrasena)
+        dbuser.Dispose()
 
-          Using reader As MySqlDataReader = command.ExecuteReader()
-            If reader.HasRows Then
-              reader.Read()
-              CodigoUsuario = reader.GetInt32("idusuarios")
-              TipoUsuario = reader.GetString("tipo_usuario")
-              frmDashboard.AjustarPantalla()
-              MessageBox.Show("Inicio de sesión exitoso para el correo '" & correo & "'.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information)
-              ' Aquí podrías abrir otra ventana o hacer lo que necesites
-              frmDashboard.Show()
-
-              Me.Hide()
-            Else
-              MessageBox.Show("Correo o contraseña incorrectos.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-              Return
-            End If
-          End Using
-        End Using
+        If usuario IsNot Nothing Then
+          CodigoUsuario = usuario.IdUsuarios
+          TipoUsuario = usuario.TipoUsuario
+          frmDashboard.AjustarPantalla()
+          MessageBox.Show("Inicio de sesión exitoso para el correo '" & correo & "'.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information)
+          ' Aquí podrías abrir otra ventana o hacer lo que necesites
+          frmDashboard.Show()
+          Me.Hide()
+        Else
+          MessageBox.Show("Correo o contraseña incorrectos.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
       Catch ex As Exception
         MessageBox.Show("Error de base de datos al consultar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
       Finally

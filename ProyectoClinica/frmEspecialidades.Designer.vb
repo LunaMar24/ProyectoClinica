@@ -22,6 +22,7 @@ Partial Class frmEspecialidades
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
+    components = New ComponentModel.Container()
     Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
     gpbEspeciadlidad = New GroupBox()
     lblEspecialidadAnt = New Label()
@@ -35,8 +36,10 @@ Partial Class frmEspecialidades
     dgvEspecialidades = New DataGridView()
     clId = New DataGridViewTextBoxColumn()
     clDescripcion = New DataGridViewTextBoxColumn()
+    rrpError = New ErrorProvider(components)
     gpbEspeciadlidad.SuspendLayout()
     CType(dgvEspecialidades, ComponentModel.ISupportInitialize).BeginInit()
+    CType(rrpError, ComponentModel.ISupportInitialize).BeginInit()
     SuspendLayout()
     ' 
     ' gpbEspeciadlidad
@@ -54,7 +57,7 @@ Partial Class frmEspecialidades
     gpbEspeciadlidad.Size = New Size(634, 192)
     gpbEspeciadlidad.TabIndex = 0
     gpbEspeciadlidad.TabStop = False
-    gpbEspeciadlidad.Text = "Agregar Especialidades"
+    gpbEspeciadlidad.Text = "Información"
     ' 
     ' lblEspecialidadAnt
     ' 
@@ -106,7 +109,7 @@ Partial Class frmEspecialidades
     ' lblEspecialidad
     ' 
     lblEspecialidad.AutoSize = True
-    lblEspecialidad.Location = New Point(30, 50)
+    lblEspecialidad.Location = New Point(30, 52)
     lblEspecialidad.Name = "lblEspecialidad"
     lblEspecialidad.Size = New Size(120, 25)
     lblEspecialidad.TabIndex = 2
@@ -114,9 +117,9 @@ Partial Class frmEspecialidades
     ' 
     ' txtEspecialidad
     ' 
-    txtEspecialidad.Location = New Point(212, 44)
+    txtEspecialidad.Location = New Point(156, 44)
     txtEspecialidad.Name = "txtEspecialidad"
-    txtEspecialidad.Size = New Size(361, 33)
+    txtEspecialidad.Size = New Size(417, 33)
     txtEspecialidad.TabIndex = 1
     ' 
     ' btnRegresar
@@ -135,7 +138,7 @@ Partial Class frmEspecialidades
     dgvEspecialidades.AllowUserToDeleteRows = False
     DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
     DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
     DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
     DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
@@ -167,9 +170,13 @@ Partial Class frmEspecialidades
     clDescripcion.Name = "clDescripcion"
     clDescripcion.ReadOnly = True
     ' 
+    ' rrpError
+    ' 
+    rrpError.ContainerControl = Me
+    ' 
     ' frmEspecialidades
     ' 
-    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+    AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(789, 480)
     Controls.Add(dgvEspecialidades)
@@ -181,6 +188,7 @@ Partial Class frmEspecialidades
     gpbEspeciadlidad.ResumeLayout(False)
     gpbEspeciadlidad.PerformLayout()
     CType(dgvEspecialidades, ComponentModel.ISupportInitialize).EndInit()
+    CType(rrpError, ComponentModel.ISupportInitialize).EndInit()
     ResumeLayout(False)
   End Sub
   Friend WithEvents gpbEspeciadlidad As GroupBox
@@ -195,4 +203,5 @@ Partial Class frmEspecialidades
   Friend WithEvents lblEspecialidadAnt As Label
   Friend WithEvents clId As DataGridViewTextBoxColumn
   Friend WithEvents clDescripcion As DataGridViewTextBoxColumn
+  Friend WithEvents rrpError As ErrorProvider
 End Class

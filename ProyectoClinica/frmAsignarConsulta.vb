@@ -1,5 +1,4 @@
-﻿Imports System.Runtime.InteropServices.JavaScript.JSType
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
 
 Public Class frmAsignarConsulta
   Implements IFormularios

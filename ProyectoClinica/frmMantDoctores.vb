@@ -1,15 +1,8 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Public Class frmMantDoctores
 
-Public Class frmMantDoctores
-
-  Private conexion As Conexion
   Private idDoctor As Integer
   Private nombreDoctor As String
   Private especialidad As String
-
-  Private Sub frmMantDoctores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    conexion = New Conexion
-  End Sub
 
   Public Sub AjustarPantalla()
     btnCrear.Enabled = True
@@ -43,67 +36,38 @@ Public Class frmMantDoctores
 
   Private Sub CargarDoctores(Optional nombre As String = "", Optional apellido As String = "", Optional especialidad As String = "")
     Try
-      Dim conn = conexion.Abrir()
-      Dim selectQuery = "SELECT * FROM "
-      Dim dt = New DataTable
-      Dim parteWhere = ""
-      Dim comandoFiltro = ""
-
       If TipoUsuario = "Administrador" Then
-        selectQuery = selectQuery & "vDoctor"
-      Else
-        selectQuery = selectQuery & "vDoctorSecretaria"
-      End If
+        Dim dbvDoctor As New VDoctorDAO
+        Dim filtros As New Dictionary(Of String, Object) From {
+              {"NOMBRE", nombre},
+              {"APELLIDOS", apellido},
+              {"ESPECIALIDAD", especialidad}
+        }
 
-      If Not (String.IsNullOrWhiteSpace(nombre) AndAlso String.IsNullOrWhiteSpace(apellido) AndAlso String.IsNullOrWhiteSpace(especialidad)) Then
-        parteWhere = " Where "
-        If Not String.IsNullOrWhiteSpace(nombre) Then
-          comandoFiltro = comandoFiltro & "nombre like @Nombre"
-        End If
+        Dim listaDoctores As List(Of VDoctor) = dbvDoctor.GetByFilters(filtros)
+        dbvDoctor.Dispose()
 
-        If Not String.IsNullOrWhiteSpace(apellido) Then
-          If Not String.IsNullOrWhiteSpace(comandoFiltro) Then
-            comandoFiltro = comandoFiltro & " AND "
-          End If
-          comandoFiltro = comandoFiltro & "apellidos like @apellido"
-        End If
-
-        If Not String.IsNullOrWhiteSpace(especialidad) Then
-          If Not String.IsNullOrWhiteSpace(comandoFiltro) Then
-            comandoFiltro = comandoFiltro & " AND "
-          End If
-          comandoFiltro = comandoFiltro & "especialidad like @especialidad"
-        End If
-      End If
-      selectQuery = selectQuery & parteWhere & comandoFiltro
-
-      Using command As New MySqlCommand(selectQuery, conn)
-
-        'Asignar los parametros
-        If Not String.IsNullOrWhiteSpace(nombre) Then
-          command.Parameters.AddWithValue("@Nombre", "%" & nombre & "%")
-        End If
-        If Not String.IsNullOrWhiteSpace(apellido) Then
-          command.Parameters.AddWithValue("@apellido", "%" & apellido & "%")
-        End If
-        If Not String.IsNullOrWhiteSpace(especialidad) Then
-          command.Parameters.AddWithValue("@especialidad", "%" & especialidad & "%")
-        End If
-
-        Dim adaptador = New MySqlDataAdapter(command)
-        'El adaptador va a cargar el datatable con lo que se leyó de la base de datos
-        adaptador.Fill(dt)
-      End Using
-
-      If TipoUsuario = "Administrador" Then
         ConfigurarColumnasDoctor()
+        dgvDoctores.DataSource = listaDoctores
+
       Else
+        Dim dbvDoctorSecre As New VDoctorSecretariaDAO
+        Dim filtros As New Dictionary(Of String, Object) From {
+              {"NOMBRE", nombre},
+              {"APELLIDOS", apellido},
+              {"ESPECIALIDAD", especialidad}
+        }
+
+        Dim listaDoctores As List(Of VDoctorSecretaria) = dbvDoctorSecre.GetByFilters(filtros)
+        dbvDoctorSecre.Dispose()
+
         ConfigurarColumnasDoctorSecretaria()
+        dgvDoctores.DataSource = listaDoctores
       End If
+
       idDoctor = -1
       nombreDoctor = ""
-      'La vista se va a llenar con lo que tenga la tabla que se llenó el adaptador
-      dgvDoctores.DataSource = dt
+
       dgvDoctores.ClearSelection()
     Catch ex As Exception
       MessageBox.Show("Se presentó un error al cargar la información de los doctores. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -122,69 +86,68 @@ Public Class frmMantDoctores
 
     Dim colID As New DataGridViewTextBoxColumn()
     colID.HeaderText = "ID"
-    colID.DataPropertyName = "ID"
-    colID.Name = "colID"
+    colID.DataPropertyName = "Id"
     colID.Visible = False
+    colID.Name = "colID"
     dgvDoctores.Columns.Add(colID)
     colID.Visible = False
 
     Dim colNombre As New DataGridViewTextBoxColumn()
     colNombre.HeaderText = "Nombre"
-    colNombre.DataPropertyName = "NOMBRE"
+    colNombre.DataPropertyName = "Nombre"
     colNombre.Name = "colNombre"
     colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colNombre)
 
     Dim colApellidos As New DataGridViewTextBoxColumn()
     colApellidos.HeaderText = "Apellidos"
-    colApellidos.DataPropertyName = "APELLIDOS"
+    colApellidos.DataPropertyName = "Apellidos"
     colApellidos.Name = "colApellidos"
     colApellidos.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colApellidos)
 
     Dim colIdentificacion As New DataGridViewTextBoxColumn()
-    colIdentificacion.HeaderText = "Cédula"
-    colIdentificacion.DataPropertyName = "IDENTIFICACION"
+    colIdentificacion.HeaderText = "Identificación"
+    colIdentificacion.DataPropertyName = "Identificacion"
     colIdentificacion.Name = "colIdentificacion"
     colIdentificacion.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colIdentificacion)
 
     Dim colDireccion As New DataGridViewTextBoxColumn()
     colDireccion.HeaderText = "Dirección"
-    colDireccion.DataPropertyName = "DIRECCION"
+    colDireccion.DataPropertyName = "Direccion"
     colDireccion.Name = "colDireccion"
     colDireccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colDireccion)
 
     Dim colTelefono As New DataGridViewTextBoxColumn()
     colTelefono.HeaderText = "Teléfono"
-    colTelefono.DataPropertyName = "TELEFONO"
+    colTelefono.DataPropertyName = "Telefono"
     colTelefono.Name = "colTelefono"
     colTelefono.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colTelefono)
 
-    Dim colCorreoPers As New DataGridViewTextBoxColumn()
-    colCorreoPers.HeaderText = "Correo Personal"
-    colCorreoPers.DataPropertyName = "CORREO_PERSONAL"
-    colCorreoPers.Name = "colCorreoPers"
-    colCorreoPers.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-    dgvDoctores.Columns.Add(colCorreoPers)
+    Dim colCorreo As New DataGridViewTextBoxColumn()
+    colCorreo.HeaderText = "Correo Personal"
+    colCorreo.DataPropertyName = "CorreoPersonal"
+    colCorreo.Name = "colCorreo"
+    colCorreo.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+    dgvDoctores.Columns.Add(colCorreo)
 
     Dim colUsuario As New DataGridViewTextBoxColumn()
     colUsuario.HeaderText = "Usuario"
-    colUsuario.DataPropertyName = "USUARIO"
+    colUsuario.DataPropertyName = "Usuario"
     colUsuario.Name = "colUsuario"
     colUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colUsuario)
 
-    Dim colEspec As New DataGridViewTextBoxColumn()
-    colEspec.HeaderText = "Especialidad"
-    colEspec.DataPropertyName = "ESPECIALIDAD"
-    colEspec.Name = "colEspec"
-    colEspec.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-    dgvDoctores.Columns.Add(colEspec)
+    Dim colEspecialidad As New DataGridViewTextBoxColumn()
+    colEspecialidad.HeaderText = "Especialidad"
+    colEspecialidad.DataPropertyName = "Especialidad"
+    colEspecialidad.Name = "colEspecialidad"
+    colEspecialidad.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+    dgvDoctores.Columns.Add(colEspecialidad)
   End Sub
-
 
   Private Sub ConfigurarColumnasDoctorSecretaria()
     dgvDoctores.AutoGenerateColumns = False
@@ -192,7 +155,7 @@ Public Class frmMantDoctores
 
     Dim colID As New DataGridViewTextBoxColumn()
     colID.HeaderText = "ID"
-    colID.DataPropertyName = "ID"
+    colID.DataPropertyName = "Id"
     colID.Name = "colID"
     colID.Visible = False
     dgvDoctores.Columns.Add(colID)
@@ -200,25 +163,26 @@ Public Class frmMantDoctores
 
     Dim colNombre As New DataGridViewTextBoxColumn()
     colNombre.HeaderText = "Nombre"
-    colNombre.DataPropertyName = "NOMBRE"
+    colNombre.DataPropertyName = "Nombre"
     colNombre.Name = "colNombre"
     colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     dgvDoctores.Columns.Add(colNombre)
 
     Dim colApellidos As New DataGridViewTextBoxColumn()
     colApellidos.HeaderText = "Apellidos"
-    colApellidos.DataPropertyName = "APELLIDOS"
+    colApellidos.DataPropertyName = "Apellidos"
     colApellidos.Name = "colApellidos"
     colApellidos.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     dgvDoctores.Columns.Add(colApellidos)
 
     Dim colEspec As New DataGridViewTextBoxColumn()
     colEspec.HeaderText = "Especialidad"
-    colEspec.DataPropertyName = "ESPECIALIDAD"
+    colEspec.DataPropertyName = "Especialidad"
     colEspec.Name = "colEspec"
     colEspec.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     dgvDoctores.Columns.Add(colEspec)
   End Sub
+
 
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click

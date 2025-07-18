@@ -24,10 +24,6 @@ Partial Class frmMantUsuarios
   Private Sub InitializeComponent()
     Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvUsuarios = New DataGridView()
-    clID = New DataGridViewTextBoxColumn()
-    clNombre = New DataGridViewTextBoxColumn()
-    clCodigoUsuario = New DataGridViewTextBoxColumn()
-    clTipoUsuario = New DataGridViewTextBoxColumn()
     btnCrear = New Button()
     btnModificar = New Button()
     btnEliminar = New Button()
@@ -40,6 +36,10 @@ Partial Class frmMantUsuarios
     lblTipoUsuario = New Label()
     lblNombre = New Label()
     txtFilNombre = New TextBox()
+    clID = New DataGridViewTextBoxColumn()
+    clNombre = New DataGridViewTextBoxColumn()
+    clCodigoUsuario = New DataGridViewTextBoxColumn()
+    clTipoUsuario = New DataGridViewTextBoxColumn()
     CType(dgvUsuarios, ComponentModel.ISupportInitialize).BeginInit()
     grpFiltros.SuspendLayout()
     SuspendLayout()
@@ -66,38 +66,6 @@ Partial Class frmMantUsuarios
     dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect
     dgvUsuarios.Size = New Size(738, 271)
     dgvUsuarios.TabIndex = 0
-    ' 
-    ' clID
-    ' 
-    clID.DataPropertyName = "ID"
-    clID.HeaderText = "ID"
-    clID.Name = "clID"
-    clID.ReadOnly = True
-    clID.Visible = False
-    ' 
-    ' clNombre
-    ' 
-    clNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clNombre.DataPropertyName = "NOMBRE_USUARIO"
-    clNombre.HeaderText = "Nombre Usuario"
-    clNombre.Name = "clNombre"
-    clNombre.ReadOnly = True
-    ' 
-    ' clCodigoUsuario
-    ' 
-    clCodigoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clCodigoUsuario.DataPropertyName = "CODIGO_USUARIO"
-    clCodigoUsuario.HeaderText = "Código Usuario"
-    clCodigoUsuario.Name = "clCodigoUsuario"
-    clCodigoUsuario.ReadOnly = True
-    ' 
-    ' clTipoUsuario
-    ' 
-    clTipoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clTipoUsuario.DataPropertyName = "TIPO_USUARIO"
-    clTipoUsuario.HeaderText = "Tipo Usuario"
-    clTipoUsuario.Name = "clTipoUsuario"
-    clTipoUsuario.ReadOnly = True
     ' 
     ' btnCrear
     ' 
@@ -155,7 +123,6 @@ Partial Class frmMantUsuarios
     ' 
     ' cmbFilTipoUsuario
     ' 
-    cmbFilTipoUsuario.DropDownStyle = ComboBoxStyle.DropDownList
     cmbFilTipoUsuario.Font = New Font("Segoe UI", 9F)
     cmbFilTipoUsuario.FormattingEnabled = True
     cmbFilTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
@@ -213,6 +180,38 @@ Partial Class frmMantUsuarios
     txtFilNombre.Name = "txtFilNombre"
     txtFilNombre.Size = New Size(213, 23)
     txtFilNombre.TabIndex = 3
+    ' 
+    ' clID
+    ' 
+    clID.DataPropertyName = "Id"
+    clID.HeaderText = "ID"
+    clID.Name = "clID"
+    clID.ReadOnly = True
+    clID.Visible = False
+    ' 
+    ' clNombre
+    ' 
+    clNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clNombre.DataPropertyName = "NombreUsuario"
+    clNombre.HeaderText = "Nombre Usuario"
+    clNombre.Name = "clNombre"
+    clNombre.ReadOnly = True
+    ' 
+    ' clCodigoUsuario
+    ' 
+    clCodigoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clCodigoUsuario.DataPropertyName = "CodigoUsuario"
+    clCodigoUsuario.HeaderText = "Código Usuario"
+    clCodigoUsuario.Name = "clCodigoUsuario"
+    clCodigoUsuario.ReadOnly = True
+    ' 
+    ' clTipoUsuario
+    ' 
+    clTipoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clTipoUsuario.DataPropertyName = "TipoUsuario"
+    clTipoUsuario.HeaderText = "Tipo Usuario"
+    clTipoUsuario.Name = "clTipoUsuario"
+    clTipoUsuario.ReadOnly = True
     ' 
     ' frmMantUsuarios
     ' 
