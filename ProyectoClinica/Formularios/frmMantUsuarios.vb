@@ -23,9 +23,9 @@
     Try
       Dim dao As New VUsuariosDAO()
       Dim filtros As New Dictionary(Of String, Object) From {
-                {"NOMBRE_USUARIO", txtFilNombre.Text},
-                {"CODIGO_USUARIO", txtFilCodigo.Text},
-                {"TIPO_USUARIO", cmbFilTipoUsuario.Text}
+                {"NombreUsuario", txtFilNombre.Text},
+                {"_UsuarioId", txtFilCodigo.Text},
+                {"TipoUsuario", cmbFilTipoUsuario.Text}
             }
 
       Dim lista As List(Of VUsuario) = dao.GetByFilters(filtros)
@@ -97,6 +97,17 @@
   Private Sub cmbFilTipoUsuario_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbFilTipoUsuario.KeyDown
     If e.Control AndAlso e.KeyCode = Keys.V Then ' Evita que se pueda pegar algo al ComboBox
       e.SuppressKeyPress = True
+    End If
+  End Sub
+
+  Private Sub btnCambiarClave_Click(sender As Object, e As EventArgs) Handles btnCambiarClave.Click
+    If idUsuario >= 0 Then
+      frmCambiarClave.Show()
+      frmCambiarClave.UsuarioID = idUsuario
+      frmCambiarClave.AjustarPantalla()
+      Me.Hide()
+    Else
+      MessageBox.Show("Debe seleccionar el usuario a cambiar la clave.", "Cambio Clave", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 End Class

@@ -34,9 +34,9 @@
       If TipoUsuario = "Doctor" Then
         Dim dbPaciente As New VPacienteDAO
         Dim filtros As New Dictionary(Of String, Object) From {
-            {"NOMBRE", nombre},
-            {"APELLIDO", apellido},
-            {"CEDULA", Cedula}
+            {"Nombre", nombre},
+            {"Apellido", apellido},
+            {"Cedula", Cedula}
         }
         Dim listaPacientes As List(Of VPaciente) = dbPaciente.GetByFilters(filtros)
         dbPaciente.Dispose()
@@ -45,9 +45,9 @@
       Else
         Dim dbPacienteSecre As New VPacienteSecretariaDAO
         Dim filtros As New Dictionary(Of String, Object) From {
-            {"NOMBRE", nombre},
-            {"APELLIDO", apellido},
-            {"CEDULA", Cedula}
+            {"Nombre", nombre},
+            {"Apellido", apellido},
+            {"Cedula", Cedula}
         }
         Dim listaPacientes As List(Of VPacienteSecretaria) = dbPacienteSecre.GetByFilters(filtros)
         dbPacienteSecre.Dispose()

@@ -13,7 +13,8 @@ Public Class EspecialidadDAO
     ' Construir WHERE dinámico
     If filtros IsNot Nothing Then
       For Each filtro In filtros
-        Dim prop = GetType(Especialidad).GetProperty(filtro.Key)
+        Dim prop = GetType(Especialidad).GetProperties().
+            FirstOrDefault(Function(p) p.Name.ToUpper() = filtro.Key.ToUpper())
         If prop IsNot Nothing Then
           Dim attr = prop.GetCustomAttributes(GetType(ColumnNameAttribute), False).FirstOrDefault()
           Dim columnName = If(attr IsNot Nothing, DirectCast(attr, ColumnNameAttribute).Name, prop.Name)

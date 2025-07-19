@@ -36,6 +36,7 @@ Partial Class frmMantUsuarios
     lblTipoUsuario = New Label()
     lblNombre = New Label()
     txtFilNombre = New TextBox()
+    btnCambiarClave = New Button()
     clID = New DataGridViewTextBoxColumn()
     clNombre = New DataGridViewTextBoxColumn()
     clCodigoUsuario = New DataGridViewTextBoxColumn()
@@ -181,6 +182,15 @@ Partial Class frmMantUsuarios
     txtFilNombre.Size = New Size(213, 23)
     txtFilNombre.TabIndex = 3
     ' 
+    ' btnCambiarClave
+    ' 
+    btnCambiarClave.Location = New Point(245, 102)
+    btnCambiarClave.Name = "btnCambiarClave"
+    btnCambiarClave.Size = New Size(72, 46)
+    btnCambiarClave.TabIndex = 8
+    btnCambiarClave.Text = "Cambiar Clave"
+    btnCambiarClave.UseVisualStyleBackColor = True
+    ' 
     ' clID
     ' 
     clID.DataPropertyName = "Id"
@@ -218,6 +228,7 @@ Partial Class frmMantUsuarios
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(762, 436)
+    Controls.Add(btnCambiarClave)
     Controls.Add(grpFiltros)
     Controls.Add(btnRegresar)
     Controls.Add(btnEliminar)
@@ -247,6 +258,7 @@ Partial Class frmMantUsuarios
   Friend WithEvents lblTipoUsuario As Label
   Friend WithEvents lblNombre As Label
   Friend WithEvents cmbFilTipoUsuario As ComboBox
+  Friend WithEvents btnCambiarClave As Button
   Friend WithEvents clID As DataGridViewTextBoxColumn
   Friend WithEvents clNombre As DataGridViewTextBoxColumn
   Friend WithEvents clCodigoUsuario As DataGridViewTextBoxColumn

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmModificaCuenta
+Partial Class frmCrearCuenta
   Inherits System.Windows.Forms.Form
 
   'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -25,9 +25,11 @@ Partial Class frmModificaCuenta
     components = New ComponentModel.Container()
     grbData = New GroupBox()
     btnRegresar = New Button()
-    btnModificar = New Button()
+    btnCrear = New Button()
     cboTipoUsuario = New ComboBox()
     Label3 = New Label()
+    txtContrasena = New TextBox()
+    Label2 = New Label()
     txtCorreo = New TextBox()
     Label1 = New Label()
     txtNombre = New TextBox()
@@ -40,9 +42,11 @@ Partial Class frmModificaCuenta
     ' grbData
     ' 
     grbData.Controls.Add(btnRegresar)
-    grbData.Controls.Add(btnModificar)
+    grbData.Controls.Add(btnCrear)
     grbData.Controls.Add(cboTipoUsuario)
     grbData.Controls.Add(Label3)
+    grbData.Controls.Add(txtContrasena)
+    grbData.Controls.Add(Label2)
     grbData.Controls.Add(txtCorreo)
     grbData.Controls.Add(Label1)
     grbData.Controls.Add(txtNombre)
@@ -50,7 +54,7 @@ Partial Class frmModificaCuenta
     grbData.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbData.Location = New Point(27, 30)
     grbData.Name = "grbData"
-    grbData.Size = New Size(631, 300)
+    grbData.Size = New Size(631, 391)
     grbData.TabIndex = 0
     grbData.TabStop = False
     grbData.Text = "Datos"
@@ -58,29 +62,29 @@ Partial Class frmModificaCuenta
     ' btnRegresar
     ' 
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnRegresar.Location = New Point(337, 228)
+    btnRegresar.Location = New Point(148, 308)
     btnRegresar.Name = "btnRegresar"
     btnRegresar.Size = New Size(154, 58)
     btnRegresar.TabIndex = 9
     btnRegresar.Text = "Regresar"
     btnRegresar.UseVisualStyleBackColor = True
     ' 
-    ' btnModificar
+    ' btnCrear
     ' 
-    btnModificar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnModificar.Location = New Point(130, 228)
-    btnModificar.Name = "btnModificar"
-    btnModificar.Size = New Size(154, 58)
-    btnModificar.TabIndex = 8
-    btnModificar.Text = "Modificar"
-    btnModificar.UseVisualStyleBackColor = True
+    btnCrear.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
+    btnCrear.Location = New Point(338, 308)
+    btnCrear.Name = "btnCrear"
+    btnCrear.Size = New Size(154, 58)
+    btnCrear.TabIndex = 8
+    btnCrear.Text = "Crear"
+    btnCrear.UseVisualStyleBackColor = True
     ' 
     ' cboTipoUsuario
     ' 
     cboTipoUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     cboTipoUsuario.FormattingEnabled = True
     cboTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
-    cboTipoUsuario.Location = New Point(285, 167)
+    cboTipoUsuario.Location = New Point(285, 237)
     cboTipoUsuario.Name = "cboTipoUsuario"
     cboTipoUsuario.Size = New Size(316, 33)
     cboTipoUsuario.TabIndex = 7
@@ -89,16 +93,35 @@ Partial Class frmModificaCuenta
     ' 
     Label3.AutoSize = True
     Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label3.Location = New Point(135, 175)
+    Label3.Location = New Point(135, 245)
     Label3.Name = "Label3"
     Label3.Size = New Size(131, 25)
     Label3.TabIndex = 6
     Label3.Text = "Tipo Usuario:"
     ' 
+    ' txtContrasena
+    ' 
+    txtContrasena.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+    txtContrasena.Location = New Point(285, 183)
+    txtContrasena.Name = "txtContrasena"
+    txtContrasena.PasswordChar = "*"c
+    txtContrasena.Size = New Size(316, 33)
+    txtContrasena.TabIndex = 5
+    ' 
+    ' Label2
+    ' 
+    Label2.AutoSize = True
+    Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+    Label2.Location = New Point(69, 183)
+    Label2.Name = "Label2"
+    Label2.Size = New Size(197, 25)
+    Label2.TabIndex = 4
+    Label2.Text = "Ingresar Contraseña:"
+    ' 
     ' txtCorreo
     ' 
     txtCorreo.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtCorreo.Location = New Point(285, 114)
+    txtCorreo.Location = New Point(285, 119)
     txtCorreo.Name = "txtCorreo"
     txtCorreo.Size = New Size(316, 33)
     txtCorreo.TabIndex = 3
@@ -107,7 +130,7 @@ Partial Class frmModificaCuenta
     ' 
     Label1.AutoSize = True
     Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label1.Location = New Point(108, 122)
+    Label1.Location = New Point(108, 124)
     Label1.Name = "Label1"
     Label1.Size = New Size(158, 25)
     Label1.TabIndex = 2
@@ -125,7 +148,7 @@ Partial Class frmModificaCuenta
     ' 
     lblNombre.AutoSize = True
     lblNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    lblNombre.Location = New Point(175, 69)
+    lblNombre.Location = New Point(175, 66)
     lblNombre.Name = "lblNombre"
     lblNombre.Size = New Size(91, 25)
     lblNombre.TabIndex = 0
@@ -135,15 +158,15 @@ Partial Class frmModificaCuenta
     ' 
     rrPError.ContainerControl = Me
     ' 
-    ' frmModificaCuenta
+    ' frmCrearCuenta
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
-    ClientSize = New Size(689, 349)
+    ClientSize = New Size(689, 450)
     Controls.Add(grbData)
-    Name = "frmModificaCuenta"
+    Name = "frmCrearCuenta"
     StartPosition = FormStartPosition.CenterScreen
-    Text = "Modificar Cuenta Usuario"
+    Text = "Crear Cuenta Usuario"
     grbData.ResumeLayout(False)
     grbData.PerformLayout()
     CType(rrPError, ComponentModel.ISupportInitialize).EndInit()
@@ -152,12 +175,14 @@ Partial Class frmModificaCuenta
 
   Friend WithEvents grbData As GroupBox
   Friend WithEvents Label3 As Label
+  Friend WithEvents txtContrasena As TextBox
+  Friend WithEvents Label2 As Label
   Friend WithEvents txtCorreo As TextBox
   Friend WithEvents Label1 As Label
   Friend WithEvents txtNombre As TextBox
   Friend WithEvents lblNombre As Label
   Friend WithEvents btnRegresar As Button
-  Friend WithEvents btnModificar As Button
+  Friend WithEvents btnCrear As Button
   Friend WithEvents cboTipoUsuario As ComboBox
   Friend WithEvents rrPError As ErrorProvider
 End Class

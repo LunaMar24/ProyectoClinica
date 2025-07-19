@@ -23,12 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="frmConsultaCitasDoctor.vb" />
-    <Compile Update="frmModificaCuenta.vb" />
-    <Compile Update="frmCrearDoctor.vb" />
-    <Compile Update="frmConsultaPaciente.vb" />
-    <Compile Update="frmMantPacientes.vb" />
-    <Compile Update="frmMantUsuarios.vb" />
+    <Compile Update="Formularios\frmConsultaCitasDoctor.vb" />
+    <Compile Update="Formularios\frmModificaCuenta.vb" />
+    <Compile Update="Formularios\frmCrearDoctor.vb" />
+    <Compile Update="Formularios\frmConsultaPaciente.vb" />
+    <Compile Update="Formularios\frmMantPacientes.vb" />
+    <Compile Update="Formularios\frmMantUsuarios.vb" />
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

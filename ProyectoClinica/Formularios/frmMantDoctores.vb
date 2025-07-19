@@ -39,9 +39,9 @@
       If TipoUsuario = "Administrador" Then
         Dim dbvDoctor As New VDoctorDAO
         Dim filtros As New Dictionary(Of String, Object) From {
-              {"NOMBRE", nombre},
-              {"APELLIDOS", apellido},
-              {"ESPECIALIDAD", especialidad}
+              {"Nombre", nombre},
+              {"Apellidos", apellido},
+              {"Especialidad", especialidad}
         }
 
         Dim listaDoctores As List(Of VDoctor) = dbvDoctor.GetByFilters(filtros)
@@ -53,9 +53,9 @@
       Else
         Dim dbvDoctorSecre As New VDoctorSecretariaDAO
         Dim filtros As New Dictionary(Of String, Object) From {
-              {"NOMBRE", nombre},
-              {"APELLIDOS", apellido},
-              {"ESPECIALIDAD", especialidad}
+              {"Nombre", nombre},
+              {"Apellidos", apellido},
+              {"Especialidad", especialidad}
         }
 
         Dim listaDoctores As List(Of VDoctorSecretaria) = dbvDoctorSecre.GetByFilters(filtros)
