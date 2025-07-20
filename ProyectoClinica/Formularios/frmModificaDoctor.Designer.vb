@@ -1,21 +1,21 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmCrearDoctor
-    Inherits System.Windows.Forms.Form
+Partial Class frmModificaDoctor
+  Inherits System.Windows.Forms.Form
 
-    'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
+  'Form reemplaza a Dispose para limpiar la lista de componentes.
+  <System.Diagnostics.DebuggerNonUserCode()>
+  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+    Try
+      If disposing AndAlso components IsNot Nothing Then
+        components.Dispose()
+      End If
+    Finally
+      MyBase.Dispose(disposing)
+    End Try
+  End Sub
 
-    'Requerido por el Diseñador de Windows Forms
-    Private components As System.ComponentModel.IContainer
+  'Requerido por el Diseñador de Windows Forms
+  Private components As System.ComponentModel.IContainer
 
   'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
   'Se puede modificar usando el Diseñador de Windows Forms.  
@@ -41,15 +41,12 @@ Partial Class frmCrearDoctor
     txtIdentificacion = New TextBox()
     lblIdentificacion = New Label()
     btnRegresar = New Button()
-    btnCrear = New Button()
+    btnModificar = New Button()
     cmbEspecialidad = New ComboBox()
     grbEspecialidad = New GroupBox()
-    grbUsuario = New GroupBox()
-    cmbUsuario = New ComboBox()
     rrpError = New ErrorProvider(components)
     grbData.SuspendLayout()
     grbEspecialidad.SuspendLayout()
-    grbUsuario.SuspendLayout()
     CType(rrpError, ComponentModel.ISupportInitialize).BeginInit()
     SuspendLayout()
     ' 
@@ -236,15 +233,15 @@ Partial Class frmCrearDoctor
     btnRegresar.Text = "Regresar"
     btnRegresar.UseVisualStyleBackColor = True
     ' 
-    ' btnCrear
+    ' btnModificar
     ' 
-    btnCrear.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnCrear.Location = New Point(625, 404)
-    btnCrear.Name = "btnCrear"
-    btnCrear.Size = New Size(154, 58)
-    btnCrear.TabIndex = 3
-    btnCrear.Text = "Crear"
-    btnCrear.UseVisualStyleBackColor = True
+    btnModificar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
+    btnModificar.Location = New Point(625, 404)
+    btnModificar.Name = "btnModificar"
+    btnModificar.Size = New Size(154, 58)
+    btnModificar.TabIndex = 3
+    btnModificar.Text = "Modificar"
+    btnModificar.UseVisualStyleBackColor = True
     ' 
     ' cmbEspecialidad
     ' 
@@ -266,73 +263,49 @@ Partial Class frmCrearDoctor
     grbEspecialidad.TabStop = False
     grbEspecialidad.Text = "Especialidad"
     ' 
-    ' grbUsuario
-    ' 
-    grbUsuario.Controls.Add(cmbUsuario)
-    grbUsuario.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    grbUsuario.Location = New Point(574, 173)
-    grbUsuario.Name = "grbUsuario"
-    grbUsuario.Size = New Size(260, 119)
-    grbUsuario.TabIndex = 2
-    grbUsuario.TabStop = False
-    grbUsuario.Text = "Usuario"
-    ' 
-    ' cmbUsuario
-    ' 
-    cmbUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    cmbUsuario.FormattingEnabled = True
-    cmbUsuario.Location = New Point(6, 55)
-    cmbUsuario.Name = "cmbUsuario"
-    cmbUsuario.Size = New Size(238, 33)
-    cmbUsuario.TabIndex = 0
-    ' 
     ' rrpError
     ' 
     rrpError.ContainerControl = Me
     ' 
-    ' frmCrearDoctor
+    ' frmModificaDoctor
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(858, 561)
-    Controls.Add(grbUsuario)
     Controls.Add(grbEspecialidad)
     Controls.Add(grbData)
     Controls.Add(btnRegresar)
-    Controls.Add(btnCrear)
-    Name = "frmCrearDoctor"
+    Controls.Add(btnModificar)
+    Name = "frmModificaDoctor"
     Text = "Crear Doctor"
     grbData.ResumeLayout(False)
     grbData.PerformLayout()
     grbEspecialidad.ResumeLayout(False)
-    grbUsuario.ResumeLayout(False)
     CType(rrpError, ComponentModel.ISupportInitialize).EndInit()
     ResumeLayout(False)
   End Sub
 
   Friend WithEvents grbData As GroupBox
-    Friend WithEvents lblEspecialidad As Label
-    Friend WithEvents lblSexo As Label
-    Friend WithEvents txtCorreo As TextBox
-    Friend WithEvents lblCorreo As Label
-    Friend WithEvents txtIdentificacion As TextBox
-    Friend WithEvents lblIdentificacion As Label
-    Friend WithEvents btnRegresar As Button
-    Friend WithEvents btnCrear As Button
-    Friend WithEvents cmbEspecialidad As ComboBox
-    Friend WithEvents txtEdad As TextBox
-    Friend WithEvents lblEdad As Label
-    Friend WithEvents txtTelefono As TextBox
-    Friend WithEvents lblTelefono As Label
-    Friend WithEvents txtApellido As TextBox
-    Friend WithEvents lblApellido As Label
-    Friend WithEvents txtNombre As TextBox
-    Friend WithEvents lblNombre As Label
-    Friend WithEvents cmbSexo As ComboBox
-    Friend WithEvents txtDireccion As TextBox
-    Friend WithEvents lblDireccion As Label
-    Friend WithEvents grbEspecialidad As GroupBox
-    Friend WithEvents grbUsuario As GroupBox
-    Friend WithEvents cmbUsuario As ComboBox
+  Friend WithEvents lblEspecialidad As Label
+  Friend WithEvents lblSexo As Label
+  Friend WithEvents txtCorreo As TextBox
+  Friend WithEvents lblCorreo As Label
+  Friend WithEvents txtIdentificacion As TextBox
+  Friend WithEvents lblIdentificacion As Label
+  Friend WithEvents btnRegresar As Button
+  Friend WithEvents btnModificar As Button
+  Friend WithEvents cmbEspecialidad As ComboBox
+  Friend WithEvents txtEdad As TextBox
+  Friend WithEvents lblEdad As Label
+  Friend WithEvents txtTelefono As TextBox
+  Friend WithEvents lblTelefono As Label
+  Friend WithEvents txtApellido As TextBox
+  Friend WithEvents lblApellido As Label
+  Friend WithEvents txtNombre As TextBox
+  Friend WithEvents lblNombre As Label
+  Friend WithEvents cmbSexo As ComboBox
+  Friend WithEvents txtDireccion As TextBox
+  Friend WithEvents lblDireccion As Label
+  Friend WithEvents grbEspecialidad As GroupBox
   Friend WithEvents rrpError As ErrorProvider
 End Class

@@ -1,10 +1,19 @@
 ﻿
-Public Class frmCrearDoctor
+Public Class frmModificaDoctor
   Implements IFormularios
+
+  Private _idDoctor As Integer
+  Private _idUsuarioDoctor As Integer
+
+  WriteOnly Property IdDoctor As Integer
+    Set(value As Integer)
+      _idDoctor = value
+    End Set
+  End Property
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     CargarEspecialidades()
-    CargarUsuarios()
+    CargarDoctor()
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
@@ -13,7 +22,7 @@ Public Class frmCrearDoctor
     Me.Close()
   End Sub
 
-  Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click
+  Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
 
     Dim identificacion As String = txtIdentificacion.Text
     Dim nombre As String = txtNombre.Text
@@ -24,7 +33,6 @@ Public Class frmCrearDoctor
     Dim sexo As String = cmbSexo.Text
     Dim direccion As String = txtDireccion.Text
     Dim especialidad As Integer = cmbEspecialidad.SelectedValue
-    Dim usuario As Integer = cmbUsuario.SelectedValue
 
     ValidateChildren() ' Valida los campos antes de continuar
 
@@ -40,16 +48,16 @@ Public Class frmCrearDoctor
       Return
     End If
 
-    If especialidad = -1 OrElse
-        usuario = -1 Then
-      MessageBox.Show("La especialidad y el usuario se deben indicar. Por favor verifique y vuelva a intentarlo", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    If especialidad = -1 Then
+      MessageBox.Show("La especialidad se debe indicar. Por favor verifique y vuelva a intentarlo", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
       Return
     End If
 
     Try
-      ' Insertar el usuario
+      ' Modificar el usuario
       Dim dbDoctor As New DoctorDAO()
       Dim doctor As New Doctor With {
+        .Id = _idDoctor,
         .Identificacion = identificacion,
         .NombreCompleto = nombre,
         .Apellido = apellido,
@@ -58,41 +66,24 @@ Public Class frmCrearDoctor
         .Correo = correo,
         .Edad = edad,
         .Sexo = sexo,
-        .UsuariosIdusuarios = usuario
+        .UsuariosIdusuarios = _idUsuarioDoctor
       }
 
-      Dim idInsertado As Integer = dbDoctor.Insert(doctor)
+      Dim rowsAffected As Integer = dbDoctor.Update(doctor)
       dbDoctor.Dispose()
 
-      If idInsertado > 0 Then
+      If rowsAffected > 0 Then
         Dim dbEspecialidad As New DoctorEspecialidadDAO()
-        Dim doctorEspecialidad As New DoctorEspecialidad With {
-          .DoctorId = idInsertado,
-          .EspecialidadId = especialidad
-        }
+        Dim doctorEspecialidad As DoctorEspecialidad = dbEspecialidad.GetByDoctorId(_idDoctor)
         dbEspecialidad.Dispose()
-        Dim rowsAffected As Integer = dbEspecialidad.Insert(doctorEspecialidad)
+
+        doctorEspecialidad.EspecialidadId = especialidad
+
+        rowsAffected = dbEspecialidad.Update(doctorEspecialidad)
 
         If rowsAffected > 0 Then
-          MessageBox.Show("Doctor '" & nombre & " " & apellido & "' registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-          ' Opcional: Limpiar los campos después de un registro exitoso
-          txtIdentificacion.Clear()
-          txtNombre.Clear()
-          txtApellido.Clear()
-          txtTelefono.Clear()
-          txtCorreo.Clear()
-          txtEdad.Clear()
-          txtDireccion.Clear()
-          cmbSexo.SelectedIndex = -1 ' Limpia la selección del ComboBox
-          cmbSexo.Text = ""
-          'Si tenemos especialidades seleccionamos la primera
-          If cmbEspecialidad.Items.Count > 0 Then
-            cmbEspecialidad.SelectedValue = 0
-          End If
-          'Si tenemos usuarios de tipo doctor, seleccionamos el primero
-          If cmbUsuario.Items.Count > 0 Then
-            cmbUsuario.SelectedValue = 0
-          End If
+          MessageBox.Show("Doctor '" & nombre & " " & apellido & "' modificado exitosamente.", "Modificación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
           txtIdentificacion.Focus() ' Poner el foco en el campo de usuario
 
           frmMantDoctores.Show()
@@ -124,21 +115,44 @@ Public Class frmCrearDoctor
     End Try
   End Sub
 
-  Sub CargarUsuarios()
+  Sub CargarDoctor()
     Try
-      Dim dbUsuarios As New VNuevosUsuariosDoctoresDAO()
-      Dim usuarios As List(Of VNuevosUsuariosDoctores) = dbUsuarios.GetByFilters()
-      dbUsuarios.Dispose()
+      Dim dbDoctor As New DoctorDAO()
+      Dim doctor As Doctor = dbDoctor.GetById(_idDoctor)
+      dbDoctor.Dispose()
 
-      cmbUsuario.DataSource = usuarios
-      cmbUsuario.DisplayMember = "CodigoUsuario"
-      cmbUsuario.ValueMember = "Id"
+      If doctor IsNot Nothing Then
+        txtIdentificacion.Text = doctor.Identificacion
+        txtNombre.Text = doctor.NombreCompleto
+        txtApellido.Text = doctor.Apellido
+        txtTelefono.Text = doctor.Telefono
+        txtCorreo.Text = doctor.Correo
+        txtEdad.Text = doctor.Edad
+        cmbSexo.Text = doctor.Sexo
+        txtDireccion.Text = doctor.Direccion
+        ' Cargar especialidad del doctor
+        Dim dbEspecialidad As New DoctorEspecialidadDAO()
+        Dim especialidadDoctor As DoctorEspecialidad = dbEspecialidad.GetByDoctorId(doctor.Id)
+        dbEspecialidad.Dispose()
+
+        If cmbEspecialidad.Items.Count > 0 Then
+          cmbEspecialidad.SelectedValue = especialidadDoctor.EspecialidadId
+        Else
+          cmbEspecialidad.SelectedIndex = -1 ' No hay especialidades asignadas
+        End If
+        cmbEspecialidad.Update()
+        _idUsuarioDoctor = doctor.UsuariosIdusuarios
+      Else
+        MessageBox.Show("No se encontró el doctor con ID: " & _idDoctor, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+      End If
+
+
     Catch ex As Exception
       MessageBox.Show("Se presentó un error al cargar los usuarios.error:" & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
   End Sub
 
-  Private Sub data_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtIdentificacion.Validating, txtNombre.Validating, txtApellido.Validating, txtTelefono.Validating, txtCorreo.Validating, txtEdad.Validating, cmbSexo.Validating, txtDireccion.Validating, cmbEspecialidad.Validating, cmbUsuario.Validating
+  Private Sub data_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtIdentificacion.Validating, txtNombre.Validating, txtApellido.Validating, txtTelefono.Validating, txtCorreo.Validating, txtEdad.Validating, cmbSexo.Validating, txtDireccion.Validating, cmbEspecialidad.Validating
     Dim campo = CType(sender, Control)
 
     If campo.Text.Length = 0 Then

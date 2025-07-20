@@ -144,7 +144,7 @@
     Dim colEspecialidad As New DataGridViewTextBoxColumn()
     colEspecialidad.HeaderText = "Especialidad"
     colEspecialidad.DataPropertyName = "Especialidad"
-    colEspecialidad.Name = "colEspecialidad"
+    colEspecialidad.Name = "colEspec"
     colEspecialidad.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
     dgvDoctores.Columns.Add(colEspecialidad)
   End Sub
@@ -187,9 +187,42 @@
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click
     frmCrearDoctor.Show()
+    frmCrearDoctor.AjustarPantalla()
     Me.Hide()
   End Sub
 
+  Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+    If idDoctor >= 0 Then
+      frmModificaDoctor.IdDoctor = idDoctor
+      frmModificaDoctor.Show()
+      frmModificaDoctor.AjustarPantalla()
+      Me.Hide()
+    Else
+      MessageBox.Show("Debe seleccionar el doctor a modificar.", "Modificar Doctor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End If
+  End Sub
+
+  Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+    If idDoctor >= 0 Then
+      Dim resultado As DialogResult = MessageBox.Show("Toda información relacionada a este doctor (" & nombreDoctor & ") será eliminada" & vbCrLf & vbCrLf & "¿Está seguro de que desea eliminar este doctor?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+      If resultado = DialogResult.Yes Then
+        Try
+          Dim dbDoctor As New DoctorDAO()
+
+          If dbDoctor.Delete(idDoctor) > 0 Then
+            MessageBox.Show("Doctor eliminado correctamente.", "Eliminar Doctor", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            CargarDoctores()
+          Else
+            MessageBox.Show("Se presentó un error al eliminar el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+          End If
+        Catch ex As Exception
+          MessageBox.Show("Se presentó un error al eliminar el usuario. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+      End If
+    Else
+      MessageBox.Show("Debe seleccionar el doctor a eliminar.", "Eliminar Doctor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End If
+  End Sub
   Private Sub btnAsignarConsulta_Click(sender As Object, e As EventArgs) Handles btnAsignarConsulta.Click
 
     If idDoctor >= 0 Then
@@ -211,4 +244,6 @@
       especialidad = dgvDoctores.Rows(e.RowIndex).Cells("colEspec").Value
     End If
   End Sub
+
+
 End Class

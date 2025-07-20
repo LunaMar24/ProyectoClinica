@@ -5,26 +5,28 @@ Public MustInherit Class VistaBaseDAO(Of T)
 
   Protected MustOverride ReadOnly Property NombreVista As String
 
-  Public Function GetByFilters(filtros As Dictionary(Of String, Object)) As List(Of T)
+  Public Function GetByFilters(Optional filtros As Dictionary(Of String, Object) = Nothing) As List(Of T)
     Dim lista As New List(Of T)()
     Dim query As String = $"SELECT * FROM {NombreVista}"
     Dim whereParts As New List(Of String)()
     Dim parameters As New List(Of MySqlParameter)()
 
-    ' Construir WHERE dinámico
-    For Each filtro In filtros
-      Dim prop = GetType(T).GetProperties().
+    If filtros IsNot Nothing Then
+      ' Construir WHERE dinámico
+      For Each filtro In filtros
+        Dim prop = GetType(T).GetProperties().
         FirstOrDefault(Function(p) p.Name.ToUpper() = filtro.Key.ToUpper())
-      If prop IsNot Nothing Then
-        Dim attr = prop.GetCustomAttributes(GetType(ColumnNameAttribute), False).FirstOrDefault()
-        Dim columnName = If(attr IsNot Nothing, DirectCast(attr, ColumnNameAttribute).Name, prop.Name)
+        If prop IsNot Nothing Then
+          Dim attr = prop.GetCustomAttributes(GetType(ColumnNameAttribute), False).FirstOrDefault()
+          Dim columnName = If(attr IsNot Nothing, DirectCast(attr, ColumnNameAttribute).Name, prop.Name)
 
-        If filtro.Value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(filtro.Value.ToString()) Then
-          whereParts.Add($"{columnName} LIKE @{filtro.Key}")
-          parameters.Add(New MySqlParameter($"@{filtro.Key}", $"%{filtro.Value}%"))
+          If filtro.Value IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(filtro.Value.ToString()) Then
+            whereParts.Add($"{columnName} LIKE @{filtro.Key}")
+            parameters.Add(New MySqlParameter($"@{filtro.Key}", $"%{filtro.Value}%"))
+          End If
         End If
-      End If
-    Next
+      Next
+    End If
 
     If whereParts.Count > 0 Then
       query &= " WHERE " & String.Join(" AND ", whereParts)
