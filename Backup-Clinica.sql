@@ -41,7 +41,7 @@ CREATE TABLE `consulta` (
   KEY `fk_consulta_doctor1_idx` (`doctor_id`),
   CONSTRAINT `fk_consulta_doctor1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
   CONSTRAINT `fk_consulta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE `doctor` (
   `id` int NOT NULL AUTO_INCREMENT,
   `identificacion` varchar(45) NOT NULL,
-  `nombre_completo` varchar(10) NOT NULL,
+  `nombre_completo` varchar(50) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `telefono` varchar(45) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE `doctor` (
   PRIMARY KEY (`id`),
   KEY `fk_doctor_usuarios1_idx` (`usuarios_idusuarios`),
   CONSTRAINT `fk_doctor_usuarios1` FOREIGN KEY (`usuarios_idusuarios`) REFERENCES `usuarios` (`idusuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `doctor_especialidad` (
   KEY `fk_doctor_especialidad_especialidad1_idx` (`especialidad_id`),
   CONSTRAINT `fk_doctor_especialidad_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
   CONSTRAINT `fk_doctor_especialidad_especialidad1` FOREIGN KEY (`especialidad_id`) REFERENCES `especialidad` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,7 +192,7 @@ CREATE TABLE `tratamiento` (
   PRIMARY KEY (`id`),
   KEY `fk_tratamiento_consulta1` (`consulta_id`),
   CONSTRAINT `fk_tratamiento_consulta1` FOREIGN KEY (`consulta_id`) REFERENCES `consulta` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +201,7 @@ CREATE TABLE `tratamiento` (
 
 LOCK TABLES `tratamiento` WRITE;
 /*!40000 ALTER TABLE `tratamiento` DISABLE KEYS */;
+INSERT INTO `tratamiento` VALUES (1,'Acetaminofen',2);
 /*!40000 ALTER TABLE `tratamiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +219,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `tipo_usuario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idusuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +228,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Eladio Valverde','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','eladiovch@gmail.com','Administrador'),(2,'Marcela Jimenez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','marcemja@gmail.com','Paciente'),(3,'Admin','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','admin@gmail.com','Administrador'),(4,'María Fernández','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','maria.fernandez@gmail.com','Paciente'),(5,'José Martínez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','jose.martinez@gmail.com','Paciente'),(6,'Lucía Vega','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','lucia.vega@gmail.com','Paciente'),(7,'Andrés Solano','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','andres.solano@clinicacr.com','Doctor'),(8,'Carolina Mora','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','carolina.mora@clinicacr.com','Doctor'),(9,'Felipe Castro','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','felipe.castro@clinicacr.com','Doctor'),(10,'Natalia Rojas','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','natalia.rojas@clinicacr.com','Doctor'),(11,'Esteban Núñez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','esteban.nunez@clinicacr.com','Doctor'),(12,'Laura Brenes','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','laura.brenes@clinicacr.com','Secretaria'),(13,'Camila Jiménez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','camila.jimenez@clinicacr.com','Secretaria');
+INSERT INTO `usuarios` VALUES (1,'Eladio Valverde Chaves','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','eladiovch@gmail.com','Administrador'),(2,'Marcela Jimenez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','marcemja@gmail.com','Paciente'),(3,'Admin','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','admin@gmail.com','Administrador'),(4,'María Fernández','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','maria.fernandez@gmail.com','Paciente'),(5,'José Martínez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','jose.martinez@gmail.com','Paciente'),(6,'Lucía Vega','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','lucia.vega@gmail.com','Paciente'),(7,'Andrés Solano','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','andres.solano@clinicacr.com','Doctor'),(8,'Carolina Mora','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','carolina.mora@clinicacr.com','Doctor'),(9,'Felipe Castro','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','felipe.castro@clinicacr.com','Doctor'),(10,'Natalia Rojas','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','natalia.rojas@clinicacr.com','Doctor'),(11,'Esteban Núñez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','esteban.nunez@clinicacr.com','Doctor'),(12,'Laura Brenes','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','laura.brenes@clinicacr.com','Secretaria'),(13,'Camila Jiménez','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','camila.jimenez@clinicacr.com','Secretaria'),(18,'Prueba','e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','Prueba@gmail.com','Administrador'),(19,'doctor','148685dc72fe8d3e6b22cbfa971ecc5b883424209b640db0e53109f0fa55d756','doctor@clinica.cr','Doctor');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,6 +265,20 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `NOMBRE`,
  1 AS `APELLIDOS`,
  1 AS `ESPECIALIDAD`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vnuevosusuariosdoctores`
+--
+
+DROP TABLE IF EXISTS `vnuevosusuariosdoctores`;
+/*!50001 DROP VIEW IF EXISTS `vnuevosusuariosdoctores`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vnuevosusuariosdoctores` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `NOMBRE_USUARIO`,
+ 1 AS `CODIGO_USUARIO`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -373,6 +388,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vnuevosusuariosdoctores`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vnuevosusuariosdoctores`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vnuevosusuariosdoctores` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO` from `usuarios` where ((0 = (select count(0) from `doctor` where (`doctor`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) and (`usuarios`.`tipo_usuario` = 'Doctor')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vpaciente`
 --
 
@@ -453,4 +486,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-14 23:11:26
+-- Dump completed on 2025-07-19 23:32:04
