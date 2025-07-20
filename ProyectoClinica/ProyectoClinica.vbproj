@@ -24,6 +24,10 @@
 
   <ItemGroup>
     <Compile Update="Formularios\frmConsultaCitasDoctor.vb" />
+    <Compile Update="Formularios\frmModificaPaciente.vb" />
+    <Compile Update="Formularios\frmCrearPaciente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\frmModificaDoctor.vb">
       <SubType>Form</SubType>
     </Compile>

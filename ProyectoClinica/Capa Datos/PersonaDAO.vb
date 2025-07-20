@@ -1,18 +1,18 @@
 ﻿Imports MySql.Data.MySqlClient
 
-Public Class DoctorDAO
+Public Class PersonaDAO
   Inherits DAOBase
-  Implements IRepositorio(Of Doctor)
+  Implements IRepositorio(Of Persona)
 
-  Public Function GetAll(Optional filtros As Dictionary(Of String, Object) = Nothing) As List(Of Doctor) Implements IRepositorio(Of Doctor).GetAll
-    Dim lista As New List(Of Doctor)()
-    Dim query As String = "SELECT id, identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, usuarios_idusuarios FROM doctor"
+  Public Function GetAll(Optional filtros As Dictionary(Of String, Object) = Nothing) As List(Of Persona) Implements IRepositorio(Of Persona).GetAll
+    Dim lista As New List(Of Persona)()
+    Dim query As String = "SELECT id, identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, fecha_nacimiento, tipo_sangre, contacto_emergencia, usuarios_idusuarios FROM persona"
     Dim whereParts As New List(Of String)()
     Dim parameters As New List(Of MySqlParameter)()
 
     If filtros IsNot Nothing Then
       For Each filtro In filtros
-        Dim prop = GetType(Doctor).GetProperties().
+        Dim prop = GetType(Persona).GetProperties().
             FirstOrDefault(Function(p) p.Name.ToUpper() = filtro.Key.ToUpper())
 
         If prop IsNot Nothing Then
@@ -34,7 +34,7 @@ Public Class DoctorDAO
     Dim dt As DataTable = ExecuteQuery(query, parameters)
 
     For Each row As DataRow In dt.Rows
-      Dim entity As New Doctor()
+      Dim entity As New Persona()
       DataRowMapper.MapDataRowToEntity(row, entity)
       lista.Add(entity)
     Next
@@ -42,8 +42,8 @@ Public Class DoctorDAO
     Return lista
   End Function
 
-  Public Function GetById(id As Integer) As Doctor Implements IRepositorio(Of Doctor).GetById
-    Dim query As String = "SELECT id, identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, usuarios_idusuarios FROM doctor WHERE id = @id"
+  Public Function GetById(id As Integer) As Persona Implements IRepositorio(Of Persona).GetById
+    Dim query As String = "SELECT id, identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, fecha_nacimiento, tipo_sangre, contacto_emergencia, usuarios_idusuarios FROM persona WHERE id = @id"
     Dim parameters As New List(Of MySqlParameter) From {
         New MySqlParameter("@id", id)
     }
@@ -51,7 +51,7 @@ Public Class DoctorDAO
     Dim dt As DataTable = ExecuteQuery(query, parameters)
 
     If dt.Rows.Count > 0 Then
-      Dim entity As New Doctor()
+      Dim entity As New Persona()
       DataRowMapper.MapDataRowToEntity(dt.Rows(0), entity)
       Return entity
     Else
@@ -59,8 +59,8 @@ Public Class DoctorDAO
     End If
   End Function
 
-  Public Function Insert(entity As Doctor) As Integer Implements IRepositorio(Of Doctor).Insert
-    Dim query As String = "INSERT INTO doctor (identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, usuarios_idusuarios) VALUES (@identificacion, @nombre_completo, @apellido, @direccion, @telefono, @correo, @edad, @sexo, @usuarios_idusuarios)"
+  Public Function Insert(entity As Persona) As Integer Implements IRepositorio(Of Persona).Insert
+    Dim query As String = "INSERT INTO persona (identificacion, nombre_completo, apellido, direccion, telefono, correo, edad, sexo, fecha_nacimiento, tipo_sangre, contacto_emergencia, usuarios_idusuarios) VALUES (@identificacion, @nombre_completo, @apellido, @direccion, @telefono, @correo, @edad, @sexo, @fecha_nacimiento, @tipo_sangre, @contacto_emergencia, @usuarios_idusuarios)"
     Dim parameters As New List(Of MySqlParameter) From {
         New MySqlParameter("@identificacion", entity.Identificacion),
         New MySqlParameter("@nombre_completo", entity.NombreCompleto),
@@ -70,14 +70,17 @@ Public Class DoctorDAO
         New MySqlParameter("@correo", entity.Correo),
         New MySqlParameter("@edad", entity.Edad),
         New MySqlParameter("@sexo", entity.Sexo),
+        New MySqlParameter("@fecha_nacimiento", entity.FechaNacimiento),
+        New MySqlParameter("@tipo_sangre", entity.TipoSangre),
+        New MySqlParameter("@contacto_emergencia", entity.ContactoEmergencia),
         New MySqlParameter("@usuarios_idusuarios", entity.UsuariosIdusuarios)
     }
 
     Return ExecuteInsertReturnId(query, parameters)
   End Function
 
-  Public Function Update(entity As Doctor) As Integer Implements IRepositorio(Of Doctor).Update
-    Dim query As String = "UPDATE doctor SET identificacion = @identificacion, nombre_completo = @nombre_completo, apellido = @apellido, direccion = @direccion, telefono = @telefono, correo = @correo, edad = @edad, sexo = @sexo, usuarios_idusuarios = @usuarios_idusuarios WHERE id = @id"
+  Public Function Update(entity As Persona) As Integer Implements IRepositorio(Of Persona).Update
+    Dim query As String = "UPDATE persona SET identificacion = @identificacion, nombre_completo = @nombre_completo, apellido = @apellido, direccion = @direccion, telefono = @telefono, correo = @correo, edad = @edad, sexo = @sexo, fecha_nacimiento = @fecha_nacimiento, tipo_sangre = @tipo_sangre, contacto_emergencia = @contacto_emergencia, usuarios_idusuarios = @usuarios_idusuarios WHERE id = @id"
     Dim parameters As New List(Of MySqlParameter) From {
         New MySqlParameter("@identificacion", entity.Identificacion),
         New MySqlParameter("@nombre_completo", entity.NombreCompleto),
@@ -87,6 +90,9 @@ Public Class DoctorDAO
         New MySqlParameter("@correo", entity.Correo),
         New MySqlParameter("@edad", entity.Edad),
         New MySqlParameter("@sexo", entity.Sexo),
+        New MySqlParameter("@fecha_nacimiento", entity.FechaNacimiento),
+        New MySqlParameter("@tipo_sangre", entity.TipoSangre),
+        New MySqlParameter("@contacto_emergencia", entity.ContactoEmergencia),
         New MySqlParameter("@usuarios_idusuarios", entity.UsuariosIdusuarios),
         New MySqlParameter("@id", entity.Id)
     }
@@ -94,47 +100,40 @@ Public Class DoctorDAO
     Return ExecuteNonQuery(query, parameters)
   End Function
 
-  Public Function Delete(id As Integer) As Integer Implements IRepositorio(Of Doctor).Delete
+  Public Function Delete(id As Integer) As Integer Implements IRepositorio(Of Persona).Delete
     Dim query As String = ""
-    Dim rowsAffected As Integer = 0
     Dim parameters As New List(Of MySqlParameter) From {
         New MySqlParameter("@id", id)
     }
+    Dim rowsAffected As Integer = 0
 
     Try
       BeginTransaction()
 
-#Region "Eliminar Información Asociada al Doctor"
-
-      '1) Elimina Especialidades si el usuario es doctor
-      query = "DELETE FROM doctor_especialidad WHERE doctor_id = @id"
-      ExecuteNonQuery(query, parameters)
-
-      '2) Elimina tratamientos asociados a las consultas del doctor
-      query = "DELETE FROM tratamiento WHERE consulta_id in (SELECT id FROM consulta WHERE doctor_id = @id)"
+#Region "Eliminar Información Usuario Paciente"
+      '1) Elimina tratamientos asociados a las consultas del paciente
+      query = "DELETE FROM tratamiento WHERE consulta_id in (SELECT id FROM consulta WHERE persona_id =  @id)"
 
       ExecuteNonQuery(query, parameters)
 
-      '3) Elimina consultas si el usuario es doctor
-      query = "DELETE FROM consulta WHERE doctor_id = @id"
+      '2) Elimina consultas si el usuario es paciente
+      query = "DELETE FROM consulta WHERE persona_id = @id"
 
       ExecuteNonQuery(query, parameters)
 
 #End Region
 
-      ' Elimina información del doctor
-      query = "DELETE FROM doctor WHERE id = @id"
+      query = "DELETE FROM persona WHERE id = @id"
 
       rowsAffected = ExecuteNonQuery(query, parameters)
 
       EndTransaction(True)
     Catch ex As Exception
       EndTransaction(False)
-      Throw New Exception("Error al eliminar el doctor: " & ex.Message)
+      Throw New Exception("Error al eliminar el paciente: " & ex.Message)
     Finally
       CerrarConexion()
     End Try
-
 
     Return rowsAffected
   End Function

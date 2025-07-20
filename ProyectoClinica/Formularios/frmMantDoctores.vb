@@ -216,7 +216,7 @@
             MessageBox.Show("Se presentó un error al eliminar el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
           End If
         Catch ex As Exception
-          MessageBox.Show("Se presentó un error al eliminar el usuario. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+          MessageBox.Show("Se presentó un error al eliminar el doctor. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
       End If
     Else

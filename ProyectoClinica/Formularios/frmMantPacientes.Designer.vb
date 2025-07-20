@@ -22,7 +22,7 @@ Partial Class frmMantPacientes
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+    Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvPacientes = New DataGridView()
     btnCrear = New Button()
     btnModificar = New Button()
@@ -46,14 +46,14 @@ Partial Class frmMantPacientes
     dgvPacientes.AllowUserToAddRows = False
     dgvPacientes.AllowUserToDeleteRows = False
     dgvPacientes.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle2.BackColor = SystemColors.Control
-    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-    dgvPacientes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle1.BackColor = SystemColors.Control
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+    dgvPacientes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
     dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
     dgvPacientes.Location = New Point(12, 155)
     dgvPacientes.MultiSelect = False
