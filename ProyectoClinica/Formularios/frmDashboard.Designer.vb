@@ -29,11 +29,13 @@ Partial Class frmDashboard
     btnDoctores = New Button()
     btnPersonas = New Button()
     btnSalir = New Button()
+    btnReporte = New Button()
     grbOpciones.SuspendLayout()
     SuspendLayout()
     ' 
     ' grbOpciones
     ' 
+    grbOpciones.Controls.Add(btnReporte)
     grbOpciones.Controls.Add(btnUsuarios)
     grbOpciones.Controls.Add(btnConsultas)
     grbOpciones.Controls.Add(btnEspecialidades)
@@ -57,7 +59,7 @@ Partial Class frmDashboard
     ' 
     ' btnConsultas
     ' 
-    btnConsultas.Location = New Point(103, 126)
+    btnConsultas.Location = New Point(26, 119)
     btnConsultas.Name = "btnConsultas"
     btnConsultas.Size = New Size(134, 57)
     btnConsultas.TabIndex = 3
@@ -84,7 +86,7 @@ Partial Class frmDashboard
     ' 
     ' btnPersonas
     ' 
-    btnPersonas.Location = New Point(309, 126)
+    btnPersonas.Location = New Point(210, 119)
     btnPersonas.Name = "btnPersonas"
     btnPersonas.Size = New Size(134, 57)
     btnPersonas.TabIndex = 0
@@ -101,6 +103,15 @@ Partial Class frmDashboard
     btnSalir.TabIndex = 3
     btnSalir.Text = "Salir"
     btnSalir.UseVisualStyleBackColor = False
+    ' 
+    ' btnReporte
+    ' 
+    btnReporte.Location = New Point(394, 119)
+    btnReporte.Name = "btnReporte"
+    btnReporte.Size = New Size(134, 57)
+    btnReporte.TabIndex = 5
+    btnReporte.Text = "Reporte"
+    btnReporte.UseVisualStyleBackColor = True
     ' 
     ' frmDashboard
     ' 
@@ -123,4 +134,5 @@ Partial Class frmDashboard
   Friend WithEvents btnDoctores As Button
   Friend WithEvents btnPersonas As Button
   Friend WithEvents btnSalir As Button
+  Friend WithEvents btnReporte As Button
 End Class

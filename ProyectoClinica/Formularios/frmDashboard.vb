@@ -17,6 +17,7 @@
     btnDoctores.Enabled = True
     btnEspecialidades.Enabled = True
     btnUsuarios.Enabled = True
+    btnReporte.Enabled = False
 
 
     Select Case TipoUsuario
@@ -36,6 +37,7 @@
         btnConsultas.Enabled = False
         btnEspecialidades.Enabled = False
         btnUsuarios.Enabled = False
+        btnReporte.Enabled = True
       Case Else
         MessageBox.Show("Tipo de usuario no soportado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         btnConsultas.Enabled = False
@@ -59,9 +61,21 @@
   End Sub
 
   Private Sub btnPersonas_Click(sender As Object, e As EventArgs) Handles btnPersonas.Click
-    frmMantPacientes.Show()
-    frmMantPacientes.AjustarPantalla()
-    Me.Hide()
+    frmMantPacientes.Show
+    frmMantPacientes.AjustarPantalla
+    Hide
 
+  End Sub
+
+  Private Sub btnConsultas_Click(sender As Object, e As EventArgs) Handles btnConsultas.Click
+    frmConsultaCitas.Show()
+    frmConsultaCitas.AjustarPantalla()
+    Me.Hide()
+  End Sub
+
+  Private Sub btnReporte_Click(sender As Object, e As EventArgs) Handles btnReporte.Click
+    frmReporte.Show()
+    frmReporte.AjustarPantalla()
+    Me.Hide()
   End Sub
 End Class

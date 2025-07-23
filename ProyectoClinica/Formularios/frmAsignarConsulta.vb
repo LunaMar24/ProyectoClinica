@@ -1,9 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
-
-Public Class frmAsignarConsulta
+﻿Public Class frmAsignarConsulta
   Implements IFormularios
 
-  Private conexion As Conexion
   Private idPaciente As Integer
 
   Private _idDoctor As Integer
@@ -39,10 +36,6 @@ Public Class frmAsignarConsulta
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     lblInfoDoctor.Text = _nombreDoctor
     lblInfoEspecialidad.Text = _especialidad
-  End Sub
-
-  Private Sub frmAsignarConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    conexion = New Conexion
   End Sub
 
   Private Sub txtIdentificacionPaciente_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtIdentificacionPaciente.Validating
@@ -88,91 +81,83 @@ Public Class frmAsignarConsulta
 
   Private Sub CargarDatosPaciente(identificacion As String)
     Try
-      Dim conn = conexion.Abrir()
-      Dim selectQuery = "SELECT id, nombre_completo, apellido FROM persona WHERE identificacion = @cedula"
-      Dim dt = New DataTable
-      Using command As New MySqlCommand(selectQuery, conn)
-        'Asignar los parametros
-        If Not String.IsNullOrWhiteSpace(identificacion) Then
-          command.Parameters.AddWithValue("@cedula", identificacion)
-        End If
+      Dim dbPaciente As New PersonaDAO
+      Dim filtros As New Dictionary(Of String, Object) From {
+        {"identificacion", identificacion}
+      }
+      Dim paciente As Persona = dbPaciente.GetAll(filtros).FirstOrDefault()
+      dbPaciente.Dispose()
 
-        Dim adaptador = New MySqlDataAdapter(command)
-
-        'El adaptador va a cargar el datatable con lo que se leyó de la base de datos
-        adaptador.Fill(dt)
-      End Using
-
-      If dt.Rows.Count > 0 Then
-        lblInfoPaciente.Text = dt.Rows(0)("nombre_completo").ToString() & " " & dt.Rows(0)("apellido").ToString()
-        idPaciente = dt.Rows(0)("id").ToString()
+      If paciente IsNot Nothing Then
+        lblInfoPaciente.Text = $"{paciente.NombreCompleto} {paciente.Apellido}"
+        idPaciente = paciente.Id
       Else
         MessageBox.Show("Identificación no encontrada. Verifique el dato y vuelva a intentarlo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         txtIdentificacionPaciente.Focus()
       End If
-
     Catch ex As Exception
       MessageBox.Show("Se presentó un error al cargar las especialidades. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    Finally
-      conexion.Cerrar()
     End Try
   End Sub
 
   Private Sub btnAsignar_Click(sender As Object, e As EventArgs) Handles btnAsignar.Click
-    If ValidateChildren() Then
-      'Crear la consulta con la información del paciente y el doctor
-      Try
-        Dim conn = conexion.Abrir()
+    ValidateChildren()
 
-        'Obtener el número de consulta y aucmentar su consecutivo
-        Dim selectQuery = "SELECT IFNULL(MAX(numero),'') FROM db_clinica.consulta"
-        Dim commandSelect As New MySqlCommand(selectQuery, conn)
-        Dim numeroConsulta As String = commandSelect.ExecuteScalar().ToString()
-
-        'Incrementar el número de consulta
-        Dim partes() As String = numeroConsulta.Split("-"c)
-        If partes.Length = 2 Then
-          Dim prefix As String = partes(0)
-          Dim numeroStr As String = partes(1)
-          Dim numeroInt As Integer = Integer.Parse(numeroStr)
-          numeroInt += 1
-          Dim nuevoNumeroStr As String = numeroInt.ToString(New String("0"c, numeroStr.Length))
-          numeroConsulta = prefix & "-" & nuevoNumeroStr
-        ElseIf numeroConsulta.Length = 0 Then
-          numeroConsulta = NUMERO_CONSULTA_INICIAL
-        Else
-          MessageBox.Show("Formato de número de consulta no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-          Return
-        End If
-
-        Dim insertQuery = "INSERT INTO consulta (numero, prioridad, fecha, persona_id, doctor_id) VALUES (@numero, @prioridad, @fecha, @persona_id, @doctor_id)"
-        Dim dt = New DataTable
-        Using command As New MySqlCommand(insertQuery, conn)
-          'Asignar los parametros
-          command.Parameters.AddWithValue("@numero", numeroConsulta)
-          command.Parameters.AddWithValue("@fecha", DateTime.Now.Date)
-          command.Parameters.AddWithValue("@prioridad", cmbPrioridad.Text)
-
-          command.Parameters.AddWithValue("@doctor_id", _idDoctor)
-          command.Parameters.AddWithValue("@persona_id", idPaciente)
-
-          Dim rowsAffected = command.ExecuteNonQuery()
-
-          If rowsAffected > 0 Then
-            MessageBox.Show("Consulta asignada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            frmMantDoctores.Show()
-            frmMantDoctores.AjustarPantalla()
-            Me.Close()
-          Else
-            MessageBox.Show("No se pudo asignar la consulta. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-          End If
-        End Using
-      Catch ex As Exception
-        MessageBox.Show("Se presentó un error al crear la consulta. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-      Finally
-        conexion.Cerrar()
-      End Try
+    If txtIdentificacionPaciente.TextLength = 0 Then
+      MessageBox.Show("Debe indicar la identificación del paciente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      txtIdentificacionPaciente.Focus()
+      Return
     End If
+
+    If cmbPrioridad.Text.Length = 0 Then
+      MessageBox.Show("Debe indicar la prioridad de la consulta.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      cmbPrioridad.Focus()
+      Return
+    End If
+
+    'Crear la consulta con la información del paciente y el doctor
+    Try
+      Dim dbconsultaDAO = New ConsultaDAO
+      Dim numeroConsulta As String = dbconsultaDAO.UltimaConsulta()
+
+      'Incrementar el número de consulta
+      Dim partes() As String = numeroConsulta.Split("-"c)
+      If partes.Length = 2 Then
+        Dim prefix As String = partes(0)
+        Dim numeroStr As String = partes(1)
+        Dim numeroInt As Integer = Integer.Parse(numeroStr)
+        numeroInt += 1
+        Dim nuevoNumeroStr As String = numeroInt.ToString(New String("0"c, numeroStr.Length))
+        numeroConsulta = prefix & "-" & nuevoNumeroStr
+      ElseIf numeroConsulta.Length = 0 Then
+        numeroConsulta = NUMERO_CONSULTA_INICIAL
+      Else
+        MessageBox.Show("Formato de número de consulta no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Return
+      End If
+
+      Dim consulta As New Consulta With {
+        .Numero = numeroConsulta,
+        .Prioridad = cmbPrioridad.Text,
+        .Fecha = DateTime.Now.Date,
+        .PersonaId = idPaciente,
+        .DoctorId = _idDoctor
+      }
+
+      Dim rowsAffected = dbconsultaDAO.Insert(consulta)
+      dbconsultaDAO.Dispose()
+
+      If rowsAffected > 0 Then
+        MessageBox.Show("Consulta asignada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        frmMantDoctores.Show()
+        frmMantDoctores.AjustarPantalla()
+        Me.Close()
+      Else
+        MessageBox.Show("No se pudo asignar la consulta. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+      End If
+    Catch ex As Exception
+      MessageBox.Show("Se presentó un error al crear la consulta. Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    End Try
   End Sub
 
 

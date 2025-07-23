@@ -19,11 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.4" />
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Formularios\frmConsultaCitasDoctor.vb" />
+    <Compile Update="Formularios\frmReporte.vb" />
+    <Compile Update="Formularios\frmConsultaCitas.vb" />
+    <Compile Update="Formularios\frmCompletarConsulta.vb" />
     <Compile Update="Formularios\frmModificaPaciente.vb" />
     <Compile Update="Formularios\frmCrearPaciente.vb">
       <SubType>Form</SubType>
