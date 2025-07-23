@@ -41,7 +41,7 @@ CREATE TABLE `consulta` (
   KEY `fk_consulta_doctor1_idx` (`doctor_id`),
   CONSTRAINT `fk_consulta_doctor1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
   CONSTRAINT `fk_consulta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `consulta` (
 
 LOCK TABLES `consulta` WRITE;
 /*!40000 ALTER TABLE `consulta` DISABLE KEYS */;
-INSERT INTO `consulta` VALUES (2,'CLICONS-00001','Alta','2025-07-14 00:00:00.000000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1);
+INSERT INTO `consulta` VALUES (2,'CLICONS-00001','Alta','2025-07-14 00:00:00.000000','Dolor de cabeza y garganta','Asma','Penicilina','125/75','38','57','1.58',1,1),(4,'CLICONS-00002','Alta','2025-07-20 00:00:00.000000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,2),(5,'CLICONS-00003','Media','2025-07-22 00:00:00.000000','Le duele la garganta','N/A','N/A','120/80','37','80','1.7',3,3),(6,'CLICONS-00004','Baja','2025-07-22 00:00:00.000000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2);
 /*!40000 ALTER TABLE `consulta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `persona`;
 CREATE TABLE `persona` (
   `id` int NOT NULL AUTO_INCREMENT,
   `identificacion` varchar(45) NOT NULL,
-  `nombre_completo` varchar(10) NOT NULL,
+  `nombre_completo` varchar(50) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `telefono` varchar(45) NOT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE `persona` (
   PRIMARY KEY (`id`),
   KEY `fk_persona_usuarios1_idx` (`usuarios_idusuarios`),
   CONSTRAINT `fk_persona_usuarios1` FOREIGN KEY (`usuarios_idusuarios`) REFERENCES `usuarios` (`idusuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'109250123','María','Fernández Ramírez','Barrio Escalante, San José','8888-0001','maria.fernandez@gmail.com','28','Femenino','1997-05-12','A+','Luis Ramírez - 8888-7771',4),(2,'110150456','José','Martínez Quesada','Cartago centro','8888-0002','jose.martinez@gmail.com','35','Masculino','1989-03-22','O+','Ana Quesada - 8888-7772',5),(3,'208430789','Lucía','Vega Hernández','Heredia, San Francisco','8888-0003','lucia.vega@gmail.com','30','Femenino','1994-08-09','B+','Gabriela Hernández - 8888-7773',6);
+INSERT INTO `persona` VALUES (1,'109250123','María','Fernández Ramírez','Barrio Escalante, San José','8888-0001','maria.fernandez@gmail.com','28','Femenino','1997-05-12','A+','Luis Ramírez - 8888-7771',4),(2,'110150456','José','Martínez Quesada','Cartago centro','8888-0002','jose.martinez@gmail.com','35','Masculino','1989-03-22','O+','Ana Quesada - 8888-7772',5),(3,'208430789','Lucía','Vega Hernández','Heredia, San Francisco','8888-0003','lucia.vega@gmail.com','30','Femenino','1994-08-09','B+','Gabriela Hernández - 8888-7773',6),(5,'602910060','Marcela','Jiménez','Desamparados, Alajuela','83641655','marcemja@gmail.com','47','Mujer','1978-06-24','O+','Eladio Valverde -- 83641656',2);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `tratamiento` (
   PRIMARY KEY (`id`),
   KEY `fk_tratamiento_consulta1` (`consulta_id`),
   CONSTRAINT `fk_tratamiento_consulta1` FOREIGN KEY (`consulta_id`) REFERENCES `consulta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `tratamiento` (
 
 LOCK TABLES `tratamiento` WRITE;
 /*!40000 ALTER TABLE `tratamiento` DISABLE KEYS */;
-INSERT INTO `tratamiento` VALUES (1,'Acetaminofen',2);
+INSERT INTO `tratamiento` VALUES (2,'Se le receta acetaminofen c/d 6 hrs 2.5 ml. \r\nGraniodin para aliviar los sintomas c/d 2 si es necesario por 1 día',5),(4,'Acetaminofen c/d 8hr 500mg\r\nClorferamida c/d 8hrs 10mg',2);
 /*!40000 ALTER TABLE `tratamiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,6 +253,31 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `vdoctorconsultas`
+--
+
+DROP TABLE IF EXISTS `vdoctorconsultas`;
+/*!50001 DROP VIEW IF EXISTS `vdoctorconsultas`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vdoctorconsultas` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `CONSECUTIVO`,
+ 1 AS `FECHA_CONSULTA`,
+ 1 AS `PRIORIDAD`,
+ 1 AS `NUM_PRIORIDAD`,
+ 1 AS `CODIGO_DOCTOR`,
+ 1 AS `CODIGO_PACIENTE`,
+ 1 AS `IDENTIFICACION`,
+ 1 AS `PACIENTE`,
+ 1 AS `DOCTOR`,
+ 1 AS `ESPECIALIDAD`,
+ 1 AS `EDAD_PACIENTE`,
+ 1 AS `SEXO_PACIENTE`,
+ 1 AS `CONSULTA_FINALIZADA`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `vdoctorsecretaria`
 --
 
@@ -276,6 +301,20 @@ DROP TABLE IF EXISTS `vnuevosusuariosdoctores`;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `vnuevosusuariosdoctores` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `NOMBRE_USUARIO`,
+ 1 AS `CODIGO_USUARIO`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vnuevosusuariospacientes`
+--
+
+DROP TABLE IF EXISTS `vnuevosusuariospacientes`;
+/*!50001 DROP VIEW IF EXISTS `vnuevosusuariospacientes`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vnuevosusuariospacientes` AS SELECT 
  1 AS `ID`,
  1 AS `NOMBRE_USUARIO`,
  1 AS `CODIGO_USUARIO`*/;
@@ -370,6 +409,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vdoctorconsultas`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vdoctorconsultas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vdoctorconsultas` AS select `consulta`.`id` AS `ID`,`consulta`.`numero` AS `CONSECUTIVO`,`consulta`.`fecha` AS `FECHA_CONSULTA`,`consulta`.`prioridad` AS `PRIORIDAD`,(case when (`consulta`.`prioridad` = 'ALTA') then 1 when (`consulta`.`prioridad` = 'MEDIA') then 2 else 3 end) AS `NUM_PRIORIDAD`,`usdoc`.`idusuarios` AS `CODIGO_DOCTOR`,`uspac`.`idusuarios` AS `CODIGO_PACIENTE`,`persona`.`identificacion` AS `IDENTIFICACION`,concat(`persona`.`nombre_completo`,' ',`persona`.`apellido`) AS `PACIENTE`,concat(`doctor`.`nombre_completo`,' ',`doctor`.`apellido`) AS `DOCTOR`,`especialidad`.`descripcion` AS `ESPECIALIDAD`,`persona`.`edad` AS `EDAD_PACIENTE`,`persona`.`sexo` AS `SEXO_PACIENTE`,(select count(0) from `tratamiento` where (`tratamiento`.`consulta_id` = `consulta`.`id`)) AS `CONSULTA_FINALIZADA` from ((((((`consulta` join `doctor` on((`doctor`.`id` = `consulta`.`doctor_id`))) join `doctor_especialidad` on((`doctor_especialidad`.`doctor_id` = `doctor`.`id`))) join `especialidad` on((`especialidad`.`id` = `doctor_especialidad`.`especialidad_id`))) join `usuarios` `usdoc` on((`doctor`.`usuarios_idusuarios` = `usdoc`.`idusuarios`))) join `persona` on((`persona`.`id` = `consulta`.`persona_id`))) join `usuarios` `uspac` on((`persona`.`usuarios_idusuarios` = `uspac`.`idusuarios`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vdoctorsecretaria`
 --
 
@@ -401,6 +458,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vnuevosusuariosdoctores` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO` from `usuarios` where ((0 = (select count(0) from `doctor` where (`doctor`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) and (`usuarios`.`tipo_usuario` = 'Doctor')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vnuevosusuariospacientes`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vnuevosusuariospacientes`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vnuevosusuariospacientes` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO` from `usuarios` where ((0 = (select count(0) from `persona` where (`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) and (`usuarios`.`tipo_usuario` = 'Paciente')) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -486,4 +561,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-19 23:32:04
+-- Dump completed on 2025-07-22 23:52:14
