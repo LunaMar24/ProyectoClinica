@@ -17,9 +17,7 @@ Public Class frmModificaDoctor
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmMantDoctores.Show()
-    frmMantDoctores.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click

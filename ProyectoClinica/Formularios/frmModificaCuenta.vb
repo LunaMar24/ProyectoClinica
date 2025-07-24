@@ -31,9 +31,7 @@
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmMantUsuarios.Show()
-    frmMantUsuarios.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click

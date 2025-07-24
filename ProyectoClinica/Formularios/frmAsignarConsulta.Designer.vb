@@ -46,6 +46,7 @@ Partial Class frmAsignarConsulta
     ' 
     ' grbDoctor
     ' 
+    grbDoctor.BackColor = Color.Transparent
     grbDoctor.Controls.Add(lblInfoEspecialidad)
     grbDoctor.Controls.Add(lblEspecialidad)
     grbDoctor.Controls.Add(lblInfoDoctor)
@@ -96,6 +97,7 @@ Partial Class frmAsignarConsulta
     ' 
     ' grbPaciente
     ' 
+    grbPaciente.BackColor = Color.Transparent
     grbPaciente.Controls.Add(cmbPrioridad)
     grbPaciente.Controls.Add(lblPrioridad)
     grbPaciente.Controls.Add(lblInfoPaciente)
@@ -165,8 +167,12 @@ Partial Class frmAsignarConsulta
     ' 
     ' btnAsignar
     ' 
-    btnAsignar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnAsignar.Location = New Point(228, 292)
+    btnAsignar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnAsignar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnAsignar.FlatStyle = FlatStyle.Flat
+    btnAsignar.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+    btnAsignar.ForeColor = Color.White
+    btnAsignar.Location = New Point(244, 294)
     btnAsignar.Name = "btnAsignar"
     btnAsignar.Size = New Size(107, 47)
     btnAsignar.TabIndex = 2
@@ -175,13 +181,16 @@ Partial Class frmAsignarConsulta
     ' 
     ' btnCancelar
     ' 
-    btnCancelar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnCancelar.Location = New Point(89, 292)
+    btnCancelar.BackColor = Color.IndianRed
+    btnCancelar.FlatStyle = FlatStyle.Flat
+    btnCancelar.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+    btnCancelar.ForeColor = Color.White
+    btnCancelar.Location = New Point(105, 294)
     btnCancelar.Name = "btnCancelar"
     btnCancelar.Size = New Size(107, 47)
     btnCancelar.TabIndex = 3
     btnCancelar.Text = "Cancelar"
-    btnCancelar.UseVisualStyleBackColor = True
+    btnCancelar.UseVisualStyleBackColor = False
     ' 
     ' errProv
     ' 
@@ -191,6 +200,7 @@ Partial Class frmAsignarConsulta
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(457, 351)
     Controls.Add(btnCancelar)
     Controls.Add(btnAsignar)

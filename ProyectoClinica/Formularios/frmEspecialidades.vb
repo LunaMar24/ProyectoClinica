@@ -27,8 +27,7 @@
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmDashboard.Show()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnInsertar_Click(sender As Object, e As EventArgs) Handles btnInsertar.Click

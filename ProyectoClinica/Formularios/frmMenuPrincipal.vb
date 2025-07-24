@@ -1,17 +1,18 @@
-﻿Public Class frmDashboard
+﻿Public Class frmMenuPrincipal
+  Implements IFormularios
 
   Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
-    frmLogin.Show()
-    Me.Close()
+    If MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+      PantallaManager.Finalizar()
+
+      frmLogin.Show()
+      Me.Close()
+    End If
   End Sub
 
-  Private Sub btnDoctores_Click(sender As Object, e As EventArgs) Handles btnDoctores.Click
-    frmMantDoctores.Show()
-    frmMantDoctores.AjustarPantalla()
-    Me.Hide()
-  End Sub
+  Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
+    PantallaManager.Inicializar(Me.pnlPantallas)
 
-  Public Sub AjustarPantalla()
     btnConsultas.Enabled = True
     btnPersonas.Enabled = True
     btnDoctores.Enabled = True
@@ -49,33 +50,27 @@
   End Sub
 
   Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
-    frmMantUsuarios.Show()
-    frmMantUsuarios.AjustarPantalla()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmMantUsuarios(), Me)
   End Sub
 
   Private Sub btnEspecialidades_Click(sender As Object, e As EventArgs) Handles btnEspecialidades.Click
-    frmEspecialidades.Show()
-    frmEspecialidades.AjustarPantalla()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmEspecialidades(), Me)
+  End Sub
+
+  Private Sub btnDoctores_Click(sender As Object, e As EventArgs) Handles btnDoctores.Click
+    PantallaManager.LlamarPantallaHija(New frmMantDoctores(), Me)
   End Sub
 
   Private Sub btnPersonas_Click(sender As Object, e As EventArgs) Handles btnPersonas.Click
-    frmMantPacientes.Show
-    frmMantPacientes.AjustarPantalla
-    Hide
-
+    PantallaManager.LlamarPantallaHija(New frmMantPacientes(), Me)
   End Sub
 
   Private Sub btnConsultas_Click(sender As Object, e As EventArgs) Handles btnConsultas.Click
-    frmConsultaCitas.Show()
-    frmConsultaCitas.AjustarPantalla()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmConsultaCitas(), Me)
   End Sub
 
   Private Sub btnReporte_Click(sender As Object, e As EventArgs) Handles btnReporte.Click
-    frmReporte.Show()
-    frmReporte.AjustarPantalla()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmReporte(), Me)
   End Sub
+
 End Class

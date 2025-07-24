@@ -4,20 +4,12 @@ Imports System.Text
 Public Class frmCrearCuenta
   Implements IFormularios
 
-  Private conexion As Conexion
-
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     'No se requiere para esta pantalla
   End Sub
 
-  Private Sub frmCrearCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    conexion = New Conexion
-  End Sub
-
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmMantUsuarios.Show()
-    frmMantUsuarios.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click

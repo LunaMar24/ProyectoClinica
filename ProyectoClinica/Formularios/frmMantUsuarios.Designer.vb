@@ -24,6 +24,10 @@ Partial Class frmMantUsuarios
   Private Sub InitializeComponent()
     Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvUsuarios = New DataGridView()
+    clID = New DataGridViewTextBoxColumn()
+    clNombre = New DataGridViewTextBoxColumn()
+    clCodigoUsuario = New DataGridViewTextBoxColumn()
+    clTipoUsuario = New DataGridViewTextBoxColumn()
     btnCrear = New Button()
     btnModificar = New Button()
     btnEliminar = New Button()
@@ -37,10 +41,6 @@ Partial Class frmMantUsuarios
     lblNombre = New Label()
     txtFilNombre = New TextBox()
     btnCambiarClave = New Button()
-    clID = New DataGridViewTextBoxColumn()
-    clNombre = New DataGridViewTextBoxColumn()
-    clCodigoUsuario = New DataGridViewTextBoxColumn()
-    clTipoUsuario = New DataGridViewTextBoxColumn()
     CType(dgvUsuarios, ComponentModel.ISupportInitialize).BeginInit()
     grpFiltros.SuspendLayout()
     SuspendLayout()
@@ -52,7 +52,7 @@ Partial Class frmMantUsuarios
     dgvUsuarios.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
     DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
     DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
     DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
@@ -68,8 +68,45 @@ Partial Class frmMantUsuarios
     dgvUsuarios.Size = New Size(738, 271)
     dgvUsuarios.TabIndex = 0
     ' 
+    ' clID
+    ' 
+    clID.DataPropertyName = "Id"
+    clID.HeaderText = "ID"
+    clID.Name = "clID"
+    clID.ReadOnly = True
+    clID.Visible = False
+    ' 
+    ' clNombre
+    ' 
+    clNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clNombre.DataPropertyName = "NombreUsuario"
+    clNombre.HeaderText = "Nombre Usuario"
+    clNombre.Name = "clNombre"
+    clNombre.ReadOnly = True
+    ' 
+    ' clCodigoUsuario
+    ' 
+    clCodigoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clCodigoUsuario.DataPropertyName = "CodigoUsuario"
+    clCodigoUsuario.HeaderText = "Código Usuario"
+    clCodigoUsuario.Name = "clCodigoUsuario"
+    clCodigoUsuario.ReadOnly = True
+    ' 
+    ' clTipoUsuario
+    ' 
+    clTipoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+    clTipoUsuario.DataPropertyName = "TipoUsuario"
+    clTipoUsuario.HeaderText = "Tipo Usuario"
+    clTipoUsuario.Name = "clTipoUsuario"
+    clTipoUsuario.ReadOnly = True
+    ' 
     ' btnCrear
     ' 
+    btnCrear.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCrear.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCrear.FlatStyle = FlatStyle.Flat
+    btnCrear.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCrear.ForeColor = Color.White
     btnCrear.Location = New Point(11, 101)
     btnCrear.Name = "btnCrear"
     btnCrear.Size = New Size(72, 46)
@@ -79,6 +116,11 @@ Partial Class frmMantUsuarios
     ' 
     ' btnModificar
     ' 
+    btnModificar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnModificar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnModificar.FlatStyle = FlatStyle.Flat
+    btnModificar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnModificar.ForeColor = Color.White
     btnModificar.Location = New Point(89, 101)
     btnModificar.Name = "btnModificar"
     btnModificar.Size = New Size(72, 46)
@@ -88,6 +130,11 @@ Partial Class frmMantUsuarios
     ' 
     ' btnEliminar
     ' 
+    btnEliminar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnEliminar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnEliminar.FlatStyle = FlatStyle.Flat
+    btnEliminar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEliminar.ForeColor = Color.White
     btnEliminar.Location = New Point(167, 101)
     btnEliminar.Name = "btnEliminar"
     btnEliminar.Size = New Size(72, 46)
@@ -108,6 +155,7 @@ Partial Class frmMantUsuarios
     ' 
     ' grpFiltros
     ' 
+    grpFiltros.BackColor = Color.Transparent
     grpFiltros.Controls.Add(cmbFilTipoUsuario)
     grpFiltros.Controls.Add(btnFiltrar)
     grpFiltros.Controls.Add(txtFilCodigo)
@@ -124,7 +172,7 @@ Partial Class frmMantUsuarios
     ' 
     ' cmbFilTipoUsuario
     ' 
-    cmbFilTipoUsuario.Font = New Font("Segoe UI", 9F)
+    cmbFilTipoUsuario.Font = New Font("Segoe UI", 9.0F)
     cmbFilTipoUsuario.FormattingEnabled = True
     cmbFilTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
     cmbFilTipoUsuario.Location = New Point(88, 51)
@@ -134,12 +182,17 @@ Partial Class frmMantUsuarios
     ' 
     ' btnFiltrar
     ' 
+    btnFiltrar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnFiltrar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnFiltrar.FlatStyle = FlatStyle.Flat
+    btnFiltrar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnFiltrar.ForeColor = Color.White
     btnFiltrar.Location = New Point(518, 51)
     btnFiltrar.Name = "btnFiltrar"
     btnFiltrar.Size = New Size(90, 30)
     btnFiltrar.TabIndex = 7
     btnFiltrar.Text = "Filtrar"
-    btnFiltrar.UseVisualStyleBackColor = True
+    btnFiltrar.UseVisualStyleBackColor = False
     ' 
     ' txtFilCodigo
     ' 
@@ -184,6 +237,11 @@ Partial Class frmMantUsuarios
     ' 
     ' btnCambiarClave
     ' 
+    btnCambiarClave.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCambiarClave.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCambiarClave.FlatStyle = FlatStyle.Flat
+    btnCambiarClave.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCambiarClave.ForeColor = Color.White
     btnCambiarClave.Location = New Point(245, 102)
     btnCambiarClave.Name = "btnCambiarClave"
     btnCambiarClave.Size = New Size(72, 46)
@@ -191,42 +249,11 @@ Partial Class frmMantUsuarios
     btnCambiarClave.Text = "Cambiar Clave"
     btnCambiarClave.UseVisualStyleBackColor = True
     ' 
-    ' clID
-    ' 
-    clID.DataPropertyName = "Id"
-    clID.HeaderText = "ID"
-    clID.Name = "clID"
-    clID.ReadOnly = True
-    clID.Visible = False
-    ' 
-    ' clNombre
-    ' 
-    clNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clNombre.DataPropertyName = "NombreUsuario"
-    clNombre.HeaderText = "Nombre Usuario"
-    clNombre.Name = "clNombre"
-    clNombre.ReadOnly = True
-    ' 
-    ' clCodigoUsuario
-    ' 
-    clCodigoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clCodigoUsuario.DataPropertyName = "CodigoUsuario"
-    clCodigoUsuario.HeaderText = "Código Usuario"
-    clCodigoUsuario.Name = "clCodigoUsuario"
-    clCodigoUsuario.ReadOnly = True
-    ' 
-    ' clTipoUsuario
-    ' 
-    clTipoUsuario.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-    clTipoUsuario.DataPropertyName = "TipoUsuario"
-    clTipoUsuario.HeaderText = "Tipo Usuario"
-    clTipoUsuario.Name = "clTipoUsuario"
-    clTipoUsuario.ReadOnly = True
-    ' 
     ' frmMantUsuarios
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(762, 436)
     Controls.Add(btnCambiarClave)
     Controls.Add(grpFiltros)

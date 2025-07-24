@@ -24,14 +24,12 @@
         btnModificar.Enabled = False
         btnEliminar.Enabled = False
         btnAsignarConsulta.Enabled = False
-        frmDashboard.Show()
-        Me.Close()
+        PantallaManager.RegresarDesdeFormularioHijo()
     End Select
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmDashboard.Show()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub CargarDoctores(Optional nombre As String = "", Optional apellido As String = "", Optional especialidad As String = "")

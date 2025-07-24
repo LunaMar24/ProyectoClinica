@@ -3,6 +3,7 @@
 
   Private idUsuario As Integer
   Private tipoUsuario As String
+  Private padre As Form
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     cmbFilTipoUsuario.ContextMenuStrip = New ContextMenuStrip() ' Elimina el menú contextual (click derecho)
@@ -10,8 +11,7 @@
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmDashboard.Show()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click

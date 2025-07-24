@@ -8,9 +8,7 @@ Public Class frmCrearDoctor
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmMantDoctores.Show()
-    frmMantDoctores.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click

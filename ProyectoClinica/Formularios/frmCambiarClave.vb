@@ -17,9 +17,7 @@ Public Class frmCambiarClave
   End Sub
 
   Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-    frmMantUsuarios.Show()
-    frmMantUsuarios.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub datos_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtClaveAnt.Validating, txtNuevaClave.Validating, txtConfirmaClave.Validating

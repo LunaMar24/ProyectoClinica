@@ -78,9 +78,7 @@ Public Class frmCompletarConsulta
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmConsultaCitas.Show()
-    frmConsultaCitas.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub btnCerrarConsulta_Click(sender As Object, e As EventArgs) Handles btnCerrarConsulta.Click

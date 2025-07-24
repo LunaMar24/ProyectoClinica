@@ -31,8 +31,7 @@
         MessageBox.Show("Tipo de usuario no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         btnCompletar.Enabled = False
         btnVerConsulta.Enabled = False
-        frmDashboard.Show()
-        Me.Close()
+        PantallaManager.RegresarDesdeFormularioHijo()
     End Select
   End Sub
 
@@ -69,8 +68,7 @@
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmDashboard.Show()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub ConfigurarColumnasDoctorConsultas()

@@ -3,7 +3,6 @@ Imports System.Text
 
 Public Class frmLogin
   Implements IFormularios
-  Private conexion As Conexion
 
   Private Const CUENTA_ADMIN As String = "admin@"
   Private Const CLAVE_ADMIN As String = "admin@1234"
@@ -20,9 +19,9 @@ Public Class frmLogin
 
     If correo = CUENTA_ADMIN Then
       If contrasena = CLAVE_ADMIN Then
-        frmDashboard.Show()
+        frmMenuPrincipal.Show()
         TipoUsuario = "Administrador"
-        frmDashboard.AjustarPantalla()
+        frmMenuPrincipal.AjustarPantalla()
         Me.Hide()
       End If
     Else
@@ -36,18 +35,16 @@ Public Class frmLogin
         If usuario IsNot Nothing Then
           CodigoUsuario = usuario.IdUsuarios
           TipoUsuario = usuario.TipoUsuario
-          frmDashboard.AjustarPantalla()
           MessageBox.Show("Inicio de sesión exitoso para el correo '" & correo & "'.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information)
           ' Aquí podrías abrir otra ventana o hacer lo que necesites
-          frmDashboard.Show()
+          frmMenuPrincipal.Show()
+          frmMenuPrincipal.AjustarPantalla()
           Me.Hide()
         Else
           MessageBox.Show("Correo o contraseña incorrectos.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
       Catch ex As Exception
         MessageBox.Show("Error de base de datos al consultar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
-      Finally
-        conexion.Cerrar()
       End Try
     End If
   End Sub
@@ -64,9 +61,6 @@ Public Class frmLogin
     End Using
   End Function
 
-  Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    conexion = New Conexion
-  End Sub
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     txtCorreo.Clear()

@@ -28,9 +28,7 @@
 
 
   Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-    frmMantDoctores.Show()
-    frmMantDoctores.AjustarPantalla()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla

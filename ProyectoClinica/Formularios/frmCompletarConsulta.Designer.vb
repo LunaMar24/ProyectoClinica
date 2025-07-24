@@ -66,6 +66,7 @@ Partial Class frmCompletarConsulta
     ' 
     ' grbData
     ' 
+    grbData.BackColor = Color.Transparent
     grbData.Controls.Add(txtPresion)
     grbData.Controls.Add(lblPresion)
     grbData.Controls.Add(txtEspecialidad)
@@ -291,26 +292,34 @@ Partial Class frmCompletarConsulta
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnRegresar.Location = New Point(574, 486)
+    btnRegresar.ForeColor = Color.White
+    btnRegresar.Location = New Point(574, 471)
     btnRegresar.Name = "btnRegresar"
-    btnRegresar.Size = New Size(154, 68)
+    btnRegresar.Size = New Size(154, 83)
     btnRegresar.TabIndex = 5
     btnRegresar.Text = "Regresar"
-    btnRegresar.UseVisualStyleBackColor = True
+    btnRegresar.UseVisualStyleBackColor = False
     ' 
     ' btnCerrarConsulta
     ' 
-    btnCerrarConsulta.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnCerrarConsulta.Location = New Point(746, 486)
+    btnCerrarConsulta.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCerrarConsulta.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCerrarConsulta.FlatStyle = FlatStyle.Flat
+    btnCerrarConsulta.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCerrarConsulta.ForeColor = Color.White
+    btnCerrarConsulta.Location = New Point(746, 471)
     btnCerrarConsulta.Name = "btnCerrarConsulta"
-    btnCerrarConsulta.Size = New Size(154, 68)
+    btnCerrarConsulta.Size = New Size(154, 83)
     btnCerrarConsulta.TabIndex = 6
     btnCerrarConsulta.Text = "Cerrar Consulta"
     btnCerrarConsulta.UseVisualStyleBackColor = True
     ' 
     ' grbSintomas
     ' 
+    grbSintomas.BackColor = Color.Transparent
     grbSintomas.Controls.Add(txtSintomas)
     grbSintomas.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbSintomas.Location = New Point(574, 30)
@@ -331,6 +340,7 @@ Partial Class frmCompletarConsulta
     ' 
     ' grbAlergias
     ' 
+    grbAlergias.BackColor = Color.Transparent
     grbAlergias.Controls.Add(txtAlergias)
     grbAlergias.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbAlergias.Location = New Point(574, 173)
@@ -355,6 +365,7 @@ Partial Class frmCompletarConsulta
     ' 
     ' grbPadecimientos
     ' 
+    grbPadecimientos.BackColor = Color.Transparent
     grbPadecimientos.Controls.Add(txtPadecimientos)
     grbPadecimientos.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbPadecimientos.Location = New Point(574, 308)
@@ -375,6 +386,7 @@ Partial Class frmCompletarConsulta
     ' 
     ' grbTratamiento
     ' 
+    grbTratamiento.BackColor = Color.Transparent
     grbTratamiento.Controls.Add(txtTratamiento)
     grbTratamiento.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbTratamiento.Location = New Point(27, 404)
@@ -388,6 +400,7 @@ Partial Class frmCompletarConsulta
     ' 
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(913, 560)
     Controls.Add(grbTratamiento)
     Controls.Add(grbPadecimientos)

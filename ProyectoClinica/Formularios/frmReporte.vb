@@ -13,8 +13,7 @@ Public Class frmReporte
       Case Else
         MessageBox.Show("Tipo de usuario no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         btnEnviarExcel.Enabled = False
-        frmDashboard.Show()
-        Me.Close()
+        PantallaManager.RegresarDesdeFormularioHijo()
     End Select
   End Sub
 
@@ -34,8 +33,7 @@ Public Class frmReporte
   End Sub
 
   Private Sub btnRegresar_Click(sender As Object, e As EventArgs) Handles btnRegresar.Click
-    frmDashboard.Show()
-    Me.Close()
+    PantallaManager.RegresarDesdeFormularioHijo()
   End Sub
 
   Private Sub ConfigurarColumnasReporte()

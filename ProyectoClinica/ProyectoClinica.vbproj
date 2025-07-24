@@ -36,7 +36,6 @@
     </Compile>
     <Compile Update="Formularios\frmModificaCuenta.vb" />
     <Compile Update="Formularios\frmCrearDoctor.vb" />
-    <Compile Update="Formularios\frmConsultaPaciente.vb" />
     <Compile Update="Formularios\frmMantPacientes.vb" />
     <Compile Update="Formularios\frmMantUsuarios.vb" />
     <Compile Update="My Project\Application.Designer.vb">
