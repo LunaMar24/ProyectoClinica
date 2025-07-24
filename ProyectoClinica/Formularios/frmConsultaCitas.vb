@@ -187,7 +187,7 @@
 
 
   Private Sub btnCompletar_Click(sender As Object, e As EventArgs) Handles btnCompletar.Click
-    If _idConsulta >= 0 Then
+    If _idConsulta > 0 Then
       If _ConsulaFinalizada = 1 Then
         If MessageBox.Show("La consulta ya ha sido completada. ¿Desea editar esta consulta?", "Consulta Completada", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
           Return
@@ -209,7 +209,7 @@
   End Sub
 
   Private Sub btnVerConsulta_Click(sender As Object, e As EventArgs) Handles btnVerConsulta.Click
-    If _idConsulta >= 0 Then
+    If _idConsulta > 0 Then
       If _ConsulaFinalizada = 0 Then
         MessageBox.Show("La consulta no ha sido completada. No se puede ver el detalle de la cita", "Consulta No Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Return

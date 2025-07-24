@@ -1,8 +1,10 @@
 ﻿Public Class frmMantPacientes
+  Implements IFormularios
+
   Private idPaciente As Integer
   Private nombrePaciente As String
 
-  Public Sub AjustarPantalla()
+  Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     btnCrear.Enabled = True
     btnModificar.Enabled = True
     btnEliminar.Enabled = True
@@ -52,6 +54,7 @@
         Dim listaPacientes As List(Of VPacienteSecretaria) = dbPacienteSecre.GetByFilters(filtros)
         dbPacienteSecre.Dispose()
         ConfigurarColumnasPacienteSecretaria()
+        idPaciente = -1
         dgvPacientes.DataSource = listaPacientes
       End If
 
@@ -197,9 +200,7 @@
   End Sub
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click
-    frmCrearPaciente.Show()
-    frmCrearPaciente.AjustarPantalla()
-    Me.Close()
+    PantallaManager.LlamarPantallaHija(New frmCrearPaciente, Me)
   End Sub
   Private Sub dgvPacientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPacientes.CellClick
     If e.RowIndex >= 0 Then
@@ -209,18 +210,17 @@
   End Sub
 
   Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-    If idPaciente >= 0 Then
+    If idPaciente > 0 Then
+      Dim frmModificaPaciente As New frmModificaPaciente()
       frmModificaPaciente.idPaciente = idPaciente
-      frmModificaPaciente.Show()
-      frmModificaPaciente.AjustarPantalla()
-      Me.Hide()
+      PantallaManager.LlamarPantallaHija(frmModificaPaciente, Me)
     Else
       MessageBox.Show("Debe seleccionar el paciente a modificar.", "Modificar Paciente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 
   Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-    If idPaciente >= 0 Then
+    If idPaciente > 0 Then
       Dim resultado As DialogResult = MessageBox.Show("Toda información relacionada a este paciente (" & nombrePaciente & ") será eliminada" & vbCrLf & vbCrLf & "¿Está seguro de que desea eliminar este paciente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
       If resultado = DialogResult.Yes Then
         Try

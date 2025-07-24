@@ -107,7 +107,7 @@ Partial Class frmCambiarClave
     ' 
     btnCancelar.BackColor = Color.IndianRed
     btnCancelar.FlatStyle = FlatStyle.Flat
-    btnCancelar.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+    btnCancelar.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
     btnCancelar.ForeColor = Color.White
     btnCancelar.Location = New Point(53, 199)
     btnCancelar.Name = "btnCancelar"
@@ -121,7 +121,7 @@ Partial Class frmCambiarClave
     btnAceptar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
     btnAceptar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
     btnAceptar.FlatStyle = FlatStyle.Flat
-    btnAceptar.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+    btnAceptar.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
     btnAceptar.ForeColor = Color.White
     btnAceptar.Location = New Point(192, 199)
     btnAceptar.Name = "btnAceptar"
@@ -144,7 +144,7 @@ Partial Class frmCambiarClave
     Controls.Add(btnAceptar)
     Controls.Add(grbClaves)
     Name = "frmCambiarClave"
-    StartPosition = FormStartPosition.CenterScreen
+    StartPosition = FormStartPosition.CenterParent
     Text = "Cambiar Clave"
     grbClaves.ResumeLayout(False)
     grbClaves.PerformLayout()

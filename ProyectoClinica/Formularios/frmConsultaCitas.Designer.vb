@@ -27,7 +27,7 @@ Partial Class frmConsultaCitas
     btnCompletar = New Button()
     btnVerConsulta = New Button()
     btnRegresar = New Button()
-    GroupBox1 = New GroupBox()
+    grbFiltros = New GroupBox()
     cmbFiltPrioridad = New ComboBox()
     lblPrioridad = New Label()
     btnFiltrar = New Button()
@@ -39,7 +39,7 @@ Partial Class frmConsultaCitas
     lblNombreDoctor = New Label()
     chbVerCerradas = New CheckBox()
     CType(dgvConsultasPaciente, ComponentModel.ISupportInitialize).BeginInit()
-    GroupBox1.SuspendLayout()
+    grbFiltros.SuspendLayout()
     SuspendLayout()
     ' 
     ' dgvConsultasPaciente
@@ -49,7 +49,7 @@ Partial Class frmConsultaCitas
     dgvConsultasPaciente.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
     DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
     DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
     DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
     DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
@@ -66,6 +66,11 @@ Partial Class frmConsultaCitas
     ' 
     ' btnCompletar
     ' 
+    btnCompletar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCompletar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCompletar.FlatStyle = FlatStyle.Flat
+    btnCompletar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCompletar.ForeColor = Color.White
     btnCompletar.Location = New Point(10, 104)
     btnCompletar.Name = "btnCompletar"
     btnCompletar.Size = New Size(117, 46)
@@ -75,6 +80,11 @@ Partial Class frmConsultaCitas
     ' 
     ' btnVerConsulta
     ' 
+    btnVerConsulta.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnVerConsulta.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnVerConsulta.FlatStyle = FlatStyle.Flat
+    btnVerConsulta.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnVerConsulta.ForeColor = Color.White
     btnVerConsulta.Location = New Point(145, 104)
     btnVerConsulta.Name = "btnVerConsulta"
     btnVerConsulta.Size = New Size(118, 46)
@@ -86,6 +96,7 @@ Partial Class frmConsultaCitas
     ' 
     btnRegresar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
     btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
     btnRegresar.ForeColor = Color.White
     btnRegresar.Location = New Point(636, 18)
     btnRegresar.Name = "btnRegresar"
@@ -94,23 +105,24 @@ Partial Class frmConsultaCitas
     btnRegresar.Text = "Regresar"
     btnRegresar.UseVisualStyleBackColor = False
     ' 
-    ' GroupBox1
+    ' grbFiltros
     ' 
-    GroupBox1.Controls.Add(cmbFiltPrioridad)
-    GroupBox1.Controls.Add(lblPrioridad)
-    GroupBox1.Controls.Add(btnFiltrar)
-    GroupBox1.Controls.Add(txtFilIdentificacion)
-    GroupBox1.Controls.Add(txtFilApellido)
-    GroupBox1.Controls.Add(txtFilNombre)
-    GroupBox1.Controls.Add(lblIdentificacion)
-    GroupBox1.Controls.Add(lblApellidoDoctor)
-    GroupBox1.Controls.Add(lblNombreDoctor)
-    GroupBox1.Location = New Point(11, 12)
-    GroupBox1.Name = "GroupBox1"
-    GroupBox1.Size = New Size(620, 90)
-    GroupBox1.TabIndex = 7
-    GroupBox1.TabStop = False
-    GroupBox1.Text = "Filtros"
+    grbFiltros.BackColor = Color.Transparent
+    grbFiltros.Controls.Add(cmbFiltPrioridad)
+    grbFiltros.Controls.Add(lblPrioridad)
+    grbFiltros.Controls.Add(btnFiltrar)
+    grbFiltros.Controls.Add(txtFilIdentificacion)
+    grbFiltros.Controls.Add(txtFilApellido)
+    grbFiltros.Controls.Add(txtFilNombre)
+    grbFiltros.Controls.Add(lblIdentificacion)
+    grbFiltros.Controls.Add(lblApellidoDoctor)
+    grbFiltros.Controls.Add(lblNombreDoctor)
+    grbFiltros.Location = New Point(11, 12)
+    grbFiltros.Name = "grbFiltros"
+    grbFiltros.Size = New Size(620, 90)
+    grbFiltros.TabIndex = 7
+    grbFiltros.TabStop = False
+    grbFiltros.Text = "Filtros"
     ' 
     ' cmbFiltPrioridad
     ' 
@@ -132,6 +144,11 @@ Partial Class frmConsultaCitas
     ' 
     ' btnFiltrar
     ' 
+    btnFiltrar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnFiltrar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnFiltrar.FlatStyle = FlatStyle.Flat
+    btnFiltrar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnFiltrar.ForeColor = Color.White
     btnFiltrar.Location = New Point(518, 48)
     btnFiltrar.Name = "btnFiltrar"
     btnFiltrar.Size = New Size(90, 30)
@@ -190,20 +207,22 @@ Partial Class frmConsultaCitas
     ' chbVerCerradas
     ' 
     chbVerCerradas.AutoSize = True
+    chbVerCerradas.BackColor = Color.Transparent
     chbVerCerradas.Location = New Point(485, 119)
     chbVerCerradas.Name = "chbVerCerradas"
     chbVerCerradas.Size = New Size(146, 19)
     chbVerCerradas.TabIndex = 8
     chbVerCerradas.Text = "Ver Consultas Cerradas"
-    chbVerCerradas.UseVisualStyleBackColor = True
+    chbVerCerradas.UseVisualStyleBackColor = False
     ' 
     ' frmConsultaCitas
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(752, 464)
     Controls.Add(chbVerCerradas)
-    Controls.Add(GroupBox1)
+    Controls.Add(grbFiltros)
     Controls.Add(btnRegresar)
     Controls.Add(btnVerConsulta)
     Controls.Add(btnCompletar)
@@ -213,8 +232,8 @@ Partial Class frmConsultaCitas
     StartPosition = FormStartPosition.CenterScreen
     Text = "Control Citas"
     CType(dgvConsultasPaciente, ComponentModel.ISupportInitialize).EndInit()
-    GroupBox1.ResumeLayout(False)
-    GroupBox1.PerformLayout()
+    grbFiltros.ResumeLayout(False)
+    grbFiltros.PerformLayout()
     ResumeLayout(False)
     PerformLayout()
   End Sub
@@ -223,7 +242,7 @@ Partial Class frmConsultaCitas
   Friend WithEvents btnCompletar As Button
   Friend WithEvents btnVerConsulta As Button
   Friend WithEvents btnRegresar As Button
-  Friend WithEvents GroupBox1 As GroupBox
+  Friend WithEvents grbFiltros As GroupBox
   Friend WithEvents lblPrioridad As Label
   Friend WithEvents btnFiltrar As Button
   Friend WithEvents txtFilIdentificacion As TextBox

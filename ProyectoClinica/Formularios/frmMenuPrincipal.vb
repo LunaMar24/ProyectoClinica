@@ -50,26 +50,32 @@
   End Sub
 
   Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmMantUsuarios(), Me)
   End Sub
 
   Private Sub btnEspecialidades_Click(sender As Object, e As EventArgs) Handles btnEspecialidades.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmEspecialidades(), Me)
   End Sub
 
   Private Sub btnDoctores_Click(sender As Object, e As EventArgs) Handles btnDoctores.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmMantDoctores(), Me)
   End Sub
 
   Private Sub btnPersonas_Click(sender As Object, e As EventArgs) Handles btnPersonas.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmMantPacientes(), Me)
   End Sub
 
   Private Sub btnConsultas_Click(sender As Object, e As EventArgs) Handles btnConsultas.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmConsultaCitas(), Me)
   End Sub
 
   Private Sub btnReporte_Click(sender As Object, e As EventArgs) Handles btnReporte.Click
+    PantallaManager.Limpiar()
     PantallaManager.LlamarPantallaHija(New frmReporte(), Me)
   End Sub
 

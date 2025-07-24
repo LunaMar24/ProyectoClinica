@@ -55,6 +55,7 @@ Partial Class frmCrearDoctor
     ' 
     ' grbData
     ' 
+    grbData.BackColor = Color.Transparent
     grbData.Controls.Add(txtDireccion)
     grbData.Controls.Add(lblDireccion)
     grbData.Controls.Add(cmbSexo)
@@ -228,6 +229,9 @@ Partial Class frmCrearDoctor
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
+    btnRegresar.ForeColor = Color.White
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     btnRegresar.Location = New Point(625, 496)
     btnRegresar.Name = "btnRegresar"
@@ -238,6 +242,10 @@ Partial Class frmCrearDoctor
     ' 
     ' btnCrear
     ' 
+    btnCrear.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCrear.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCrear.FlatStyle = FlatStyle.Flat
+    btnCrear.ForeColor = Color.White
     btnCrear.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     btnCrear.Location = New Point(625, 404)
     btnCrear.Name = "btnCrear"
@@ -257,6 +265,7 @@ Partial Class frmCrearDoctor
     ' 
     ' grbEspecialidad
     ' 
+    grbEspecialidad.BackColor = Color.Transparent
     grbEspecialidad.Controls.Add(cmbEspecialidad)
     grbEspecialidad.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbEspecialidad.Location = New Point(574, 30)
@@ -268,6 +277,7 @@ Partial Class frmCrearDoctor
     ' 
     ' grbUsuario
     ' 
+    grbUsuario.BackColor = Color.Transparent
     grbUsuario.Controls.Add(cmbUsuario)
     grbUsuario.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbUsuario.Location = New Point(574, 173)
@@ -292,6 +302,7 @@ Partial Class frmCrearDoctor
     ' 
     ' frmCrearDoctor
     ' 
+    BackgroundImage = My.Resources.Resources.FondoApp
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(858, 561)

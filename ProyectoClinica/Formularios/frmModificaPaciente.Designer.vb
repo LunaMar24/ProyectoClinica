@@ -56,6 +56,7 @@ Partial Class frmModificaPaciente
     ' 
     ' grbData
     ' 
+    grbData.BackColor = Color.Transparent
     grbData.Controls.Add(dtpFechaNac)
     grbData.Controls.Add(cmbTipoSangre)
     grbData.Controls.Add(lblTipoSangre)
@@ -275,23 +276,30 @@ Partial Class frmModificaPaciente
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
+    btnRegresar.ForeColor = Color.White
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     btnRegresar.Location = New Point(632, 562)
     btnRegresar.Name = "btnRegresar"
     btnRegresar.Size = New Size(154, 58)
     btnRegresar.TabIndex = 4
     btnRegresar.Text = "Regresar"
-    btnRegresar.UseVisualStyleBackColor = True
+    btnRegresar.UseVisualStyleBackColor = False
     ' 
     ' btnModificar
     ' 
+    btnModificar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnModificar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnModificar.FlatStyle = FlatStyle.Flat
+    btnModificar.ForeColor = Color.White
     btnModificar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     btnModificar.Location = New Point(632, 470)
     btnModificar.Name = "btnModificar"
     btnModificar.Size = New Size(154, 58)
     btnModificar.TabIndex = 3
     btnModificar.Text = "Modificar"
-    btnModificar.UseVisualStyleBackColor = True
+    btnModificar.UseVisualStyleBackColor = False
     ' 
     ' rrpError
     ' 
@@ -299,6 +307,7 @@ Partial Class frmModificaPaciente
     ' 
     ' grbContactoEmerg
     ' 
+    grbContactoEmerg.BackColor = Color.Transparent
     grbContactoEmerg.Controls.Add(txtContactoEmergencia)
     grbContactoEmerg.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
     grbContactoEmerg.Location = New Point(574, 30)
@@ -319,6 +328,7 @@ Partial Class frmModificaPaciente
     ' 
     ' frmModificaPaciente
     ' 
+    BackgroundImage = My.Resources.Resources.FondoApp
     AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(858, 627)

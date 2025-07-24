@@ -15,8 +15,7 @@
   End Sub
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click
-    frmCrearCuenta.Show()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmCrearCuenta, padre)
   End Sub
 
   Private Sub CargarUsuarios(Optional nombre As String = "", Optional codigo As String = "", Optional tipoUsuario As String = "")
@@ -49,18 +48,17 @@
   End Sub
 
   Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-    If idUsuario >= 0 Then
-      frmModificaCuenta.Show()
+    If idUsuario > 0 Then
+      Dim frmModificaCuenta As New frmModificaCuenta()
       frmModificaCuenta.UsuarioID = idUsuario
-      frmModificaCuenta.AjustarPantalla()
-      Me.Hide()
+      PantallaManager.LlamarPantallaHija(frmModificaCuenta, Me)
     Else
       MessageBox.Show("Debe seleccionar el usuario a modificar.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 
   Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-    If idUsuario >= 0 Then
+    If idUsuario > 0 Then
       Dim resultado As DialogResult = MessageBox.Show("Toda información relacionada a este usuario (" & tipoUsuario & ") será eliminada" & vbCrLf & vbCrLf & "¿Está seguro de que desea eliminar este usuario?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
       If resultado = DialogResult.Yes Then
         Try
@@ -101,11 +99,10 @@
   End Sub
 
   Private Sub btnCambiarClave_Click(sender As Object, e As EventArgs) Handles btnCambiarClave.Click
-    If idUsuario >= 0 Then
-      frmCambiarClave.Show()
+    If idUsuario > 0 Then
+      Dim frmCambiarClave As New frmCambiarClave()
       frmCambiarClave.UsuarioID = idUsuario
-      frmCambiarClave.AjustarPantalla()
-      Me.Hide()
+      PantallaManager.LlamarPantallaHija(frmCambiarClave, Me)
     Else
       MessageBox.Show("Debe seleccionar el usuario a cambiar la clave.", "Cambio Clave", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If

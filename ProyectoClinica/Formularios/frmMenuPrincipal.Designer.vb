@@ -39,7 +39,7 @@ Partial Class frmMenuPrincipal
     ' grbOpciones
     ' 
     grbOpciones.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    grbOpciones.BackgroundImage = My.Resources.Resources.FondoApp
+    grbOpciones.BackColor = Color.Transparent
     grbOpciones.Controls.Add(btnReporte)
     grbOpciones.Controls.Add(btnSalir)
     grbOpciones.Controls.Add(btnUsuarios)
@@ -47,15 +47,21 @@ Partial Class frmMenuPrincipal
     grbOpciones.Controls.Add(btnEspecialidades)
     grbOpciones.Controls.Add(btnDoctores)
     grbOpciones.Controls.Add(btnPersonas)
+    grbOpciones.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     grbOpciones.Location = New Point(10, 12)
     grbOpciones.Name = "grbOpciones"
-    grbOpciones.Size = New Size(177, 479)
+    grbOpciones.Size = New Size(260, 585)
     grbOpciones.TabIndex = 0
     grbOpciones.TabStop = False
     grbOpciones.Text = "Seleccione una opción"
     ' 
     ' btnReporte
     ' 
+    btnReporte.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnReporte.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnReporte.FlatStyle = FlatStyle.Flat
+    btnReporte.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnReporte.ForeColor = Color.White
     btnReporte.Location = New Point(26, 348)
     btnReporte.Name = "btnReporte"
     btnReporte.Size = New Size(134, 57)
@@ -66,6 +72,7 @@ Partial Class frmMenuPrincipal
     ' btnSalir
     ' 
     btnSalir.BackColor = Color.IndianRed
+    btnSalir.FlatStyle = FlatStyle.Flat
     btnSalir.ForeColor = Color.White
     btnSalir.Location = New Point(26, 411)
     btnSalir.Name = "btnSalir"
@@ -76,6 +83,11 @@ Partial Class frmMenuPrincipal
     ' 
     ' btnUsuarios
     ' 
+    btnUsuarios.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnUsuarios.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnUsuarios.FlatStyle = FlatStyle.Flat
+    btnUsuarios.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnUsuarios.ForeColor = Color.White
     btnUsuarios.Location = New Point(26, 33)
     btnUsuarios.Name = "btnUsuarios"
     btnUsuarios.Size = New Size(134, 57)
@@ -85,6 +97,11 @@ Partial Class frmMenuPrincipal
     ' 
     ' btnConsultas
     ' 
+    btnConsultas.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnConsultas.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnConsultas.FlatStyle = FlatStyle.Flat
+    btnConsultas.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnConsultas.ForeColor = Color.White
     btnConsultas.Location = New Point(26, 285)
     btnConsultas.Name = "btnConsultas"
     btnConsultas.Size = New Size(134, 57)
@@ -94,6 +111,11 @@ Partial Class frmMenuPrincipal
     ' 
     ' btnEspecialidades
     ' 
+    btnEspecialidades.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnEspecialidades.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnEspecialidades.FlatStyle = FlatStyle.Flat
+    btnEspecialidades.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEspecialidades.ForeColor = Color.White
     btnEspecialidades.Location = New Point(26, 96)
     btnEspecialidades.Name = "btnEspecialidades"
     btnEspecialidades.Size = New Size(134, 57)
@@ -103,6 +125,11 @@ Partial Class frmMenuPrincipal
     ' 
     ' btnDoctores
     ' 
+    btnDoctores.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnDoctores.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnDoctores.FlatStyle = FlatStyle.Flat
+    btnDoctores.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnDoctores.ForeColor = Color.White
     btnDoctores.Location = New Point(26, 159)
     btnDoctores.Name = "btnDoctores"
     btnDoctores.Size = New Size(134, 57)
@@ -112,6 +139,11 @@ Partial Class frmMenuPrincipal
     ' 
     ' btnPersonas
     ' 
+    btnPersonas.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnPersonas.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnPersonas.FlatStyle = FlatStyle.Flat
+    btnPersonas.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnPersonas.ForeColor = Color.White
     btnPersonas.Location = New Point(26, 222)
     btnPersonas.Name = "btnPersonas"
     btnPersonas.Size = New Size(134, 57)
@@ -122,22 +154,24 @@ Partial Class frmMenuPrincipal
     ' grbPantallas
     ' 
     grbPantallas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    grbPantallas.BackgroundImage = My.Resources.Resources.FondoApp
+    grbPantallas.BackColor = Color.Transparent
     grbPantallas.Controls.Add(pnlPantallas)
     grbPantallas.Location = New Point(187, 12)
     grbPantallas.Name = "grbPantallas"
-    grbPantallas.Size = New Size(781, 479)
+    grbPantallas.Size = New Size(864, 585)
     grbPantallas.TabIndex = 4
     grbPantallas.TabStop = False
     ' 
     ' pnlPantallas
     ' 
     pnlPantallas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+    pnlPantallas.AutoScroll = True
+    pnlPantallas.AutoSize = True
     pnlPantallas.BackColor = Color.Transparent
     pnlPantallas.BackgroundImageLayout = ImageLayout.Stretch
     pnlPantallas.Location = New Point(6, 14)
     pnlPantallas.Name = "pnlPantallas"
-    pnlPantallas.Size = New Size(769, 459)
+    pnlPantallas.Size = New Size(852, 565)
     pnlPantallas.TabIndex = 0
     ' 
     ' frmMenuPrincipal
@@ -145,15 +179,16 @@ Partial Class frmMenuPrincipal
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     BackgroundImage = My.Resources.Resources.FondoApp
-    ClientSize = New Size(983, 504)
+    ClientSize = New Size(1066, 610)
     Controls.Add(grbPantallas)
     Controls.Add(grbOpciones)
-    MinimumSize = New Size(999, 543)
+    MinimumSize = New Size(1082, 649)
     Name = "frmMenuPrincipal"
     StartPosition = FormStartPosition.CenterScreen
     Text = "Menú Principal"
     grbOpciones.ResumeLayout(False)
     grbPantallas.ResumeLayout(False)
+    grbPantallas.PerformLayout()
     ResumeLayout(False)
   End Sub
 

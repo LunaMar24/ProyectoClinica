@@ -23,7 +23,7 @@ Partial Class frmLogin
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
-    Panel1 = New Panel()
+    pnlLogin = New Panel()
     txtPassword = New TextBox()
     txtCorreo = New TextBox()
     btnIngresar = New Button()
@@ -31,23 +31,23 @@ Partial Class frmLogin
     lblPassword = New Label()
     lblCorreo = New Label()
     lblBienvenidos = New Label()
-    Panel1.SuspendLayout()
+    pnlLogin.SuspendLayout()
     SuspendLayout()
     ' 
-    ' Panel1
+    ' pnlLogin
     ' 
-    Panel1.BackColor = Color.FromArgb(CByte(187), CByte(212), CByte(235))
-    Panel1.BorderStyle = BorderStyle.Fixed3D
-    Panel1.Controls.Add(txtPassword)
-    Panel1.Controls.Add(txtCorreo)
-    Panel1.Controls.Add(btnIngresar)
-    Panel1.Controls.Add(btnSalir)
-    Panel1.Controls.Add(lblPassword)
-    Panel1.Controls.Add(lblCorreo)
-    Panel1.Location = New Point(46, 60)
-    Panel1.Name = "Panel1"
-    Panel1.Size = New Size(246, 231)
-    Panel1.TabIndex = 0
+    pnlLogin.BackColor = Color.FromArgb(CByte(187), CByte(212), CByte(235))
+    pnlLogin.BorderStyle = BorderStyle.Fixed3D
+    pnlLogin.Controls.Add(txtPassword)
+    pnlLogin.Controls.Add(txtCorreo)
+    pnlLogin.Controls.Add(btnIngresar)
+    pnlLogin.Controls.Add(btnSalir)
+    pnlLogin.Controls.Add(lblPassword)
+    pnlLogin.Controls.Add(lblCorreo)
+    pnlLogin.Location = New Point(46, 60)
+    pnlLogin.Name = "pnlLogin"
+    pnlLogin.Size = New Size(246, 231)
+    pnlLogin.TabIndex = 0
     ' 
     ' txtPassword
     ' 
@@ -68,6 +68,11 @@ Partial Class frmLogin
     ' 
     ' btnIngresar
     ' 
+    btnIngresar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnIngresar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnIngresar.FlatStyle = FlatStyle.Flat
+    btnIngresar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnIngresar.ForeColor = Color.White
     btnIngresar.Location = New Point(130, 163)
     btnIngresar.Name = "btnIngresar"
     btnIngresar.Size = New Size(98, 43)
@@ -77,12 +82,16 @@ Partial Class frmLogin
     ' 
     ' btnSalir
     ' 
+    btnSalir.BackColor = Color.IndianRed
+    btnSalir.FlatStyle = FlatStyle.Flat
+    btnSalir.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnSalir.ForeColor = Color.White
     btnSalir.Location = New Point(13, 163)
     btnSalir.Name = "btnSalir"
     btnSalir.Size = New Size(98, 43)
     btnSalir.TabIndex = 4
     btnSalir.Text = "Salir"
-    btnSalir.UseVisualStyleBackColor = True
+    btnSalir.UseVisualStyleBackColor = False
     ' 
     ' lblPassword
     ' 
@@ -104,23 +113,25 @@ Partial Class frmLogin
     ' 
     ' lblBienvenidos
     ' 
-    lblBienvenidos.AutoSize = True
-    lblBienvenidos.BackColor = Color.FromArgb(CByte(208), CByte(226), CByte(243))
-    lblBienvenidos.Location = New Point(41, 13)
+    lblBienvenidos.BackColor = Color.Transparent
+    lblBienvenidos.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    lblBienvenidos.ForeColor = Color.FromArgb(CByte(43), CByte(98), CByte(138))
+    lblBienvenidos.Location = New Point(3, 9)
     lblBienvenidos.Name = "lblBienvenidos"
-    lblBienvenidos.Size = New Size(166, 15)
+    lblBienvenidos.Size = New Size(638, 32)
     lblBienvenidos.TabIndex = 1
     lblBienvenidos.Text = "Bienvenidos a Clinica Server...."
+    lblBienvenidos.TextAlign = ContentAlignment.MiddleCenter
     ' 
     ' frmLogin
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
     BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
     BackgroundImageLayout = ImageLayout.Stretch
     ClientSize = New Size(642, 371)
     Controls.Add(lblBienvenidos)
-    Controls.Add(Panel1)
+    Controls.Add(pnlLogin)
     DoubleBuffered = True
     FormBorderStyle = FormBorderStyle.FixedToolWindow
     MaximumSize = New Size(658, 410)
@@ -128,14 +139,13 @@ Partial Class frmLogin
     MinimumSize = New Size(658, 410)
     Name = "frmLogin"
     StartPosition = FormStartPosition.CenterScreen
-    Text = "Login"
-    Panel1.ResumeLayout(False)
-    Panel1.PerformLayout()
+    Text = "Ingreso al Sistema"
+    pnlLogin.ResumeLayout(False)
+    pnlLogin.PerformLayout()
     ResumeLayout(False)
-    PerformLayout()
   End Sub
 
-  Friend WithEvents Panel1 As Panel
+  Friend WithEvents pnlLogin As Panel
   Friend WithEvents btnIngresar As Button
   Friend WithEvents btnSalir As Button
   Friend WithEvents lblPassword As Label

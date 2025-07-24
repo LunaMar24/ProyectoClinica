@@ -41,6 +41,7 @@ Partial Class frmCrearCuenta
     ' 
     ' grbData
     ' 
+    grbData.BackColor = Color.Transparent
     grbData.Controls.Add(btnRegresar)
     grbData.Controls.Add(btnCrear)
     grbData.Controls.Add(cboTipoUsuario)
@@ -61,18 +62,25 @@ Partial Class frmCrearCuenta
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnRegresar.Location = New Point(148, 308)
+    btnRegresar.ForeColor = Color.White
+    btnRegresar.Location = New Point(143, 308)
     btnRegresar.Name = "btnRegresar"
     btnRegresar.Size = New Size(154, 58)
     btnRegresar.TabIndex = 9
     btnRegresar.Text = "Regresar"
-    btnRegresar.UseVisualStyleBackColor = True
+    btnRegresar.UseVisualStyleBackColor = False
     ' 
     ' btnCrear
     ' 
+    btnCrear.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCrear.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCrear.FlatStyle = FlatStyle.Flat
     btnCrear.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnCrear.Location = New Point(338, 308)
+    btnCrear.ForeColor = Color.White
+    btnCrear.Location = New Point(333, 308)
     btnCrear.Name = "btnCrear"
     btnCrear.Size = New Size(154, 58)
     btnCrear.TabIndex = 8
@@ -84,7 +92,7 @@ Partial Class frmCrearCuenta
     cboTipoUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     cboTipoUsuario.FormattingEnabled = True
     cboTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
-    cboTipoUsuario.Location = New Point(285, 237)
+    cboTipoUsuario.Location = New Point(265, 237)
     cboTipoUsuario.Name = "cboTipoUsuario"
     cboTipoUsuario.Size = New Size(316, 33)
     cboTipoUsuario.TabIndex = 7
@@ -93,7 +101,7 @@ Partial Class frmCrearCuenta
     ' 
     Label3.AutoSize = True
     Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label3.Location = New Point(135, 245)
+    Label3.Location = New Point(115, 245)
     Label3.Name = "Label3"
     Label3.Size = New Size(131, 25)
     Label3.TabIndex = 6
@@ -102,7 +110,7 @@ Partial Class frmCrearCuenta
     ' txtContrasena
     ' 
     txtContrasena.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtContrasena.Location = New Point(285, 183)
+    txtContrasena.Location = New Point(265, 183)
     txtContrasena.Name = "txtContrasena"
     txtContrasena.PasswordChar = "*"c
     txtContrasena.Size = New Size(316, 33)
@@ -112,7 +120,7 @@ Partial Class frmCrearCuenta
     ' 
     Label2.AutoSize = True
     Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label2.Location = New Point(69, 183)
+    Label2.Location = New Point(49, 183)
     Label2.Name = "Label2"
     Label2.Size = New Size(197, 25)
     Label2.TabIndex = 4
@@ -121,7 +129,7 @@ Partial Class frmCrearCuenta
     ' txtCorreo
     ' 
     txtCorreo.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtCorreo.Location = New Point(285, 119)
+    txtCorreo.Location = New Point(265, 119)
     txtCorreo.Name = "txtCorreo"
     txtCorreo.Size = New Size(316, 33)
     txtCorreo.TabIndex = 3
@@ -130,7 +138,7 @@ Partial Class frmCrearCuenta
     ' 
     Label1.AutoSize = True
     Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label1.Location = New Point(108, 124)
+    Label1.Location = New Point(88, 124)
     Label1.Name = "Label1"
     Label1.Size = New Size(158, 25)
     Label1.TabIndex = 2
@@ -139,7 +147,7 @@ Partial Class frmCrearCuenta
     ' txtNombre
     ' 
     txtNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtNombre.Location = New Point(285, 61)
+    txtNombre.Location = New Point(265, 61)
     txtNombre.Name = "txtNombre"
     txtNombre.Size = New Size(316, 33)
     txtNombre.TabIndex = 1
@@ -148,7 +156,7 @@ Partial Class frmCrearCuenta
     ' 
     lblNombre.AutoSize = True
     lblNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    lblNombre.Location = New Point(175, 66)
+    lblNombre.Location = New Point(155, 66)
     lblNombre.Name = "lblNombre"
     lblNombre.Size = New Size(91, 25)
     lblNombre.TabIndex = 0
@@ -160,8 +168,9 @@ Partial Class frmCrearCuenta
     ' 
     ' frmCrearCuenta
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(689, 450)
     Controls.Add(grbData)
     Name = "frmCrearCuenta"

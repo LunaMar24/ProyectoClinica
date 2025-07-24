@@ -32,13 +32,20 @@
     ' Preparar el formulario para ser embebido
     pantallaHija.TopLevel = False
     pantallaHija.FormBorderStyle = FormBorderStyle.None
-    pantallaHija.Dock = DockStyle.Fill
+    pantallaHija.Dock = DockStyle.None
+    pantallaHija.Location = New Point(0, 0)
 
     ' Agregar al stack de navegación
     stackPantallas.Push(pantallaHija)
 
     ' Limpiar el panel y mostrar nuevo formulario
+    panelContenedor.AutoScroll = True
     panelContenedor.Controls.Clear()
+    'Para forzar el scroll
+    'Dim dummy As New Label()
+    'dummy.Location = New Point(800, 750)
+    'dummy.Size = New Size(1, 1)
+    'panelContenedor.Controls.Add(dummy)
     panelContenedor.Controls.Add(pantallaHija)
 
     ' Si implementa la interfaz, ajustar la pantalla
@@ -89,6 +96,37 @@
     End If
   End Sub
 
+  ''' <summary>
+  ''' Cierra todos los formularios contenidos en la pila de navegación sin eliminar la referencia al panel contenedor.
+  ''' </summary>
+  ''' <remarks>
+  ''' Este método se utiliza cuando se desea limpiar las pantallas embebidas actualmente mostradas,
+  ''' pero manteniendo disponible el panel para futuras operaciones.
+  ''' No establece en Nothing el panel contenedor, a diferencia del método <c>Finalizar</c>.
+  ''' </remarks>
+  Public Shared Sub Limpiar()
+    ' Cerrar formularios del stack
+    While stackPantallas.Count > 0
+      Dim form As Form = stackPantallas.Pop()
+      If form IsNot Nothing AndAlso Not form.IsDisposed Then
+        form.Close()
+      End If
+    End While
+
+    ' Limpiar el contenido del panel si está seteado
+    If panelContenedor IsNot Nothing Then
+      panelContenedor.Controls.Clear()
+    End If
+  End Sub
+
+  ''' <summary>
+  ''' Libera todos los formularios actualmente almacenados en la pila de navegación.
+  ''' Cierra cada formulario (si aún no ha sido cerrado) y limpia la referencia al panel contenedor.
+  ''' </summary>
+  ''' <remarks>
+  ''' Este método debe utilizarse cuando se desea terminar completamente el flujo de navegación de pantallas,
+  ''' como por ejemplo al cerrar la aplicación, cerrar sesión o reiniciar la interfaz.
+  ''' </remarks>
   Public Shared Sub Finalizar()
     ' Cerrar formularios del stack
     While stackPantallas.Count > 0

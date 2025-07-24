@@ -22,14 +22,14 @@ Partial Class frmMantDoctores
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+    Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvDoctores = New DataGridView()
     btnCrear = New Button()
     btnModificar = New Button()
     btnEliminar = New Button()
     btnRegresar = New Button()
     btnAsignarConsulta = New Button()
-    GroupBox1 = New GroupBox()
+    grbFiltros = New GroupBox()
     btnFiltrar = New Button()
     txtFilEspecialidad = New TextBox()
     txtFilApellido = New TextBox()
@@ -38,7 +38,7 @@ Partial Class frmMantDoctores
     lblApellidoDoctor = New Label()
     lblNombreDoctor = New Label()
     CType(dgvDoctores, ComponentModel.ISupportInitialize).BeginInit()
-    GroupBox1.SuspendLayout()
+    grbFiltros.SuspendLayout()
     SuspendLayout()
     ' 
     ' dgvDoctores
@@ -46,14 +46,14 @@ Partial Class frmMantDoctores
     dgvDoctores.AllowUserToAddRows = False
     dgvDoctores.AllowUserToDeleteRows = False
     dgvDoctores.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-    dgvDoctores.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = SystemColors.Control
+    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+    dgvDoctores.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
     dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
     dgvDoctores.Location = New Point(12, 155)
     dgvDoctores.MultiSelect = False
@@ -65,33 +65,51 @@ Partial Class frmMantDoctores
     ' 
     ' btnCrear
     ' 
+    btnCrear.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnCrear.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnCrear.FlatStyle = FlatStyle.Flat
+    btnCrear.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCrear.ForeColor = Color.White
     btnCrear.Location = New Point(11, 103)
     btnCrear.Name = "btnCrear"
     btnCrear.Size = New Size(72, 46)
     btnCrear.TabIndex = 1
     btnCrear.Text = "Crear"
-    btnCrear.UseVisualStyleBackColor = True
+    btnCrear.UseVisualStyleBackColor = False
     ' 
     ' btnModificar
     ' 
+    btnModificar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnModificar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnModificar.FlatStyle = FlatStyle.Flat
+    btnModificar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnModificar.ForeColor = Color.White
     btnModificar.Location = New Point(89, 103)
     btnModificar.Name = "btnModificar"
     btnModificar.Size = New Size(72, 46)
     btnModificar.TabIndex = 2
     btnModificar.Text = "Modificar"
-    btnModificar.UseVisualStyleBackColor = True
+    btnModificar.UseVisualStyleBackColor = False
     ' 
     ' btnEliminar
     ' 
+    btnEliminar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnEliminar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnEliminar.FlatStyle = FlatStyle.Flat
+    btnEliminar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEliminar.ForeColor = Color.White
     btnEliminar.Location = New Point(167, 103)
     btnEliminar.Name = "btnEliminar"
     btnEliminar.Size = New Size(72, 46)
     btnEliminar.TabIndex = 3
     btnEliminar.Text = "Eliminar"
-    btnEliminar.UseVisualStyleBackColor = True
+    btnEliminar.UseVisualStyleBackColor = False
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
+    btnRegresar.ForeColor = Color.White
     btnRegresar.BackColor = Color.IndianRed
     btnRegresar.ForeColor = Color.White
     btnRegresar.Location = New Point(638, 17)
@@ -103,37 +121,48 @@ Partial Class frmMantDoctores
     ' 
     ' btnAsignarConsulta
     ' 
+    btnAsignarConsulta.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnAsignarConsulta.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnAsignarConsulta.FlatStyle = FlatStyle.Flat
+    btnAsignarConsulta.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnAsignarConsulta.ForeColor = Color.White
     btnAsignarConsulta.Location = New Point(245, 103)
     btnAsignarConsulta.Name = "btnAsignarConsulta"
     btnAsignarConsulta.Size = New Size(113, 46)
     btnAsignarConsulta.TabIndex = 5
     btnAsignarConsulta.Text = "Asignar Consulta"
-    btnAsignarConsulta.UseVisualStyleBackColor = True
+    btnAsignarConsulta.UseVisualStyleBackColor = False
     ' 
-    ' GroupBox1
+    ' grbFiltros
     ' 
-    GroupBox1.Controls.Add(btnFiltrar)
-    GroupBox1.Controls.Add(txtFilEspecialidad)
-    GroupBox1.Controls.Add(txtFilApellido)
-    GroupBox1.Controls.Add(txtFilNombre)
-    GroupBox1.Controls.Add(Label1)
-    GroupBox1.Controls.Add(lblApellidoDoctor)
-    GroupBox1.Controls.Add(lblNombreDoctor)
-    GroupBox1.Location = New Point(12, 9)
-    GroupBox1.Name = "GroupBox1"
-    GroupBox1.Size = New Size(620, 88)
-    GroupBox1.TabIndex = 6
-    GroupBox1.TabStop = False
-    GroupBox1.Text = "Filtros"
+    grbFiltros.BackColor = Color.Transparent
+    grbFiltros.Controls.Add(btnFiltrar)
+    grbFiltros.Controls.Add(txtFilEspecialidad)
+    grbFiltros.Controls.Add(txtFilApellido)
+    grbFiltros.Controls.Add(txtFilNombre)
+    grbFiltros.Controls.Add(Label1)
+    grbFiltros.Controls.Add(lblApellidoDoctor)
+    grbFiltros.Controls.Add(lblNombreDoctor)
+    grbFiltros.Location = New Point(12, 9)
+    grbFiltros.Name = "grbFiltros"
+    grbFiltros.Size = New Size(620, 88)
+    grbFiltros.TabIndex = 6
+    grbFiltros.TabStop = False
+    grbFiltros.Text = "Filtros"
     ' 
     ' btnFiltrar
     ' 
+    btnFiltrar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnFiltrar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnFiltrar.FlatStyle = FlatStyle.Flat
+    btnFiltrar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnFiltrar.ForeColor = Color.White
     btnFiltrar.Location = New Point(518, 51)
     btnFiltrar.Name = "btnFiltrar"
     btnFiltrar.Size = New Size(90, 30)
     btnFiltrar.TabIndex = 7
     btnFiltrar.Text = "Filtrar"
-    btnFiltrar.UseVisualStyleBackColor = True
+    btnFiltrar.UseVisualStyleBackColor = False
     ' 
     ' txtFilEspecialidad
     ' 
@@ -185,10 +214,11 @@ Partial Class frmMantDoctores
     ' 
     ' frmMantDoctores
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(762, 436)
-    Controls.Add(GroupBox1)
+    Controls.Add(grbFiltros)
     Controls.Add(btnAsignarConsulta)
     Controls.Add(btnRegresar)
     Controls.Add(btnEliminar)
@@ -200,8 +230,8 @@ Partial Class frmMantDoctores
     StartPosition = FormStartPosition.CenterScreen
     Text = "Mantenimiento de Doctores"
     CType(dgvDoctores, ComponentModel.ISupportInitialize).EndInit()
-    GroupBox1.ResumeLayout(False)
-    GroupBox1.PerformLayout()
+    grbFiltros.ResumeLayout(False)
+    grbFiltros.PerformLayout()
     ResumeLayout(False)
   End Sub
 
@@ -211,7 +241,7 @@ Partial Class frmMantDoctores
   Friend WithEvents btnEliminar As Button
   Friend WithEvents btnRegresar As Button
   Friend WithEvents btnAsignarConsulta As Button
-  Friend WithEvents GroupBox1 As GroupBox
+  Friend WithEvents grbFiltros As GroupBox
   Friend WithEvents btnFiltrar As Button
   Friend WithEvents txtFilEspecialidad As TextBox
   Friend WithEvents txtFilApellido As TextBox

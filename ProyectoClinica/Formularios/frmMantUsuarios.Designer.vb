@@ -112,7 +112,7 @@ Partial Class frmMantUsuarios
     btnCrear.Size = New Size(72, 46)
     btnCrear.TabIndex = 1
     btnCrear.Text = "Crear"
-    btnCrear.UseVisualStyleBackColor = True
+    btnCrear.UseVisualStyleBackColor = False
     ' 
     ' btnModificar
     ' 
@@ -126,7 +126,7 @@ Partial Class frmMantUsuarios
     btnModificar.Size = New Size(72, 46)
     btnModificar.TabIndex = 2
     btnModificar.Text = "Modificar"
-    btnModificar.UseVisualStyleBackColor = True
+    btnModificar.UseVisualStyleBackColor = False
     ' 
     ' btnEliminar
     ' 
@@ -140,7 +140,7 @@ Partial Class frmMantUsuarios
     btnEliminar.Size = New Size(72, 46)
     btnEliminar.TabIndex = 3
     btnEliminar.Text = "Eliminar"
-    btnEliminar.UseVisualStyleBackColor = True
+    btnEliminar.UseVisualStyleBackColor = False
     ' 
     ' btnRegresar
     ' 
@@ -247,7 +247,7 @@ Partial Class frmMantUsuarios
     btnCambiarClave.Size = New Size(72, 46)
     btnCambiarClave.TabIndex = 8
     btnCambiarClave.Text = "Cambiar Clave"
-    btnCambiarClave.UseVisualStyleBackColor = True
+    btnCambiarClave.UseVisualStyleBackColor = False
     ' 
     ' frmMantUsuarios
     ' 

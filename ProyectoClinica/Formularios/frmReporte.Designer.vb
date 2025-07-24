@@ -54,6 +54,11 @@ Partial Class frmReporte
     ' 
     ' btnEnviarExcel
     ' 
+    btnEnviarExcel.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnEnviarExcel.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnEnviarExcel.FlatStyle = FlatStyle.Flat
+    btnEnviarExcel.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEnviarExcel.ForeColor = Color.White
     btnEnviarExcel.Location = New Point(12, 18)
     btnEnviarExcel.Name = "btnEnviarExcel"
     btnEnviarExcel.Size = New Size(117, 46)
@@ -63,6 +68,9 @@ Partial Class frmReporte
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
+    btnRegresar.ForeColor = Color.White
     btnRegresar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
     btnRegresar.BackColor = Color.IndianRed
     btnRegresar.ForeColor = Color.White
@@ -75,6 +83,11 @@ Partial Class frmReporte
     ' 
     ' btnRefrescar
     ' 
+    btnRefrescar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnRefrescar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnRefrescar.FlatStyle = FlatStyle.Flat
+    btnRefrescar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnRefrescar.ForeColor = Color.White
     btnRefrescar.Location = New Point(135, 18)
     btnRefrescar.Name = "btnRefrescar"
     btnRefrescar.Size = New Size(117, 46)
@@ -84,6 +97,7 @@ Partial Class frmReporte
     ' 
     ' frmReporte
     ' 
+    BackgroundImage = My.Resources.Resources.FondoApp
     AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     ClientSize = New Size(752, 464)

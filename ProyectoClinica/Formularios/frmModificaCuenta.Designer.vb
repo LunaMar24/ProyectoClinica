@@ -39,6 +39,7 @@ Partial Class frmModificaCuenta
     ' 
     ' grbData
     ' 
+    grbData.BackColor = Color.Transparent
     grbData.Controls.Add(btnRegresar)
     grbData.Controls.Add(btnModificar)
     grbData.Controls.Add(cboTipoUsuario)
@@ -57,8 +58,11 @@ Partial Class frmModificaCuenta
     ' 
     ' btnRegresar
     ' 
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
     btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnRegresar.Location = New Point(145, 213)
+    btnRegresar.ForeColor = Color.White
+    btnRegresar.Location = New Point(143, 213)
     btnRegresar.Name = "btnRegresar"
     btnRegresar.Size = New Size(154, 58)
     btnRegresar.TabIndex = 9
@@ -67,8 +71,12 @@ Partial Class frmModificaCuenta
     ' 
     ' btnModificar
     ' 
+    btnModificar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnModificar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnModificar.FlatStyle = FlatStyle.Flat
     btnModificar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-    btnModificar.Location = New Point(336, 213)
+    btnModificar.ForeColor = Color.White
+    btnModificar.Location = New Point(334, 213)
     btnModificar.Name = "btnModificar"
     btnModificar.Size = New Size(154, 58)
     btnModificar.TabIndex = 8
@@ -80,7 +88,7 @@ Partial Class frmModificaCuenta
     cboTipoUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
     cboTipoUsuario.FormattingEnabled = True
     cboTipoUsuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Secretaria"})
-    cboTipoUsuario.Location = New Point(277, 140)
+    cboTipoUsuario.Location = New Point(246, 140)
     cboTipoUsuario.Name = "cboTipoUsuario"
     cboTipoUsuario.Size = New Size(316, 33)
     cboTipoUsuario.TabIndex = 7
@@ -89,7 +97,7 @@ Partial Class frmModificaCuenta
     ' 
     Label3.AutoSize = True
     Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label3.Location = New Point(127, 148)
+    Label3.Location = New Point(96, 148)
     Label3.Name = "Label3"
     Label3.Size = New Size(131, 25)
     Label3.TabIndex = 6
@@ -98,7 +106,7 @@ Partial Class frmModificaCuenta
     ' txtCorreo
     ' 
     txtCorreo.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtCorreo.Location = New Point(277, 87)
+    txtCorreo.Location = New Point(246, 87)
     txtCorreo.Name = "txtCorreo"
     txtCorreo.Size = New Size(316, 33)
     txtCorreo.TabIndex = 3
@@ -107,7 +115,7 @@ Partial Class frmModificaCuenta
     ' 
     Label1.AutoSize = True
     Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    Label1.Location = New Point(100, 95)
+    Label1.Location = New Point(69, 95)
     Label1.Name = "Label1"
     Label1.Size = New Size(158, 25)
     Label1.TabIndex = 2
@@ -116,7 +124,7 @@ Partial Class frmModificaCuenta
     ' txtNombre
     ' 
     txtNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    txtNombre.Location = New Point(277, 34)
+    txtNombre.Location = New Point(246, 34)
     txtNombre.Name = "txtNombre"
     txtNombre.Size = New Size(316, 33)
     txtNombre.TabIndex = 1
@@ -125,7 +133,7 @@ Partial Class frmModificaCuenta
     ' 
     lblNombre.AutoSize = True
     lblNombre.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    lblNombre.Location = New Point(167, 42)
+    lblNombre.Location = New Point(136, 42)
     lblNombre.Name = "lblNombre"
     lblNombre.Size = New Size(91, 25)
     lblNombre.TabIndex = 0
@@ -137,8 +145,9 @@ Partial Class frmModificaCuenta
     ' 
     ' frmModificaCuenta
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(689, 349)
     Controls.Add(grbData)
     Name = "frmModificaCuenta"

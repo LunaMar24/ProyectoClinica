@@ -1,10 +1,11 @@
 ﻿Public Class frmMantDoctores
+  Implements IFormularios
 
   Private idDoctor As Integer
   Private nombreDoctor As String
   Private especialidad As String
 
-  Public Sub AjustarPantalla()
+  Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     btnCrear.Enabled = True
     btnModificar.Enabled = True
     btnEliminar.Enabled = True
@@ -184,24 +185,21 @@
 
 
   Private Sub btnCrear_Click(sender As Object, e As EventArgs) Handles btnCrear.Click
-    frmCrearDoctor.Show()
-    frmCrearDoctor.AjustarPantalla()
-    Me.Hide()
+    PantallaManager.LlamarPantallaHija(New frmCrearDoctor, Me)
   End Sub
 
   Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-    If idDoctor >= 0 Then
+    If idDoctor > 0 Then
+      Dim frmModificaDoctor As New frmModificaDoctor()
       frmModificaDoctor.IdDoctor = idDoctor
-      frmModificaDoctor.Show()
-      frmModificaDoctor.AjustarPantalla()
-      Me.Hide()
+      PantallaManager.LlamarPantallaHija(frmModificaDoctor, Me)
     Else
       MessageBox.Show("Debe seleccionar el doctor a modificar.", "Modificar Doctor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 
   Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-    If idDoctor >= 0 Then
+    If idDoctor > 0 Then
       Dim resultado As DialogResult = MessageBox.Show("Toda información relacionada a este doctor (" & nombreDoctor & ") será eliminada" & vbCrLf & vbCrLf & "¿Está seguro de que desea eliminar este doctor?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
       If resultado = DialogResult.Yes Then
         Try
@@ -223,13 +221,12 @@
   End Sub
   Private Sub btnAsignarConsulta_Click(sender As Object, e As EventArgs) Handles btnAsignarConsulta.Click
 
-    If idDoctor >= 0 Then
-      frmAsignarConsulta.Show()
+    If idDoctor > 0 Then
+      Dim frmAsignarConsulta As New frmAsignarConsulta()
       frmAsignarConsulta.Doctor = idDoctor
       frmAsignarConsulta.NombreDoctor = nombreDoctor
       frmAsignarConsulta.Especialidad = especialidad
-      frmAsignarConsulta.AjustarPantalla()
-      Me.Hide()
+      PantallaManager.LlamarPantallaHija(frmAsignarConsulta, Me)
     Else
       MessageBox.Show("Debe seleccionar un doctor para asignarle un paciente.", "Asignar Paciente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If

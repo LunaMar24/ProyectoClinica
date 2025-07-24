@@ -24,7 +24,7 @@ Partial Class frmEspecialidades
   Private Sub InitializeComponent()
     components = New ComponentModel.Container()
     Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-    gpbEspeciadlidad = New GroupBox()
+    grbEspeciadlidad = New GroupBox()
     lblEspecialidadAnt = New Label()
     lblIdSeleccionado = New Label()
     btnEliminar = New Button()
@@ -37,27 +37,28 @@ Partial Class frmEspecialidades
     clId = New DataGridViewTextBoxColumn()
     clDescripcion = New DataGridViewTextBoxColumn()
     rrpError = New ErrorProvider(components)
-    gpbEspeciadlidad.SuspendLayout()
+    grbEspeciadlidad.SuspendLayout()
     CType(dgvEspecialidades, ComponentModel.ISupportInitialize).BeginInit()
     CType(rrpError, ComponentModel.ISupportInitialize).BeginInit()
     SuspendLayout()
     ' 
-    ' gpbEspeciadlidad
+    ' grbEspeciadlidad
     ' 
-    gpbEspeciadlidad.Controls.Add(lblEspecialidadAnt)
-    gpbEspeciadlidad.Controls.Add(lblIdSeleccionado)
-    gpbEspeciadlidad.Controls.Add(btnEliminar)
-    gpbEspeciadlidad.Controls.Add(btnModificar)
-    gpbEspeciadlidad.Controls.Add(btnInsertar)
-    gpbEspeciadlidad.Controls.Add(lblEspecialidad)
-    gpbEspeciadlidad.Controls.Add(txtEspecialidad)
-    gpbEspeciadlidad.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-    gpbEspeciadlidad.Location = New Point(12, 12)
-    gpbEspeciadlidad.Name = "gpbEspeciadlidad"
-    gpbEspeciadlidad.Size = New Size(634, 192)
-    gpbEspeciadlidad.TabIndex = 0
-    gpbEspeciadlidad.TabStop = False
-    gpbEspeciadlidad.Text = "Información"
+    grbEspeciadlidad.BackColor = Color.Transparent
+    grbEspeciadlidad.Controls.Add(lblEspecialidadAnt)
+    grbEspeciadlidad.Controls.Add(lblIdSeleccionado)
+    grbEspeciadlidad.Controls.Add(btnEliminar)
+    grbEspeciadlidad.Controls.Add(btnModificar)
+    grbEspeciadlidad.Controls.Add(btnInsertar)
+    grbEspeciadlidad.Controls.Add(lblEspecialidad)
+    grbEspeciadlidad.Controls.Add(txtEspecialidad)
+    grbEspeciadlidad.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+    grbEspeciadlidad.Location = New Point(12, 12)
+    grbEspeciadlidad.Name = "grbEspeciadlidad"
+    grbEspeciadlidad.Size = New Size(634, 192)
+    grbEspeciadlidad.TabIndex = 0
+    grbEspeciadlidad.TabStop = False
+    grbEspeciadlidad.Text = "Información"
     ' 
     ' lblEspecialidadAnt
     ' 
@@ -81,6 +82,11 @@ Partial Class frmEspecialidades
     ' 
     ' btnEliminar
     ' 
+    btnEliminar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEliminar.BackColor = Color.FromArgb(62, 140, 195)
+    btnEliminar.FlatAppearance.BorderColor = Color.FromArgb(165, 200, 226)
+    btnEliminar.FlatStyle = FlatStyle.Flat
+    btnEliminar.ForeColor = Color.White
     btnEliminar.Location = New Point(422, 112)
     btnEliminar.Name = "btnEliminar"
     btnEliminar.Size = New Size(151, 53)
@@ -90,6 +96,11 @@ Partial Class frmEspecialidades
     ' 
     ' btnModificar
     ' 
+    btnModificar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnModificar.BackColor = Color.FromArgb(62, 140, 195)
+    btnModificar.FlatAppearance.BorderColor = Color.FromArgb(165, 200, 226)
+    btnModificar.FlatStyle = FlatStyle.Flat
+    btnModificar.ForeColor = Color.White
     btnModificar.Location = New Point(219, 112)
     btnModificar.Name = "btnModificar"
     btnModificar.Size = New Size(151, 53)
@@ -99,6 +110,11 @@ Partial Class frmEspecialidades
     ' 
     ' btnInsertar
     ' 
+    btnInsertar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnInsertar.BackColor = Color.FromArgb(62, 140, 195)
+    btnInsertar.FlatAppearance.BorderColor = Color.FromArgb(165, 200, 226)
+    btnInsertar.FlatStyle = FlatStyle.Flat
+    btnInsertar.ForeColor = Color.White
     btnInsertar.Location = New Point(30, 112)
     btnInsertar.Name = "btnInsertar"
     btnInsertar.Size = New Size(137, 53)
@@ -124,7 +140,10 @@ Partial Class frmEspecialidades
     ' 
     ' btnRegresar
     ' 
-    btnRegresar.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnRegresar.BackColor = Color.IndianRed
+    btnRegresar.FlatStyle = FlatStyle.Flat
+    btnRegresar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, 0)
+    btnRegresar.ForeColor = Color.White
     btnRegresar.Location = New Point(653, 25)
     btnRegresar.Name = "btnRegresar"
     btnRegresar.Size = New Size(124, 56)
@@ -138,7 +157,7 @@ Partial Class frmEspecialidades
     dgvEspecialidades.AllowUserToDeleteRows = False
     DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
     DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
     DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
     DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
@@ -176,22 +195,23 @@ Partial Class frmEspecialidades
     ' 
     ' frmEspecialidades
     ' 
-    AutoScaleDimensions = New SizeF(7F, 15F)
+    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
     AutoScaleMode = AutoScaleMode.Font
+    BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(789, 480)
     Controls.Add(dgvEspecialidades)
     Controls.Add(btnRegresar)
-    Controls.Add(gpbEspeciadlidad)
+    Controls.Add(grbEspeciadlidad)
     Name = "frmEspecialidades"
     StartPosition = FormStartPosition.CenterScreen
     Text = "Mantenimiento de Especialidades"
-    gpbEspeciadlidad.ResumeLayout(False)
-    gpbEspeciadlidad.PerformLayout()
+    grbEspeciadlidad.ResumeLayout(False)
+    grbEspeciadlidad.PerformLayout()
     CType(dgvEspecialidades, ComponentModel.ISupportInitialize).EndInit()
     CType(rrpError, ComponentModel.ISupportInitialize).EndInit()
     ResumeLayout(False)
   End Sub
-  Friend WithEvents gpbEspeciadlidad As GroupBox
+  Friend WithEvents grbEspeciadlidad As GroupBox
   Friend WithEvents txtEspecialidad As TextBox
   Friend WithEvents lblEspecialidad As Label
   Friend WithEvents btnInsertar As Button
